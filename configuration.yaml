@@ -1042,3 +1042,9 @@
   kind: helm
   name: vmware-tanzu
   repository: https://vmware-tanzu.github.io/helm-charts
+- entries:
+    - kuberhealthy
+  kind: helm
+  name: kuberhealthy
+  repository: https://comcast.github.io/kuberhealthy/helm-repos
+
