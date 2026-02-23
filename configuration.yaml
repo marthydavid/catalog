@@ -781,6 +781,10 @@
   kind: helm
   name: external-secrets-operator
   repository: https://charts.external-secrets.io
+  valuesFiles:
+    - version: 0.0.0
+      valuesFile: |
+        installCRDs: true
 - entries:
     - rbac-manager
   kind: helm
