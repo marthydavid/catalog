@@ -301,9 +301,6 @@ spec:
                   type: string
                 type: object
               version:
-                enum:
-                - "5.7"
-                - 8.0.21
                 type: string
             required:
             - location
@@ -1318,9 +1315,6 @@ spec:
                   type: string
                 type: object
               version:
-                enum:
-                - "5.7"
-                - 8.0.21
                 type: string
             required:
             - location
@@ -2424,9 +2418,6 @@ spec:
                   type: string
                 type: object
               version:
-                enum:
-                - "5.7"
-                - 8.0.21
                 type: string
             required:
             - location

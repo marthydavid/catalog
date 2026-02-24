@@ -5076,11 +5076,6 @@ spec:
                 type: string
               dataEncryption:
                 properties:
-                  geoBackupEncryptionKeyStatus:
-                    enum:
-                    - Invalid
-                    - Valid
-                    type: string
                   geoBackupKeyURI:
                     type: string
                   geoBackupKeyURIFromConfig:
@@ -5105,11 +5100,6 @@ spec:
                       name:
                         type: string
                     type: object
-                  primaryEncryptionKeyStatus:
-                    enum:
-                    - Invalid
-                    - Valid
-                    type: string
                   primaryKeyURI:
                     type: string
                   primaryKeyURIFromConfig:
@@ -5715,8 +5705,6 @@ spec:
                     additionalProperties:
                       type: string
                     type: object
-                  geoBackupEncryptionKeyStatus:
-                    type: string
                   geoBackupKeyURI:
                     type: string
                   geoBackupKeyURIFromConfig:
@@ -5741,8 +5729,6 @@ spec:
                       name:
                         type: string
                     type: object
-                  primaryEncryptionKeyStatus:
-                    type: string
                   primaryKeyURI:
                     type: string
                   primaryKeyURIFromConfig:

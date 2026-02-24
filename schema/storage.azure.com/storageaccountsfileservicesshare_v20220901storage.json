@@ -1,0 +1,332 @@
+{
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "spec": {
+      "type": "object",
+      "required": [
+        "owner"
+      ],
+      "properties": {
+        "$propertyBag": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "accessTier": {
+          "type": "string"
+        },
+        "azureName": {
+          "type": "string"
+        },
+        "enabledProtocols": {
+          "type": "string"
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "operatorSpec": {
+          "type": "object",
+          "properties": {
+            "$propertyBag": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "configMapExpressions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "value"
+                ],
+                "properties": {
+                  "key": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "secretExpressions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "value"
+                ],
+                "properties": {
+                  "key": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "originalVersion": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "object",
+          "properties": {
+            "armId": {
+              "type": "string",
+              "pattern": "(?i)(^(/subscriptions/([^/]+)(/resourcegroups/([^/]+))?)?/providers/([^/]+)/([^/]+/[^/]+)(/([^/]+/[^/]+))*$|^/subscriptions/([^/]+)(/resourcegroups/([^/]+))?$)"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "rootSquash": {
+          "type": "string"
+        },
+        "shareQuota": {
+          "type": "integer"
+        },
+        "signedIdentifiers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "$propertyBag": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "accessPolicy": {
+                "type": "object",
+                "properties": {
+                  "$propertyBag": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  },
+                  "expiryTime": {
+                    "type": "string"
+                  },
+                  "permission": {
+                    "type": "string"
+                  },
+                  "startTime": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "reference": {
+                "type": "object",
+                "properties": {
+                  "armId": {
+                    "type": "string",
+                    "pattern": "(?i)(^(/subscriptions/([^/]+)(/resourcegroups/([^/]+))?)?/providers/([^/]+)/([^/]+/[^/]+)(/([^/]+/[^/]+))*$|^/subscriptions/([^/]+)(/resourcegroups/([^/]+))?$)"
+                  },
+                  "group": {
+                    "type": "string"
+                  },
+                  "kind": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "$propertyBag": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "accessTier": {
+          "type": "string"
+        },
+        "accessTierChangeTime": {
+          "type": "string"
+        },
+        "accessTierStatus": {
+          "type": "string"
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "lastTransitionTime",
+              "reason",
+              "status",
+              "type"
+            ],
+            "properties": {
+              "lastTransitionTime": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "message": {
+                "type": "string"
+              },
+              "observedGeneration": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "reason": {
+                "type": "string"
+              },
+              "severity": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "deletedTime": {
+          "type": "string"
+        },
+        "enabledProtocols": {
+          "type": "string"
+        },
+        "etag": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "lastModifiedTime": {
+          "type": "string"
+        },
+        "leaseDuration": {
+          "type": "string"
+        },
+        "leaseState": {
+          "type": "string"
+        },
+        "leaseStatus": {
+          "type": "string"
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "remainingRetentionDays": {
+          "type": "integer"
+        },
+        "rootSquash": {
+          "type": "string"
+        },
+        "shareQuota": {
+          "type": "integer"
+        },
+        "shareUsageBytes": {
+          "type": "integer"
+        },
+        "signedIdentifiers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "$propertyBag": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "accessPolicy": {
+                "type": "object",
+                "properties": {
+                  "$propertyBag": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  },
+                  "expiryTime": {
+                    "type": "string"
+                  },
+                  "permission": {
+                    "type": "string"
+                  },
+                  "startTime": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "id": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "snapshotTime": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

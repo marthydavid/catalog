@@ -373,7 +373,8 @@
         },
         "url": {
           "description": "model url",
-          "type": "string"
+          "type": "string",
+          "pattern": "^https?://.+$"
         },
         "urlAuthorization": {
           "description": "authorization options for model from url",

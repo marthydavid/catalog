@@ -159,6 +159,22 @@
                   },
                   "additionalProperties": false
                 },
+                "subscriptionId": {
+                  "type": "object",
+                  "required": [
+                    "key",
+                    "name"
+                  ],
+                  "properties": {
+                    "key": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                },
                 "tenantId": {
                   "type": "object",
                   "required": [
