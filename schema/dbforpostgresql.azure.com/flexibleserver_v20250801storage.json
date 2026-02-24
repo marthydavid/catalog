@@ -132,9 +132,6 @@
                 "type": "string"
               }
             },
-            "geoBackupEncryptionKeyStatus": {
-              "type": "string"
-            },
             "geoBackupKeyURI": {
               "type": "string"
             },
@@ -172,9 +169,6 @@
                 }
               },
               "additionalProperties": false
-            },
-            "primaryEncryptionKeyStatus": {
-              "type": "string"
             },
             "primaryKeyURI": {
               "type": "string"

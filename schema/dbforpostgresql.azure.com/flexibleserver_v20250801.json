@@ -127,13 +127,6 @@
         "dataEncryption": {
           "type": "object",
           "properties": {
-            "geoBackupEncryptionKeyStatus": {
-              "type": "string",
-              "enum": [
-                "Invalid",
-                "Valid"
-              ]
-            },
             "geoBackupKeyURI": {
               "type": "string"
             },
@@ -171,13 +164,6 @@
                 }
               },
               "additionalProperties": false
-            },
-            "primaryEncryptionKeyStatus": {
-              "type": "string",
-              "enum": [
-                "Invalid",
-                "Valid"
-              ]
             },
             "primaryKeyURI": {
               "type": "string"

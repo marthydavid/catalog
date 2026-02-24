@@ -501,11 +501,7 @@
           }
         },
         "version": {
-          "type": "string",
-          "enum": [
-            "5.7",
-            "8.0.21"
-          ]
+          "type": "string"
         }
       },
       "additionalProperties": false
