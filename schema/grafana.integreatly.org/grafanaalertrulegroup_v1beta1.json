@@ -152,6 +152,10 @@
               "condition": {
                 "type": "string"
               },
+              "dashboardUid": {
+                "description": "Deprecated: The field is not used, use rules[].annotations.__dashboardUid__",
+                "type": "string"
+              },
               "data": {
                 "type": "array",
                 "items": {
@@ -242,32 +246,50 @@
                   "receiver"
                 ],
                 "properties": {
+                  "active_time_intervals": {
+                    "description": "ActiveTimeIntervals defines the time intervals during which notifications should NOT be muted.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
                   "group_by": {
+                    "description": "GroupBy defines the labels by which incoming alerts are grouped together.",
                     "type": "array",
                     "items": {
                       "type": "string"
                     }
                   },
                   "group_interval": {
+                    "description": "GroupInterval defines how long to wait before sending a notification about new alerts added\nto a group for which an initial notification has already been sent. (e.g. 5m)",
                     "type": "string"
                   },
                   "group_wait": {
+                    "description": "GroupWait defines how long to initially wait to send a notification for a group of alerts. (e.g. 30s)",
                     "type": "string"
                   },
                   "mute_time_intervals": {
+                    "description": "MuteTimeIntervals defines the time intervals during which notifications should be muted.\nThese must match the name of a mute time interval defined in the Alertmanager configuration.",
                     "type": "array",
                     "items": {
                       "type": "string"
                     }
                   },
                   "receiver": {
-                    "type": "string"
+                    "description": "Receiver is the name of the receiver to send notifications to.",
+                    "type": "string",
+                    "minLength": 1
                   },
                   "repeat_interval": {
+                    "description": "RepeatInterval defines how long to wait before sending a notification again if it has already\nbeen sent successfully for an alert. (e.g. 4h)\nShould not be less than GroupInterval.",
                     "type": "string"
                   }
                 },
                 "additionalProperties": false
+              },
+              "panelId": {
+                "description": "Deprecated: The field is not used, use rules[].annotations.__panelId__",
+                "type": "integer"
               },
               "record": {
                 "type": "object",
@@ -280,6 +302,9 @@
                     "type": "string"
                   },
                   "metric": {
+                    "type": "string"
+                  },
+                  "targetDatasourceUid": {
                     "type": "string"
                   }
                 },
