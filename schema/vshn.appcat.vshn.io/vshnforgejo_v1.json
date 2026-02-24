@@ -5302,9 +5302,9 @@
                   }
                 },
                 "majorVersion": {
-                  "description": "Version contains supported version of Forgejo.\nMultiple versions are supported. Defaults to 12.0.0 if not set.",
+                  "description": "Version contains supported version of Forgejo.\nMultiple versions are supported. Defaults to 14.0.0 if not set.",
                   "type": "string",
-                  "default": "12.0.0"
+                  "default": "14.0.0"
                 },
                 "serviceLevel": {
                   "description": "ServiceLevel defines the service level of this service. Either Best Effort or Guaranteed Availability is allowed.",
