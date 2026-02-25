@@ -24,7 +24,9 @@
         },
         "startingDeadlineSeconds": {
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "default": 120,
+          "minimum": 1
         },
         "storageName": {
           "type": "string"
@@ -142,6 +144,75 @@
         "latestRestorableTime": {
           "type": "string",
           "format": "date-time"
+        },
+        "minio": {
+          "type": "object",
+          "properties": {
+            "bucket": {
+              "type": "string"
+            },
+            "caBundle": {
+              "type": "object",
+              "required": [
+                "key"
+              ],
+              "properties": {
+                "key": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string",
+                  "default": ""
+                },
+                "optional": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false,
+              "x-kubernetes-map-type": "atomic"
+            },
+            "credentialsSecret": {
+              "type": "string"
+            },
+            "debugTrace": {
+              "type": "boolean"
+            },
+            "endpointUrl": {
+              "type": "string"
+            },
+            "forcePathStyle": {
+              "type": "boolean"
+            },
+            "insecureSkipTLSVerify": {
+              "type": "boolean"
+            },
+            "partSize": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "prefix": {
+              "type": "string"
+            },
+            "region": {
+              "type": "string"
+            },
+            "retryer": {
+              "type": "object",
+              "required": [
+                "numMaxRetries"
+              ],
+              "properties": {
+                "numMaxRetries": {
+                  "type": "integer"
+                }
+              },
+              "additionalProperties": false
+            },
+            "secure": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
         },
         "pbmName": {
           "type": "string"
