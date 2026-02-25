@@ -57,7 +57,7 @@
               "additionalProperties": false
             },
             "excludedFields": {
-              "description": "excludedFields is a set of fields in the schema which will not be validated by\ncrdSchemaValidation or objectSchemaValidation.\nThe list may contain at most 64 fields.\nWhen not specified, all fields in the schema will be validated.",
+              "description": "excludedFields is a set of fields in the schema which will not be validated by\ncrdSchemaValidation or objectSchemaValidation.\nThe list may contain at most 64 fields.\nEach path in the list must be unique.\nWhen not specified, all fields in the schema will be validated.",
               "type": "array",
               "maxItems": 64,
               "minItems": 1,
@@ -106,7 +106,13 @@
                 },
                 "additionalProperties": false
               },
-              "x-kubernetes-list-type": "atomic"
+              "x-kubernetes-list-type": "atomic",
+              "x-kubernetes-validations": [
+                {
+                  "rule": "self.all(x, self.exists_one(y, y.path == x.path))",
+                  "message": "each path in the list must be unique."
+                }
+              ]
             },
             "requiredVersions": {
               "description": "requiredVersions specifies a subset of the CRD's API versions which will be asserted for compatibility.\nThis field is required.",
