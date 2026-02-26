@@ -99,6 +99,10 @@
         "deletionProtected": {
           "type": "boolean"
         },
+        "existingUser": {
+          "description": "If specified, DB Operator will try to use an existing user to assign permissions\nUser will not be removed, when a database is removed, but the permissions added by the\noperator will be cleaned up",
+          "type": "string"
+        },
         "extraGrants": {
           "type": "array",
           "items": {

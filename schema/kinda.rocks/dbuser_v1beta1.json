@@ -86,6 +86,10 @@
           "description": "DatabaseRef should contain a name of a Database to create a user there\nDatabase should be in the same namespace with the user",
           "type": "string"
         },
+        "existingUser": {
+          "description": "If specified, DB Operator will try to use an existing user to assign permissions\nUser will not be removed, when a dbuser is removed, but the permissions added by the\noperator will be cleaned up",
+          "type": "string"
+        },
         "extraPrivileges": {
           "description": "A list of additional roles that should be added to the user",
           "type": "array",
