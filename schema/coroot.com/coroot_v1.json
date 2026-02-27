@@ -5925,6 +5925,25 @@
                           },
                           "additionalProperties": false
                         },
+                        "kubernetesEvents": {
+                          "description": "Kubernetes events source configuration (required if type is kubernetes_events).",
+                          "type": "object",
+                          "properties": {
+                            "evaluateWithAi": {
+                              "description": "Use AI to evaluate Kubernetes events and reduce noise.",
+                              "type": "boolean"
+                            },
+                            "maxAlertsPerApp": {
+                              "description": "Maximum number of alerts per application for this rule.",
+                              "type": "integer"
+                            },
+                            "minCount": {
+                              "description": "Minimum number of occurrences before alerting.",
+                              "type": "integer"
+                            }
+                          },
+                          "additionalProperties": false
+                        },
                         "logPattern": {
                           "description": "Log pattern source configuration (required if type is log_patterns).",
                           "type": "object",
@@ -5969,11 +5988,12 @@
                           "additionalProperties": false
                         },
                         "type": {
-                          "description": "Source type: check, log_patterns, or promql.",
+                          "description": "Source type: check, log_patterns, kubernetes_events, or promql.",
                           "type": "string",
                           "enum": [
                             "check",
                             "log_patterns",
+                            "kubernetes_events",
                             "promql"
                           ]
                         }

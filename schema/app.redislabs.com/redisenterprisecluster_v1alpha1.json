@@ -1588,6 +1588,9 @@
             "callHomeClient": {
               "type": "object",
               "properties": {
+                "cronExpression": {
+                  "type": "string"
+                },
                 "disabled": {
                   "type": "boolean"
                 },
@@ -1608,6 +1611,9 @@
                     }
                   },
                   "additionalProperties": false
+                },
+                "interval": {
+                  "type": "string"
                 },
                 "proxySecretName": {
                   "type": "string"
@@ -1663,6 +1669,33 @@
                         ],
                         "x-kubernetes-int-or-string": true
                       }
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "s3Target": {
+                  "type": "object",
+                  "properties": {
+                    "bucket": {
+                      "type": "string"
+                    },
+                    "credentialsSecretName": {
+                      "type": "string"
+                    },
+                    "enabled": {
+                      "type": "boolean"
+                    },
+                    "endpoint": {
+                      "type": "string"
+                    },
+                    "prefix": {
+                      "type": "string"
+                    },
+                    "region": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
                     }
                   },
                   "additionalProperties": false
