@@ -19,6 +19,28 @@ spec:
         properties:
           apiVersion:
             type: string
+          autogrowStatus:
+            properties:
+              lastAutogrowAttemptedAt:
+                type: object
+              lastAutogrowPolicyUsed:
+                type: string
+              lastError:
+                type: string
+              lastProposedSize:
+                type: string
+              lastSuccessfulAutogrowAt:
+                type: object
+              lastSuccessfulSize:
+                type: string
+              totalAutogrowAttempted:
+                type: integer
+              totalSuccessfulAutogrow:
+                type: integer
+            required:
+            - totalAutogrowAttempted
+            - totalSuccessfulAutogrow
+            type: object
           backendUUID:
             type: string
           config:

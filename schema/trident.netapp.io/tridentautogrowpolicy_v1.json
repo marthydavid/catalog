@@ -1,0 +1,47 @@
+{
+  "type": "object",
+  "required": [
+    "spec"
+  ],
+  "properties": {
+    "apiVersion": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "spec": {
+      "type": "object",
+      "required": [
+        "usedThreshold"
+      ],
+      "properties": {
+        "growthAmount": {
+          "type": "string"
+        },
+        "maxSize": {
+          "type": "string"
+        },
+        "usedThreshold": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,73 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: (devel)
+  name: tridentautogrowrequestinternals.trident.netapp.io
+spec:
+  group: trident.netapp.io
+  names:
+    kind: TridentAutogrowRequestInternal
+    listKind: TridentAutogrowRequestInternalList
+    plural: tridentautogrowrequestinternals
+    singular: tridentautogrowrequestinternal
+  scope: Namespaced
+  versions:
+  - name: v1
+    schema:
+      openAPIV3Schema:
+        properties:
+          apiVersion:
+            type: string
+          kind:
+            type: string
+          metadata:
+            type: object
+          spec:
+            properties:
+              autogrowPolicyRef:
+                properties:
+                  generation:
+                    format: int64
+                    type: integer
+                  name:
+                    type: string
+                required:
+                - generation
+                - name
+                type: object
+              nodeName:
+                type: string
+              observedCapacityBytes:
+                type: string
+              observedUsedBytes:
+                type: string
+              observedUsedPercent: {}
+              timestamp:
+                format: date-time
+                type: string
+              volume:
+                type: string
+            required:
+            - autogrowPolicyRef
+            - volume
+            type: object
+          status:
+            properties:
+              finalCapacityBytes:
+                type: string
+              message:
+                type: string
+              phase:
+                type: string
+              processedAt:
+                format: date-time
+                type: string
+              retryCount:
+                type: integer
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true

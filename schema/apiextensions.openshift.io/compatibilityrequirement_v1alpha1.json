@@ -65,7 +65,8 @@
                 "description": "APIExcludedField describes a field in the schema which will not be validated by\ncrdSchemaValidation or objectSchemaValidation.",
                 "type": "object",
                 "required": [
-                  "path"
+                  "path",
+                  "versions"
                 ],
                 "properties": {
                   "path": {

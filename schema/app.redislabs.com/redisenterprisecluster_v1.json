@@ -11033,6 +11033,10 @@
             "callHomeClient": {
               "type": "object",
               "properties": {
+                "cronExpression": {
+                  "description": "Cron expression for scheduling the call home CronJob (e.g., \"0 */6 * * *\"). If not specified, the CALL_HOME_CLIENT_CRON_SCHEDULE environment variable is used, or the default value of \"0 23 * * *\" (23:00 UTC daily). Changing defaults is not recommended.",
+                  "type": "string"
+                },
                 "disabled": {
                   "description": "Whether to disable the call home client. Enabled by default.",
                   "type": "boolean"
@@ -11059,6 +11063,10 @@
                     }
                   },
                   "additionalProperties": false
+                },
+                "interval": {
+                  "description": "Interval between call home reports (e.g., \"1h\", \"30m\"). Passed as --interval flag to the call home client binary. If not specified, the CALL_HOME_CLIENT_INTERVAL environment variable is used, or the default value of 24h. Changing defaults is not recommended.",
+                  "type": "string"
                 },
                 "proxySecretName": {
                   "description": "if needed, add proxy details in secret. the name of the proxy secret in the secret, can send the following keys: proxy-url, proxy-username, proxy-password (the url includes the proxy port).",
@@ -11121,6 +11129,41 @@
                         ],
                         "x-kubernetes-int-or-string": true
                       }
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "s3Target": {
+                  "description": "S3-compatible storage target for call home data upload. When enabled, call home data will be uploaded to this S3 target only. Before using this feature, please coordinate with Redis.",
+                  "type": "object",
+                  "properties": {
+                    "bucket": {
+                      "description": "S3 bucket name. Required when S3Target is enabled.",
+                      "type": "string"
+                    },
+                    "credentialsSecretName": {
+                      "description": "Name of the Kubernetes secret containing S3 credentials. The secret must contain keys \"access-key\" and \"secret-key\". Optional keys - \"session-token\" (for AWS STS), \"ca-cert\" (for custom CA). The credentials must have s3:PutObject permission on the target bucket.",
+                      "type": "string"
+                    },
+                    "enabled": {
+                      "description": "Whether S3 upload is enabled. When true, call home data will be uploaded to the specified S3 target only.",
+                      "type": "boolean"
+                    },
+                    "endpoint": {
+                      "description": "S3-compatible endpoint URL.",
+                      "type": "string"
+                    },
+                    "prefix": {
+                      "description": "S3 object key prefix/subfolder for uploaded files (e.g., \"reports/2025\"). If specified, files will be uploaded to s3://bucket/prefix/filename.",
+                      "type": "string"
+                    },
+                    "region": {
+                      "description": "AWS region for the S3 bucket (e.g., \"us-east-1\").",
+                      "type": "string"
+                    },
+                    "url": {
+                      "description": "Full S3 URL including bucket (e.g., \"https://bucket.s3.region.amazonaws.com\" or \"s3://bucket/prefix\").",
+                      "type": "string"
                     }
                   },
                   "additionalProperties": false

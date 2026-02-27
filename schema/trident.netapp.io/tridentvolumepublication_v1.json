@@ -13,6 +13,15 @@
     "apiVersion": {
       "type": "string"
     },
+    "autogrowIneligible": {
+      "type": "boolean"
+    },
+    "autogrowPolicy": {
+      "type": "string"
+    },
+    "backendUUID": {
+      "type": "string"
+    },
     "kind": {
       "type": "string"
     },
@@ -22,8 +31,14 @@
     "nodeID": {
       "type": "string"
     },
+    "pool": {
+      "type": "string"
+    },
     "readOnly": {
       "type": "boolean"
+    },
+    "storageClass": {
+      "type": "string"
     },
     "volumeID": {
       "type": "string"
