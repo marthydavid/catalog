@@ -11,6 +11,40 @@
     "apiVersion": {
       "type": "string"
     },
+    "autogrowStatus": {
+      "type": "object",
+      "required": [
+        "totalAutogrowAttempted",
+        "totalSuccessfulAutogrow"
+      ],
+      "properties": {
+        "lastAutogrowAttemptedAt": {
+          "type": "object"
+        },
+        "lastAutogrowPolicyUsed": {
+          "type": "string"
+        },
+        "lastError": {
+          "type": "string"
+        },
+        "lastProposedSize": {
+          "type": "string"
+        },
+        "lastSuccessfulAutogrowAt": {
+          "type": "object"
+        },
+        "lastSuccessfulSize": {
+          "type": "string"
+        },
+        "totalAutogrowAttempted": {
+          "type": "integer"
+        },
+        "totalSuccessfulAutogrow": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
     "backendUUID": {
       "type": "string"
     },

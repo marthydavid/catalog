@@ -9,7 +9,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 98.72% | 3429 | 10009 | 83 |
+| 98.75% | 3429 | 10015 | 83 |
 
 ### Missing Schemas
 
@@ -47,10 +47,6 @@ This page lists missing CRD validation schemas that are present in alternative c
 | nodeclass | v1 |
 | nodediagnostic | v1alpha1 |
 | targetgroupbinding | v1 |
-
-| gateway.networking.x-k8s.io | |
-| --- | --- |
-| xmesh | v1alpha1 |
 
 | helm.toolkit.fluxcd.io | |
 | --- | --- |

@@ -1,0 +1,83 @@
+{
+  "type": "object",
+  "required": [
+    "spec"
+  ],
+  "properties": {
+    "apiVersion": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "spec": {
+      "type": "object",
+      "required": [
+        "autogrowPolicyRef",
+        "volume"
+      ],
+      "properties": {
+        "autogrowPolicyRef": {
+          "type": "object",
+          "required": [
+            "generation",
+            "name"
+          ],
+          "properties": {
+            "generation": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "nodeName": {
+          "type": "string"
+        },
+        "observedCapacityBytes": {
+          "type": "string"
+        },
+        "observedUsedBytes": {
+          "type": "string"
+        },
+        "observedUsedPercent": {},
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "volume": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "finalCapacityBytes": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "phase": {
+          "type": "string"
+        },
+        "processedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "retryCount": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
