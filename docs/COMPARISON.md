@@ -9,9 +9,17 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 98.75% | 3429 | 10015 | 83 |
+| 98.38% | 3449 | 10015 | 83 |
 
 ### Missing Schemas
+
+| aigateway.envoyproxy.io | |
+| --- | --- |
+| aigatewayroute | v1alpha1 |
+| aiservicebackend | v1alpha1 |
+| backendsecuritypolicy | v1alpha1 |
+| gatewayconfig | v1alpha1 |
+| mcproute | v1alpha1 |
 
 | cloud.google.com | |
 | --- | --- |
@@ -47,6 +55,17 @@ This page lists missing CRD validation schemas that are present in alternative c
 | nodeclass | v1 |
 | nodediagnostic | v1alpha1 |
 | targetgroupbinding | v1 |
+
+| gateway.kgateway.dev | |
+| --- | --- |
+| backend | v1alpha1 |
+| backendconfigpolicy | v1alpha1 |
+| directresponse | v1alpha1 |
+| gatewayextension | v1alpha1 |
+| gatewayparameters | v1alpha1 |
+| httplistenerpolicy | v1alpha1 |
+| listenerpolicy | v1alpha1 |
+| trafficpolicy | v1alpha1 |
 
 | helm.toolkit.fluxcd.io | |
 | --- | --- |
