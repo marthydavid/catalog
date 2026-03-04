@@ -1,5 +1,9 @@
 {
   "type": "object",
+  "required": [
+    "metadata",
+    "spec"
+  ],
   "properties": {
     "apiVersion": {
       "type": "string"
@@ -172,9 +176,6 @@
             }
           ]
         },
-        "bpfKubeProxyEndpointSlicesEnabled": {
-          "type": "boolean"
-        },
         "bpfKubeProxyHealthzPort": {
           "type": "integer"
         },
@@ -197,6 +198,12 @@
         "bpfLogLevel": {
           "type": "string",
           "pattern": "^(?i)(Off|Info|Debug)?$"
+        },
+        "bpfMaglevMaxEndpointsPerService": {
+          "type": "integer"
+        },
+        "bpfMaglevMaxServices": {
+          "type": "integer"
         },
         "bpfMapSizeConntrack": {
           "type": "integer"
@@ -231,22 +238,16 @@
           "type": "integer"
         },
         "bpfPSNATPorts": {
-          "type": "object",
-          "required": [
-            "portName"
-          ],
-          "properties": {
-            "maxPort": {
+          "pattern": "^.*",
+          "anyOf": [
+            {
               "type": "integer"
             },
-            "minPort": {
-              "type": "integer"
-            },
-            "portName": {
+            {
               "type": "string"
             }
-          },
-          "additionalProperties": false
+          ],
+          "x-kubernetes-int-or-string": true
         },
         "bpfPolicyDebugEnabled": {
           "type": "boolean"
@@ -262,8 +263,7 @@
           "type": "string",
           "enum": [
             "Enabled",
-            "Disabled",
-            "L2Only"
+            "Disabled"
           ]
         },
         "cgroupV2Path": {
@@ -485,7 +485,12 @@
         },
         "iptablesBackend": {
           "type": "string",
-          "pattern": "^(?i)(Auto|Legacy|NFT)?$"
+          "pattern": "^(?i)(Auto|Legacy|NFT)?$",
+          "enum": [
+            "Legacy",
+            "NFT",
+            "Auto"
+          ]
         },
         "iptablesFilterAllowAction": {
           "type": "string",
@@ -495,14 +500,7 @@
           "type": "string",
           "pattern": "^(?i)(Drop|Reject)?$"
         },
-        "iptablesLockFilePath": {
-          "type": "string"
-        },
         "iptablesLockProbeInterval": {
-          "type": "string",
-          "pattern": "^([0-9]+(\\\\.[0-9]+)?(ms|s|m|h))*$"
-        },
-        "iptablesLockTimeout": {
           "type": "string",
           "pattern": "^([0-9]+(\\\\.[0-9]+)?(ms|s|m|h))*$"
         },
@@ -531,22 +529,16 @@
         "kubeNodePortRanges": {
           "type": "array",
           "items": {
-            "type": "object",
-            "required": [
-              "portName"
-            ],
-            "properties": {
-              "maxPort": {
+            "pattern": "^.*",
+            "anyOf": [
+              {
                 "type": "integer"
               },
-              "minPort": {
-                "type": "integer"
-              },
-              "portName": {
+              {
                 "type": "string"
               }
-            },
-            "additionalProperties": false
+            ],
+            "x-kubernetes-int-or-string": true
           }
         },
         "logActionRateLimit": {
@@ -603,22 +595,16 @@
           ]
         },
         "natPortRange": {
-          "type": "object",
-          "required": [
-            "portName"
-          ],
-          "properties": {
-            "maxPort": {
+          "pattern": "^.*",
+          "anyOf": [
+            {
               "type": "integer"
             },
-            "minPort": {
-              "type": "integer"
-            },
-            "portName": {
+            {
               "type": "string"
             }
-          },
-          "additionalProperties": false
+          ],
+          "x-kubernetes-int-or-string": true
         },
         "netlinkTimeout": {
           "type": "string",
@@ -642,6 +628,7 @@
         },
         "nftablesMode": {
           "type": "string",
+          "default": "Auto",
           "enum": [
             "Disabled",
             "Enabled",
@@ -667,10 +654,22 @@
         "prometheusGoMetricsEnabled": {
           "type": "boolean"
         },
+        "prometheusMetricsCAFile": {
+          "type": "string"
+        },
+        "prometheusMetricsCertFile": {
+          "type": "string"
+        },
+        "prometheusMetricsClientAuth": {
+          "type": "string"
+        },
         "prometheusMetricsEnabled": {
           "type": "boolean"
         },
         "prometheusMetricsHost": {
+          "type": "string"
+        },
+        "prometheusMetricsKeyFile": {
           "type": "string"
         },
         "prometheusMetricsPort": {

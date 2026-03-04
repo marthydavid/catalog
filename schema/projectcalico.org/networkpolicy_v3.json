@@ -1,5 +1,9 @@
 {
   "type": "object",
+  "required": [
+    "metadata",
+    "spec"
+  ],
   "properties": {
     "apiVersion": {
       "type": "string"
@@ -22,7 +26,13 @@
             ],
             "properties": {
               "action": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "Allow",
+                  "Deny",
+                  "Log",
+                  "Pass"
+                ]
               },
               "destination": {
                 "type": "object",
@@ -34,7 +44,8 @@
                     "type": "array",
                     "items": {
                       "type": "string"
-                    }
+                    },
+                    "x-kubernetes-list-type": "set"
                   },
                   "notNets": {
                     "type": "array",
@@ -45,22 +56,16 @@
                   "notPorts": {
                     "type": "array",
                     "items": {
-                      "type": "object",
-                      "required": [
-                        "portName"
-                      ],
-                      "properties": {
-                        "maxPort": {
+                      "pattern": "^.*",
+                      "anyOf": [
+                        {
                           "type": "integer"
                         },
-                        "minPort": {
-                          "type": "integer"
-                        },
-                        "portName": {
+                        {
                           "type": "string"
                         }
-                      },
-                      "additionalProperties": false
+                      ],
+                      "x-kubernetes-int-or-string": true
                     }
                   },
                   "notSelector": {
@@ -69,22 +74,16 @@
                   "ports": {
                     "type": "array",
                     "items": {
-                      "type": "object",
-                      "required": [
-                        "portName"
-                      ],
-                      "properties": {
-                        "maxPort": {
+                      "pattern": "^.*",
+                      "anyOf": [
+                        {
                           "type": "integer"
                         },
-                        "minPort": {
-                          "type": "integer"
-                        },
-                        "portName": {
+                        {
                           "type": "string"
                         }
-                      },
-                      "additionalProperties": false
+                      ],
+                      "x-kubernetes-int-or-string": true
                     }
                   },
                   "selector": {
@@ -97,7 +96,8 @@
                         "type": "array",
                         "items": {
                           "type": "string"
-                        }
+                        },
+                        "x-kubernetes-list-type": "set"
                       },
                       "selector": {
                         "type": "string"
@@ -151,16 +151,24 @@
                 "type": "object",
                 "properties": {
                   "code": {
-                    "type": "integer"
+                    "type": "integer",
+                    "maximum": 255,
+                    "minimum": 0
                   },
                   "type": {
-                    "type": "integer"
+                    "type": "integer",
+                    "maximum": 255,
+                    "minimum": 0
                   }
                 },
                 "additionalProperties": false
               },
               "ipVersion": {
-                "type": "integer"
+                "type": "integer",
+                "enum": [
+                  4,
+                  6
+                ]
               },
               "metadata": {
                 "type": "object",
@@ -178,53 +186,41 @@
                 "type": "object",
                 "properties": {
                   "code": {
-                    "type": "integer"
+                    "type": "integer",
+                    "maximum": 255,
+                    "minimum": 0
                   },
                   "type": {
-                    "type": "integer"
+                    "type": "integer",
+                    "maximum": 255,
+                    "minimum": 0
                   }
                 },
                 "additionalProperties": false
               },
               "notProtocol": {
-                "type": "object",
-                "required": [
-                  "numVal",
-                  "strVal",
-                  "type"
-                ],
-                "properties": {
-                  "numVal": {
+                "pattern": "^.*",
+                "anyOf": [
+                  {
                     "type": "integer"
                   },
-                  "strVal": {
+                  {
                     "type": "string"
-                  },
-                  "type": {
-                    "type": "integer"
                   }
-                },
-                "additionalProperties": false
+                ],
+                "x-kubernetes-int-or-string": true
               },
               "protocol": {
-                "type": "object",
-                "required": [
-                  "numVal",
-                  "strVal",
-                  "type"
-                ],
-                "properties": {
-                  "numVal": {
+                "pattern": "^.*",
+                "anyOf": [
+                  {
                     "type": "integer"
                   },
-                  "strVal": {
+                  {
                     "type": "string"
-                  },
-                  "type": {
-                    "type": "integer"
                   }
-                },
-                "additionalProperties": false
+                ],
+                "x-kubernetes-int-or-string": true
               },
               "source": {
                 "type": "object",
@@ -236,7 +232,8 @@
                     "type": "array",
                     "items": {
                       "type": "string"
-                    }
+                    },
+                    "x-kubernetes-list-type": "set"
                   },
                   "notNets": {
                     "type": "array",
@@ -247,22 +244,16 @@
                   "notPorts": {
                     "type": "array",
                     "items": {
-                      "type": "object",
-                      "required": [
-                        "portName"
-                      ],
-                      "properties": {
-                        "maxPort": {
+                      "pattern": "^.*",
+                      "anyOf": [
+                        {
                           "type": "integer"
                         },
-                        "minPort": {
-                          "type": "integer"
-                        },
-                        "portName": {
+                        {
                           "type": "string"
                         }
-                      },
-                      "additionalProperties": false
+                      ],
+                      "x-kubernetes-int-or-string": true
                     }
                   },
                   "notSelector": {
@@ -271,22 +262,16 @@
                   "ports": {
                     "type": "array",
                     "items": {
-                      "type": "object",
-                      "required": [
-                        "portName"
-                      ],
-                      "properties": {
-                        "maxPort": {
+                      "pattern": "^.*",
+                      "anyOf": [
+                        {
                           "type": "integer"
                         },
-                        "minPort": {
-                          "type": "integer"
-                        },
-                        "portName": {
+                        {
                           "type": "string"
                         }
-                      },
-                      "additionalProperties": false
+                      ],
+                      "x-kubernetes-int-or-string": true
                     }
                   },
                   "selector": {
@@ -299,7 +284,8 @@
                         "type": "array",
                         "items": {
                           "type": "string"
-                        }
+                        },
+                        "x-kubernetes-list-type": "set"
                       },
                       "selector": {
                         "type": "string"
@@ -335,7 +321,13 @@
             ],
             "properties": {
               "action": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "Allow",
+                  "Deny",
+                  "Log",
+                  "Pass"
+                ]
               },
               "destination": {
                 "type": "object",
@@ -347,7 +339,8 @@
                     "type": "array",
                     "items": {
                       "type": "string"
-                    }
+                    },
+                    "x-kubernetes-list-type": "set"
                   },
                   "notNets": {
                     "type": "array",
@@ -358,22 +351,16 @@
                   "notPorts": {
                     "type": "array",
                     "items": {
-                      "type": "object",
-                      "required": [
-                        "portName"
-                      ],
-                      "properties": {
-                        "maxPort": {
+                      "pattern": "^.*",
+                      "anyOf": [
+                        {
                           "type": "integer"
                         },
-                        "minPort": {
-                          "type": "integer"
-                        },
-                        "portName": {
+                        {
                           "type": "string"
                         }
-                      },
-                      "additionalProperties": false
+                      ],
+                      "x-kubernetes-int-or-string": true
                     }
                   },
                   "notSelector": {
@@ -382,22 +369,16 @@
                   "ports": {
                     "type": "array",
                     "items": {
-                      "type": "object",
-                      "required": [
-                        "portName"
-                      ],
-                      "properties": {
-                        "maxPort": {
+                      "pattern": "^.*",
+                      "anyOf": [
+                        {
                           "type": "integer"
                         },
-                        "minPort": {
-                          "type": "integer"
-                        },
-                        "portName": {
+                        {
                           "type": "string"
                         }
-                      },
-                      "additionalProperties": false
+                      ],
+                      "x-kubernetes-int-or-string": true
                     }
                   },
                   "selector": {
@@ -410,7 +391,8 @@
                         "type": "array",
                         "items": {
                           "type": "string"
-                        }
+                        },
+                        "x-kubernetes-list-type": "set"
                       },
                       "selector": {
                         "type": "string"
@@ -464,16 +446,24 @@
                 "type": "object",
                 "properties": {
                   "code": {
-                    "type": "integer"
+                    "type": "integer",
+                    "maximum": 255,
+                    "minimum": 0
                   },
                   "type": {
-                    "type": "integer"
+                    "type": "integer",
+                    "maximum": 255,
+                    "minimum": 0
                   }
                 },
                 "additionalProperties": false
               },
               "ipVersion": {
-                "type": "integer"
+                "type": "integer",
+                "enum": [
+                  4,
+                  6
+                ]
               },
               "metadata": {
                 "type": "object",
@@ -491,53 +481,41 @@
                 "type": "object",
                 "properties": {
                   "code": {
-                    "type": "integer"
+                    "type": "integer",
+                    "maximum": 255,
+                    "minimum": 0
                   },
                   "type": {
-                    "type": "integer"
+                    "type": "integer",
+                    "maximum": 255,
+                    "minimum": 0
                   }
                 },
                 "additionalProperties": false
               },
               "notProtocol": {
-                "type": "object",
-                "required": [
-                  "numVal",
-                  "strVal",
-                  "type"
-                ],
-                "properties": {
-                  "numVal": {
+                "pattern": "^.*",
+                "anyOf": [
+                  {
                     "type": "integer"
                   },
-                  "strVal": {
+                  {
                     "type": "string"
-                  },
-                  "type": {
-                    "type": "integer"
                   }
-                },
-                "additionalProperties": false
+                ],
+                "x-kubernetes-int-or-string": true
               },
               "protocol": {
-                "type": "object",
-                "required": [
-                  "numVal",
-                  "strVal",
-                  "type"
-                ],
-                "properties": {
-                  "numVal": {
+                "pattern": "^.*",
+                "anyOf": [
+                  {
                     "type": "integer"
                   },
-                  "strVal": {
+                  {
                     "type": "string"
-                  },
-                  "type": {
-                    "type": "integer"
                   }
-                },
-                "additionalProperties": false
+                ],
+                "x-kubernetes-int-or-string": true
               },
               "source": {
                 "type": "object",
@@ -549,7 +527,8 @@
                     "type": "array",
                     "items": {
                       "type": "string"
-                    }
+                    },
+                    "x-kubernetes-list-type": "set"
                   },
                   "notNets": {
                     "type": "array",
@@ -560,22 +539,16 @@
                   "notPorts": {
                     "type": "array",
                     "items": {
-                      "type": "object",
-                      "required": [
-                        "portName"
-                      ],
-                      "properties": {
-                        "maxPort": {
+                      "pattern": "^.*",
+                      "anyOf": [
+                        {
                           "type": "integer"
                         },
-                        "minPort": {
-                          "type": "integer"
-                        },
-                        "portName": {
+                        {
                           "type": "string"
                         }
-                      },
-                      "additionalProperties": false
+                      ],
+                      "x-kubernetes-int-or-string": true
                     }
                   },
                   "notSelector": {
@@ -584,22 +557,16 @@
                   "ports": {
                     "type": "array",
                     "items": {
-                      "type": "object",
-                      "required": [
-                        "portName"
-                      ],
-                      "properties": {
-                        "maxPort": {
+                      "pattern": "^.*",
+                      "anyOf": [
+                        {
                           "type": "integer"
                         },
-                        "minPort": {
-                          "type": "integer"
-                        },
-                        "portName": {
+                        {
                           "type": "string"
                         }
-                      },
-                      "additionalProperties": false
+                      ],
+                      "x-kubernetes-int-or-string": true
                     }
                   },
                   "selector": {
@@ -612,7 +579,8 @@
                         "type": "array",
                         "items": {
                           "type": "string"
-                        }
+                        },
+                        "x-kubernetes-list-type": "set"
                       },
                       "selector": {
                         "type": "string"
@@ -639,11 +607,16 @@
             "additionalProperties": false
           }
         },
-        "order": {},
+        "order": {
+          "type": "number"
+        },
         "performanceHints": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "AssumeNeededOnEveryNode"
+            ]
           }
         },
         "selector": {
@@ -653,13 +626,21 @@
           "type": "string"
         },
         "tier": {
-          "type": "string"
+          "type": "string",
+          "default": "default"
         },
         "types": {
           "type": "array",
+          "maxItems": 2,
+          "minItems": 1,
           "items": {
-            "type": "string"
-          }
+            "type": "string",
+            "enum": [
+              "Ingress",
+              "Egress"
+            ]
+          },
+          "x-kubernetes-list-type": "set"
         }
       },
       "additionalProperties": false
