@@ -122,6 +122,13 @@
           },
           "x-kubernetes-list-type": "set"
         },
+        "programClusterRoutes": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        },
         "serviceClusterIPs": {
           "type": "array",
           "items": {
