@@ -134,20 +134,30 @@
                   "groups": {
                     "description": "groups is an optional field that configures how the groups of a cluster identity should be constructed from the claims in a JWT token issued by the identity provider.\n\nWhen referencing a claim, if the claim is present in the JWT token, its value must be a list of groups separated by a comma (',').\n\nFor example - '\"example\"' and '\"exampleOne\", \"exampleTwo\", \"exampleThree\"' are valid claim values.",
                     "type": "object",
-                    "required": [
-                      "claim"
-                    ],
                     "properties": {
                       "claim": {
-                        "description": "claim is a required field that configures the JWT token claim whose value is assigned to the cluster identity field associated with this mapping.",
-                        "type": "string"
+                        "description": "claim is an optional field for specifying the JWT token claim that is used in the mapping.\nThe value of this claim will be assigned to the field in which this mapping is associated.\nclaim must not exceed 256 characters in length.\nWhen set to the empty string `\"\"`, this means that no named claim should be used for the group mapping.\nclaim is required when the ExternalOIDCWithUpstreamParity feature gate is not enabled.",
+                        "type": "string",
+                        "maxLength": 256
+                      },
+                      "expression": {
+                        "description": "expression is an optional CEL expression used to derive\ngroup values from JWT claims.\n\nCEL expressions have access to the token claims through a CEL variable, 'claims'.\n\nexpression must be at least 1 character and must not exceed 1024 characters in length .\n\nWhen specified, claim must not be set or be explicitly set to the empty string (`\"\"`).",
+                        "type": "string",
+                        "maxLength": 1024,
+                        "minLength": 1
                       },
                       "prefix": {
                         "description": "prefix is an optional field that configures the prefix that will be applied to the cluster identity attribute during the process of mapping JWT claims to cluster identity attributes.\n\nWhen omitted (\"\"), no prefix is applied to the cluster identity attribute.\n\nExample: if `prefix` is set to \"myoidc:\" and the `claim` in JWT contains an array of strings \"a\", \"b\" and \"c\", the mapping will result in an array of string \"myoidc:a\", \"myoidc:b\" and \"myoidc:c\".",
                         "type": "string"
                       }
                     },
-                    "additionalProperties": false
+                    "additionalProperties": false,
+                    "x-kubernetes-validations": [
+                      {
+                        "rule": "(size(self.?claim.orValue(\"\")) \u003e 0) ? !has(self.expression) : true",
+                        "message": "expression must not be set if claim is specified and is not an empty string"
+                      }
+                    ]
                   },
                   "uid": {
                     "description": "uid is an optional field for configuring the claim mapping used to construct the uid for the cluster identity.\n\nWhen using uid.claim to specify the claim it must be a single string value.\nWhen using uid.expression the expression must result in a single string value.\n\nWhen omitted, this means the user has no opinion and the platform is left to choose a default, which is subject to change over time.\n\nThe current default is to use the 'sub' claim.",
@@ -177,14 +187,17 @@
                   "username": {
                     "description": "username is a required field that configures how the username of a cluster identity should be constructed from the claims in a JWT token issued by the identity provider.",
                     "type": "object",
-                    "required": [
-                      "claim"
-                    ],
                     "properties": {
                       "claim": {
-                        "description": "claim is a required field that configures the JWT token claim whose value is assigned to the cluster identity field associated with this mapping.\n\nclaim must not be an empty string (\"\") and must not exceed 256 characters.",
+                        "description": "claim is an optional field that configures the JWT token claim whose value is assigned to the cluster identity field associated with this mapping.\nclaim is required when the ExternalOIDCWithUpstreamParity feature gate is not enabled.\nWhen the ExternalOIDCWithUpstreamParity feature gate is enabled, claim must not be set when expression is set.\n\nclaim must not be an empty string (\"\") and must not exceed 256 characters.",
                         "type": "string",
                         "maxLength": 256,
+                        "minLength": 1
+                      },
+                      "expression": {
+                        "description": "expression is an optional CEL expression used to derive\nthe username from JWT claims.\n\nCEL expressions have access to the token claims\nthrough a CEL variable, 'claims'.\n\nexpression must be at least 1 character and must not exceed 1024 characters in length.\nexpression must not be set when claim is set.",
+                        "type": "string",
+                        "maxLength": 1024,
                         "minLength": 1
                       },
                       "prefix": {
@@ -214,6 +227,10 @@
                     },
                     "additionalProperties": false,
                     "x-kubernetes-validations": [
+                      {
+                        "rule": "has(self.claim) ? !has(self.expression) : has(self.expression)",
+                        "message": "precisely one of claim or expression must be set"
+                      },
                       {
                         "rule": "has(self.prefixPolicy) \u0026\u0026 self.prefixPolicy == 'Prefix' ? (has(self.prefix) \u0026\u0026 size(self.prefix.prefixString) \u003e 0) : !has(self.prefix)",
                         "message": "prefix must be set if prefixPolicy is 'Prefix', but must remain unset otherwise"
