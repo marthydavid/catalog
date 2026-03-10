@@ -2,8 +2,8 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: none
-    controller-gen.kubebuilder.io/version: v0.20.0
+    cert-manager.io/inject-ca-from: /release-opentelemetry-operator-serving-cert
+    controller-gen.kubebuilder.io/version: v0.20.1
   creationTimestamp: null
   labels:
     app.kubernetes.io/name: opentelemetry-operator
@@ -15,10 +15,10 @@ spec:
       clientConfig:
         service:
           name: release-opentelemetry-operator-webhook
-          namespace: namespace
+          namespace: 
           path: /convert
           port: 443
-        caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURSakNDQWk2Z0F3SUJBZ0lSQUorK2ZxUkFZSnNMcHdXYytZaDlvK3d3RFFZSktvWklodmNOQVFFTEJRQXcKTFRFck1Da0dBMVVFQXhNaWIzQmxiblJsYkdWdFpYUnllUzF2Y0dWeVlYUnZjaTF2Y0dWeVlYUnZjaTFqWVRBZQpGdzB5TmpBek1Ea3hOekE0TXpsYUZ3MHlOekF6TURreE56QTRNemxhTUMweEt6QXBCZ05WQkFNVEltOXdaVzUwClpXeGxiV1YwY25rdGIzQmxjbUYwYjNJdGIzQmxjbUYwYjNJdFkyRXdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUEKQTRJQkR3QXdnZ0VLQW9JQkFRREFyZER4ZzRBdHZ6Nnk3bnlydlMvaXhzTEl0aUJCSHNUSis2UkRpcGd0dVVhbApucnh2Nm50M1pUY3BnaTVNWTB5b3Jvc29DL0I5UzRad3NpQVNjaVMxRzgxV1dDcFprQmJ3WGllM3EvNkMxYWNSClJ2UXBLeStSWkx3WWdXMndoZmJ0dWN3aTBMckxuNzM3OUV0aTl6eFNnZm0xZkEvV1c3L0hLRzM0b1dqWTVsN3gKMWxTSFk0Z1NCM2NQMklQWlk4YmFrWFFnZWNRaEdoMWFXcFh6SENTTktLRkk5RDhPTWZqZUsyMll2dVV2amc0VgpTM2l6RldNZFh6dEpBVThKVy8za0M2bVlqc29MY0NkT1dLSzdiRGpkTHdpVUpxYmlqSHFjSzJPVlZqb29JbEZGCkNYNlMvTnlOWEM4dk9KbUNMeW9nb2kwR0N6c0I0R2ZEUXBjNVZXWUZBZ01CQUFHallUQmZNQTRHQTFVZER3RUIKL3dRRUF3SUNwREFkQmdOVkhTVUVGakFVQmdnckJnRUZCUWNEQVFZSUt3WUJCUVVIQXdJd0R3WURWUjBUQVFILwpCQVV3QXdFQi96QWRCZ05WSFE0RUZnUVVlTlovUFppNFlXU1YwUlVrOUJNOTRCYzR5RDh3RFFZSktvWklodmNOCkFRRUxCUUFEZ2dFQkFBaTdhd09oSkRUK2c4UnhhcldjTlJidVA3VDNpeEQ0RStuRldPMkdwblhTWkxXSlZxYUgKdEFHZENidHp1SnVIcGpaaFA2ZXdMZzAveXdiSU9UdjVXN2MrMXp3WG5yOXRlUG1YcW9UMHpXNlFJT05tTm1OVApLRU9tOUwzd0M2SXF6SGdOYTBzMFUyU0hTbDJtdE02VzBab0JZUHB3bHJnTGdVWTI0bjN4bk1Ud1YwSjJsS0RwCkQ2TWxTK1pEbjM0ei9mM2s0Qllmc2pERTFoL3JpRHBkVXhWajJNVGFrQVQyS2xyNUZZM0NPM1ZCQVRaSjQvREgKTk1SK09TbmRTTDdwd0MyYjQzdFVrem9TTDV3bXBXcDVQL1lwdENyNkNvNjhTS3dMWGxBMjkvWGdZa3BBOEFNTApuOVpaUGRVcVc5cWhtWmxzZTVYWXF3Q0NsSmw5alpLKytQQT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+
       conversionReviewVersions:
       - v1alpha1
       - v1beta1
