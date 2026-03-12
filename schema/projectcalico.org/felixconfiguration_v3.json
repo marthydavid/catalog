@@ -526,6 +526,18 @@
         "ipv6Support": {
           "type": "boolean"
         },
+        "istioAmbientMode": {
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        },
+        "istioDSCPMark": {
+          "type": "integer",
+          "pattern": "^.*",
+          "x-kubernetes-int-or-string": true
+        },
         "kubeNodePortRanges": {
           "type": "array",
           "items": {
