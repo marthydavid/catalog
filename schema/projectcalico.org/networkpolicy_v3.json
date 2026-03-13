@@ -125,20 +125,24 @@
                 "properties": {
                   "methods": {
                     "type": "array",
+                    "maxItems": 20,
                     "items": {
                       "type": "string"
                     }
                   },
                   "paths": {
                     "type": "array",
+                    "maxItems": 20,
                     "items": {
                       "type": "object",
                       "properties": {
                         "exact": {
-                          "type": "string"
+                          "type": "string",
+                          "maxLength": 1024
                         },
                         "prefix": {
-                          "type": "string"
+                          "type": "string",
+                          "maxLength": 1024
                         }
                       },
                       "additionalProperties": false
@@ -157,11 +161,18 @@
                   },
                   "type": {
                     "type": "integer",
-                    "maximum": 255,
+                    "maximum": 254,
                     "minimum": 0
                   }
                 },
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-kubernetes-validations": [
+                  {
+                    "rule": "!has(self.code) || has(self.type)",
+                    "message": "ICMP code specified without an ICMP type",
+                    "reason": "FieldValueInvalid"
+                  }
+                ]
               },
               "ipVersion": {
                 "type": "integer",
@@ -192,11 +203,18 @@
                   },
                   "type": {
                     "type": "integer",
-                    "maximum": 255,
+                    "maximum": 254,
                     "minimum": 0
                   }
                 },
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-kubernetes-validations": [
+                  {
+                    "rule": "!has(self.code) || has(self.type)",
+                    "message": "ICMP code specified without an ICMP type",
+                    "reason": "FieldValueInvalid"
+                  }
+                ]
               },
               "notProtocol": {
                 "pattern": "^.*",
@@ -309,7 +327,24 @@
                 "additionalProperties": false
               }
             },
-            "additionalProperties": false
+            "additionalProperties": false,
+            "x-kubernetes-validations": [
+              {
+                "rule": "!has(self.http) || !has(self.protocol) || self.protocol == 'TCP' || self.protocol == 6",
+                "message": "rules with HTTP match must have protocol TCP or unset",
+                "reason": "FieldValueInvalid"
+              },
+              {
+                "rule": "self.action == 'Allow' || !has(self.http)",
+                "message": "HTTP match is only valid on Allow rules",
+                "reason": "FieldValueForbidden"
+              },
+              {
+                "rule": "!has(self.destination) || !has(self.destination.services) || (!has(self.destination.ports) || size(self.destination.ports) == 0) \u0026\u0026 (!has(self.destination.notPorts) || size(self.destination.notPorts) == 0)",
+                "message": "ports and notPorts cannot be specified with services",
+                "reason": "FieldValueForbidden"
+              }
+            ]
           }
         },
         "ingress": {
@@ -420,20 +455,24 @@
                 "properties": {
                   "methods": {
                     "type": "array",
+                    "maxItems": 20,
                     "items": {
                       "type": "string"
                     }
                   },
                   "paths": {
                     "type": "array",
+                    "maxItems": 20,
                     "items": {
                       "type": "object",
                       "properties": {
                         "exact": {
-                          "type": "string"
+                          "type": "string",
+                          "maxLength": 1024
                         },
                         "prefix": {
-                          "type": "string"
+                          "type": "string",
+                          "maxLength": 1024
                         }
                       },
                       "additionalProperties": false
@@ -452,11 +491,18 @@
                   },
                   "type": {
                     "type": "integer",
-                    "maximum": 255,
+                    "maximum": 254,
                     "minimum": 0
                   }
                 },
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-kubernetes-validations": [
+                  {
+                    "rule": "!has(self.code) || has(self.type)",
+                    "message": "ICMP code specified without an ICMP type",
+                    "reason": "FieldValueInvalid"
+                  }
+                ]
               },
               "ipVersion": {
                 "type": "integer",
@@ -487,11 +533,18 @@
                   },
                   "type": {
                     "type": "integer",
-                    "maximum": 255,
+                    "maximum": 254,
                     "minimum": 0
                   }
                 },
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-kubernetes-validations": [
+                  {
+                    "rule": "!has(self.code) || has(self.type)",
+                    "message": "ICMP code specified without an ICMP type",
+                    "reason": "FieldValueInvalid"
+                  }
+                ]
               },
               "notProtocol": {
                 "pattern": "^.*",
@@ -604,7 +657,24 @@
                 "additionalProperties": false
               }
             },
-            "additionalProperties": false
+            "additionalProperties": false,
+            "x-kubernetes-validations": [
+              {
+                "rule": "!has(self.http) || !has(self.protocol) || self.protocol == 'TCP' || self.protocol == 6",
+                "message": "rules with HTTP match must have protocol TCP or unset",
+                "reason": "FieldValueInvalid"
+              },
+              {
+                "rule": "self.action == 'Allow' || !has(self.http)",
+                "message": "HTTP match is only valid on Allow rules",
+                "reason": "FieldValueForbidden"
+              },
+              {
+                "rule": "!has(self.destination) || !has(self.destination.services) || (!has(self.destination.ports) || size(self.destination.ports) == 0) \u0026\u0026 (!has(self.destination.notPorts) || size(self.destination.notPorts) == 0)",
+                "message": "ports and notPorts cannot be specified with services",
+                "reason": "FieldValueForbidden"
+              }
+            ]
           }
         },
         "order": {

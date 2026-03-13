@@ -34,7 +34,8 @@
               },
               "cidr": {
                 "type": "string",
-                "format": "cidr"
+                "format": "cidr",
+                "maxLength": 18
               },
               "interface": {
                 "type": "string"
@@ -75,7 +76,19 @@
               }
             },
             "additionalProperties": false,
-            "x-kubernetes-map-type": "atomic"
+            "x-kubernetes-map-type": "atomic",
+            "x-kubernetes-validations": [
+              {
+                "rule": "(has(self.cidr) \u0026\u0026 size(self.cidr) \u003e 0) == (has(self.matchOperator) \u0026\u0026 size(self.matchOperator) \u003e 0)",
+                "message": "cidr and matchOperator must both be set or both be empty",
+                "reason": "FieldValueInvalid"
+              },
+              {
+                "rule": "!has(self.prefixLength) || (has(self.cidr) \u0026\u0026 size(self.cidr) \u003e 0)",
+                "message": "cidr is required when prefixLength is set",
+                "reason": "FieldValueInvalid"
+              }
+            ]
           }
         },
         "exportV6": {
@@ -95,7 +108,8 @@
               },
               "cidr": {
                 "type": "string",
-                "format": "cidr"
+                "format": "cidr",
+                "maxLength": 43
               },
               "interface": {
                 "type": "string"
@@ -136,7 +150,19 @@
               }
             },
             "additionalProperties": false,
-            "x-kubernetes-map-type": "atomic"
+            "x-kubernetes-map-type": "atomic",
+            "x-kubernetes-validations": [
+              {
+                "rule": "(has(self.cidr) \u0026\u0026 size(self.cidr) \u003e 0) == (has(self.matchOperator) \u0026\u0026 size(self.matchOperator) \u003e 0)",
+                "message": "cidr and matchOperator must both be set or both be empty",
+                "reason": "FieldValueInvalid"
+              },
+              {
+                "rule": "!has(self.prefixLength) || (has(self.cidr) \u0026\u0026 size(self.cidr) \u003e 0)",
+                "message": "cidr is required when prefixLength is set",
+                "reason": "FieldValueInvalid"
+              }
+            ]
           }
         },
         "importV4": {
@@ -156,7 +182,8 @@
               },
               "cidr": {
                 "type": "string",
-                "format": "cidr"
+                "format": "cidr",
+                "maxLength": 18
               },
               "interface": {
                 "type": "string"
@@ -197,7 +224,19 @@
               }
             },
             "additionalProperties": false,
-            "x-kubernetes-map-type": "atomic"
+            "x-kubernetes-map-type": "atomic",
+            "x-kubernetes-validations": [
+              {
+                "rule": "(has(self.cidr) \u0026\u0026 size(self.cidr) \u003e 0) == (has(self.matchOperator) \u0026\u0026 size(self.matchOperator) \u003e 0)",
+                "message": "cidr and matchOperator must both be set or both be empty",
+                "reason": "FieldValueInvalid"
+              },
+              {
+                "rule": "!has(self.prefixLength) || (has(self.cidr) \u0026\u0026 size(self.cidr) \u003e 0)",
+                "message": "cidr is required when prefixLength is set",
+                "reason": "FieldValueInvalid"
+              }
+            ]
           }
         },
         "importV6": {
@@ -217,7 +256,8 @@
               },
               "cidr": {
                 "type": "string",
-                "format": "cidr"
+                "format": "cidr",
+                "maxLength": 43
               },
               "interface": {
                 "type": "string"
@@ -258,7 +298,19 @@
               }
             },
             "additionalProperties": false,
-            "x-kubernetes-map-type": "atomic"
+            "x-kubernetes-map-type": "atomic",
+            "x-kubernetes-validations": [
+              {
+                "rule": "(has(self.cidr) \u0026\u0026 size(self.cidr) \u003e 0) == (has(self.matchOperator) \u0026\u0026 size(self.matchOperator) \u003e 0)",
+                "message": "cidr and matchOperator must both be set or both be empty",
+                "reason": "FieldValueInvalid"
+              },
+              {
+                "rule": "!has(self.prefixLength) || (has(self.cidr) \u0026\u0026 size(self.cidr) \u003e 0)",
+                "message": "cidr is required when prefixLength is set",
+                "reason": "FieldValueInvalid"
+              }
+            ]
           }
         }
       },
