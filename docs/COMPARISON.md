@@ -9,7 +9,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 98.35% | 3457 | 10025 | 83 |
+| 98.27% | 3460 | 10025 | 83 |
 
 ### Missing Schemas
 
@@ -81,6 +81,10 @@ This page lists missing CRD validation schemas that are present in alternative c
 | gcpmachine | v1alpha2 |
 | gcpmachinetemplate | v1alpha2 |
 
+| kubefledged.io | |
+| --- | --- |
+| imagecache | v1alpha2 |
+
 | monitoring.googleapis.com | |
 | --- | --- |
 | clusternodemonitoring | v1 |
@@ -108,6 +112,11 @@ This page lists missing CRD validation schemas that are present in alternative c
 | secret-sync.gke.io | |
 | --- | --- |
 | secretsync | v1 |
+
+| tempo.grafana.com | |
+| --- | --- |
+| tempomonolithic | v1alpha1 |
+| tempostack | v1alpha1 |
 
 ### Ignored Schemas
 
