@@ -53,6 +53,16 @@
           },
           "x-kubernetes-list-type": "set"
         },
+        "ipv4NormalRoutePriority": {
+          "type": "integer",
+          "maximum": 2147483646,
+          "minimum": 1
+        },
+        "ipv6NormalRoutePriority": {
+          "type": "integer",
+          "maximum": 2147483646,
+          "minimum": 1
+        },
         "listenPort": {
           "type": "integer",
           "maximum": 65535,

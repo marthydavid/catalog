@@ -20,20 +20,6 @@
         "virtualMachineTemplate"
       ],
       "properties": {
-        "autohealing": {
-          "type": "object",
-          "properties": {
-            "minFailingToStartDuration": {
-              "type": "string"
-            },
-            "startUpFailureThreshold": {
-              "type": "integer",
-              "format": "int32",
-              "minimum": 1
-            }
-          },
-          "additionalProperties": false
-        },
         "maxUnavailable": {
           "anyOf": [
             {
@@ -62,130 +48,29 @@
         },
         "replicas": {
           "type": "integer",
-          "format": "int32",
-          "minimum": 0
+          "format": "int32"
         },
         "scaleInStrategy": {
           "type": "object",
           "properties": {
-            "opportunistic": {
-              "type": "object",
-              "properties": {
-                "statePreservation": {
-                  "type": "string",
-                  "enum": [
-                    "Disabled",
-                    "Offline",
-                    "Online"
-                  ]
-                }
-              },
-              "additionalProperties": false
-            },
             "proactive": {
               "type": "object",
               "properties": {
                 "selectionPolicy": {
                   "type": "object",
                   "properties": {
-                    "selectors": {
-                      "type": "object",
-                      "properties": {
-                        "labelSelector": {
-                          "type": "object",
-                          "properties": {
-                            "matchExpressions": {
-                              "type": "array",
-                              "items": {
-                                "type": "object",
-                                "required": [
-                                  "key",
-                                  "operator"
-                                ],
-                                "properties": {
-                                  "key": {
-                                    "type": "string"
-                                  },
-                                  "operator": {
-                                    "type": "string"
-                                  },
-                                  "values": {
-                                    "type": "array",
-                                    "items": {
-                                      "type": "string"
-                                    },
-                                    "x-kubernetes-list-type": "atomic"
-                                  }
-                                },
-                                "additionalProperties": false
-                              },
-                              "x-kubernetes-list-type": "atomic"
-                            },
-                            "matchLabels": {
-                              "type": "object",
-                              "additionalProperties": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          "additionalProperties": false,
-                          "x-kubernetes-map-type": "atomic"
-                        },
-                        "nodeSelectorRequirementMatcher": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "required": [
-                              "key",
-                              "operator"
-                            ],
-                            "properties": {
-                              "key": {
-                                "type": "string"
-                              },
-                              "operator": {
-                                "type": "string"
-                              },
-                              "values": {
-                                "type": "array",
-                                "items": {
-                                  "type": "string"
-                                },
-                                "x-kubernetes-list-type": "atomic"
-                              }
-                            },
-                            "additionalProperties": false
-                          }
-                        }
-                      },
-                      "additionalProperties": false
-                    },
-                    "sortPolicy": {
+                    "basePolicy": {
                       "type": "string",
                       "enum": [
-                        "AscendingOrder",
-                        "DescendingOrder",
-                        "Newest",
-                        "Oldest",
-                        "Random"
+                        "Random",
+                        "DescendingOrder"
                       ]
                     }
                   },
                   "additionalProperties": false
-                },
-                "statePreservation": {
-                  "type": "string",
-                  "enum": [
-                    "Disabled",
-                    "Offline",
-                    "Online"
-                  ]
                 }
               },
               "additionalProperties": false
-            },
-            "unmanaged": {
-              "type": "object"
             }
           },
           "additionalProperties": false
@@ -229,112 +114,6 @@
           },
           "additionalProperties": false,
           "x-kubernetes-map-type": "atomic"
-        },
-        "updateStrategy": {
-          "type": "object",
-          "properties": {
-            "opportunistic": {
-              "type": "object"
-            },
-            "proactive": {
-              "type": "object",
-              "properties": {
-                "selectionPolicy": {
-                  "type": "object",
-                  "properties": {
-                    "selectors": {
-                      "type": "object",
-                      "properties": {
-                        "labelSelector": {
-                          "type": "object",
-                          "properties": {
-                            "matchExpressions": {
-                              "type": "array",
-                              "items": {
-                                "type": "object",
-                                "required": [
-                                  "key",
-                                  "operator"
-                                ],
-                                "properties": {
-                                  "key": {
-                                    "type": "string"
-                                  },
-                                  "operator": {
-                                    "type": "string"
-                                  },
-                                  "values": {
-                                    "type": "array",
-                                    "items": {
-                                      "type": "string"
-                                    },
-                                    "x-kubernetes-list-type": "atomic"
-                                  }
-                                },
-                                "additionalProperties": false
-                              },
-                              "x-kubernetes-list-type": "atomic"
-                            },
-                            "matchLabels": {
-                              "type": "object",
-                              "additionalProperties": {
-                                "type": "string"
-                              }
-                            }
-                          },
-                          "additionalProperties": false,
-                          "x-kubernetes-map-type": "atomic"
-                        },
-                        "nodeSelectorRequirementMatcher": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "required": [
-                              "key",
-                              "operator"
-                            ],
-                            "properties": {
-                              "key": {
-                                "type": "string"
-                              },
-                              "operator": {
-                                "type": "string"
-                              },
-                              "values": {
-                                "type": "array",
-                                "items": {
-                                  "type": "string"
-                                },
-                                "x-kubernetes-list-type": "atomic"
-                              }
-                            },
-                            "additionalProperties": false
-                          }
-                        }
-                      },
-                      "additionalProperties": false
-                    },
-                    "sortPolicy": {
-                      "type": "string",
-                      "enum": [
-                        "AscendingOrder",
-                        "DescendingOrder",
-                        "Newest",
-                        "Oldest",
-                        "Random"
-                      ]
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              },
-              "additionalProperties": false
-            },
-            "unmanaged": {
-              "type": "object"
-            }
-          },
-          "additionalProperties": false
         },
         "virtualMachineTemplate": {
           "type": "object",
@@ -2008,10 +1787,11 @@
                                         "properties": {
                                           "custom": {
                                             "type": "object",
+                                            "required": [
+                                              "logical",
+                                              "physical"
+                                            ],
                                             "properties": {
-                                              "discardGranularity": {
-                                                "type": "integer"
-                                              },
                                               "logical": {
                                                 "type": "integer"
                                               },
@@ -2053,9 +1833,6 @@
                                           }
                                         },
                                         "additionalProperties": false
-                                      },
-                                      "changedBlockTracking": {
-                                        "type": "boolean"
                                       },
                                       "dedicatedIOThread": {
                                         "type": "boolean"
@@ -2790,12 +2567,6 @@
                                     }
                                   },
                                   "additionalProperties": false
-                                },
-                                "snp": {
-                                  "type": "object"
-                                },
-                                "tdx": {
-                                  "type": "object"
                                 }
                               },
                               "additionalProperties": false

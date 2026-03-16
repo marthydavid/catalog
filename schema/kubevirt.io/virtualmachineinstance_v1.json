@@ -1059,10 +1059,11 @@
                         "properties": {
                           "custom": {
                             "type": "object",
+                            "required": [
+                              "logical",
+                              "physical"
+                            ],
                             "properties": {
-                              "discardGranularity": {
-                                "type": "integer"
-                              },
                               "logical": {
                                 "type": "integer"
                               },
@@ -1104,9 +1105,6 @@
                           }
                         },
                         "additionalProperties": false
-                      },
-                      "changedBlockTracking": {
-                        "type": "boolean"
                       },
                       "dedicatedIOThread": {
                         "type": "boolean"
@@ -1841,12 +1839,6 @@
                     }
                   },
                   "additionalProperties": false
-                },
-                "snp": {
-                  "type": "object"
-                },
-                "tdx": {
-                  "type": "object"
                 }
               },
               "additionalProperties": false
@@ -2776,19 +2768,6 @@
           "additionalProperties": {
             "type": "string"
           }
-        },
-        "changedBlockTracking": {
-          "type": "object",
-          "required": [
-            "state"
-          ],
-          "properties": {
-            "state": {
-              "type": "string"
-            }
-          },
-          "additionalProperties": false,
-          "nullable": true
         },
         "conditions": {
           "type": "array",

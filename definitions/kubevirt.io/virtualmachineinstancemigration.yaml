@@ -29,8 +29,6 @@ spec:
                 additionalProperties:
                   type: string
                 type: object
-              priority:
-                type: string
               receive:
                 properties:
                   migrationID:

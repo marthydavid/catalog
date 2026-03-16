@@ -22,9 +22,6 @@
             "type": "string"
           }
         },
-        "priority": {
-          "type": "string"
-        },
         "receive": {
           "type": "object",
           "required": [
