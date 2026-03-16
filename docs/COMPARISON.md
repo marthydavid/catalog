@@ -9,7 +9,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 98.27% | 3460 | 10025 | 83 |
+| 97.99% | 3486 | 10025 | 83 |
 
 ### Missing Schemas
 
@@ -67,9 +67,22 @@ This page lists missing CRD validation schemas that are present in alternative c
 | listenerpolicy | v1alpha1 |
 | trafficpolicy | v1alpha1 |
 
+| gateway.nginx.org | |
+| --- | --- |
+| clientsettingspolicy | v1alpha1 |
+| nginxgateway | v1alpha1 |
+| nginxproxy | v1alpha2 |
+| observabilitypolicy | v1alpha1, v1alpha2 |
+| snippetsfilter | v1alpha1 |
+| upstreamsettingspolicy | v1alpha1 |
+
 | helm.toolkit.fluxcd.io | |
 | --- | --- |
 | helmrelease | v1 |
+
+| http.keda.sh | |
+| --- | --- |
+| httpscaledobject | v1alpha1 |
 
 | infrastructure.cluster.x-k8s.io | |
 | --- | --- |
@@ -108,6 +121,11 @@ This page lists missing CRD validation schemas that are present in alternative c
 | platform.confluent.io | |
 | --- | --- |
 | referencegrant | v1beta1 |
+
+| ram.services.k8s.aws | |
+| --- | --- |
+| permission | v1alpha1 |
+| resourceshare | v1alpha1 |
 
 | secret-sync.gke.io | |
 | --- | --- |
