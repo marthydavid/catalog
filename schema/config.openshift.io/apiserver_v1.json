@@ -158,6 +158,14 @@
           },
           "additionalProperties": false
         },
+        "tlsAdherence": {
+          "description": "tlsAdherence controls if components in the cluster adhere to the TLS security profile\nconfigured on this APIServer resource.\n\nValid values are \"LegacyAdheringComponentsOnly\" and \"StrictAllComponents\".\n\nWhen set to \"LegacyAdheringComponentsOnly\", components that already honor the\ncluster-wide TLS profile continue to do so. Components that do not already honor\nit continue to use their individual TLS configurations.\n\nWhen set to \"StrictAllComponents\", all components must honor the configured TLS\nprofile unless they have a component-specific TLS configuration that overrides\nit. This mode is recommended for security-conscious deployments and is required\nfor certain compliance frameworks.\n\nNote: Some components such as Kubelet and IngressController have their own\ndedicated TLS configuration mechanisms via KubeletConfig and IngressController\nCRs respectively. When these component-specific TLS configurations are set,\nthey take precedence over the cluster-wide tlsSecurityProfile. When not set,\nthese components fall back to the cluster-wide default.\n\nComponents that encounter an unknown value for tlsAdherence should treat it\nas \"StrictAllComponents\" and log a warning to ensure forward compatibility\nwhile defaulting to the more secure behavior.\n\nThis field is optional.\nWhen omitted, this means the user has no opinion and the platform is left\nto choose reasonable defaults. These defaults are subject to change over time.\nThe current default is LegacyAdheringComponentsOnly.\n\nOnce set, this field may be changed to a different value, but may not be removed.",
+          "type": "string",
+          "enum": [
+            "LegacyAdheringComponentsOnly",
+            "StrictAllComponents"
+          ]
+        },
         "tlsSecurityProfile": {
           "description": "tlsSecurityProfile specifies settings for TLS connections for externally exposed servers.\n\nWhen omitted, this means no opinion and the platform is left to choose a reasonable default, which is subject to change over time.\nThe current default is the Intermediate profile.",
           "type": "object",
@@ -217,7 +225,13 @@
           "additionalProperties": false
         }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "x-kubernetes-validations": [
+        {
+          "rule": "has(oldSelf.tlsAdherence) ? has(self.tlsAdherence) : true",
+          "message": "tlsAdherence may not be removed once set"
+        }
+      ]
     },
     "status": {
       "description": "status holds observed values from the cluster. They may not be overridden.",

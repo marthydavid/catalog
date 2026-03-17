@@ -21,6 +21,20 @@
         "service"
       ],
       "properties": {
+        "ambassador_id": {
+          "description": "AmbassadorID declares which Ambassador instances should pay attention to this resource.  May either be a string or a list of strings.  If no value is provided, the default is: \n    ambassador_id:    - \"default\"",
+          "items": {
+            "type": "string"
+          },
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array"
+            }
+          ]
+        },
         "config": {
           "type": "object",
           "properties": {
@@ -52,18 +66,6 @@
             },
             "trace_id_128bit": {
               "type": "boolean"
-            },
-            "v3PropagationModes": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": [
-                  "ENVOY",
-                  "LIGHTSTEP",
-                  "B3",
-                  "TRACE_CONTEXT"
-                ]
-              }
             }
           },
           "additionalProperties": false
@@ -73,8 +75,7 @@
           "enum": [
             "lightstep",
             "zipkin",
-            "datadog",
-            "opentelemetry"
+            "datadog"
           ]
         },
         "sampling": {
@@ -100,74 +101,9 @@
           "items": {
             "type": "string"
           }
-        },
-        "v3CustomTags": {
-          "type": "array",
-          "items": {
-            "description": "TracingCustomTag provides a data structure for capturing envoy's `type.tracing.v3.CustomTag`",
-            "type": "object",
-            "required": [
-              "tag"
-            ],
-            "properties": {
-              "environment": {
-                "description": "Environment explicitly specifies the protocol stack to set up. Exactly one of Literal, Environment or Header must be supplied.",
-                "type": "object",
-                "required": [
-                  "name"
-                ],
-                "properties": {
-                  "default_value": {
-                    "type": "string"
-                  },
-                  "name": {
-                    "type": "string"
-                  }
-                },
-                "additionalProperties": false
-              },
-              "literal": {
-                "description": "Literal explicitly specifies the protocol stack to set up. Exactly one of Literal, Environment or Header must be supplied.",
-                "type": "object",
-                "required": [
-                  "value"
-                ],
-                "properties": {
-                  "value": {
-                    "type": "string"
-                  }
-                },
-                "additionalProperties": false
-              },
-              "request_header": {
-                "description": "Header explicitly specifies the protocol stack to set up. Exactly one of Literal, Environment or Header must be supplied.",
-                "type": "object",
-                "required": [
-                  "name"
-                ],
-                "properties": {
-                  "default_value": {
-                    "type": "string"
-                  },
-                  "name": {
-                    "type": "string"
-                  }
-                },
-                "additionalProperties": false
-              },
-              "tag": {
-                "type": "string"
-              }
-            },
-            "additionalProperties": false
-          }
-        },
-        "v3StatsName": {
-          "type": "string"
         }
       },
-      "additionalProperties": false,
-      "x-kubernetes-preserve-unknown-fields": true
+      "additionalProperties": false
     }
   }
 }

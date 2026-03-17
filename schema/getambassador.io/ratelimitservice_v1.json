@@ -20,12 +20,22 @@
         "service"
       ],
       "properties": {
+        "ambassador_id": {
+          "description": "Common to all Ambassador objects.",
+          "items": {
+            "type": "string"
+          },
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array"
+            }
+          ]
+        },
         "domain": {
           "type": "string"
-        },
-        "failure_mode_deny": {
-          "description": "FailureModeDeny when set to true, envoy will deny traffic if it is unable to communicate with the rate limit service.",
-          "type": "boolean"
         },
         "protocol_version": {
           "type": "string",
@@ -40,22 +50,19 @@
         "timeout_ms": {
           "type": "integer"
         },
-        "v3GRPC": {
-          "type": "object",
-          "properties": {
-            "use_resource_exhausted_code": {
-              "description": "UseResourceExhaustedCode, when set to true, will cause envoy to return a `RESOURCE_EXHAUSTED` gRPC code instead of the default `UNAVAILABLE` gRPC code.",
+        "tls": {
+          "description": "BoolOrString is a type that can hold a Boolean or a string.",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
               "type": "boolean"
             }
-          },
-          "additionalProperties": false
-        },
-        "v3StatsName": {
-          "type": "string"
+          ]
         }
       },
-      "additionalProperties": false,
-      "x-kubernetes-preserve-unknown-fields": true
+      "additionalProperties": false
     }
   }
 }

@@ -24,6 +24,20 @@
         "address": {
           "type": "string"
         },
+        "ambassador_id": {
+          "description": "AmbassadorID declares which Ambassador instances should pay attention to this resource.  May either be a string or a list of strings.  If no value is provided, the default is: \n    ambassador_id:    - \"default\"",
+          "items": {
+            "type": "string"
+          },
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array"
+            }
+          ]
+        },
         "circuit_breakers": {
           "type": "array",
           "items": {
@@ -65,6 +79,7 @@
           "type": "string"
         },
         "idle_timeout_ms": {
+          "description": "FIXME(lukeshu): Surely this should be an 'int'?",
           "type": "string"
         },
         "port": {
@@ -77,15 +92,22 @@
         "service": {
           "type": "string"
         },
-        "v3StatsName": {
-          "type": "string"
+        "tls": {
+          "description": "BoolOrString is a type that can hold a Boolean or a string.",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            }
+          ]
         },
         "weight": {
           "type": "integer"
         }
       },
-      "additionalProperties": false,
-      "x-kubernetes-preserve-unknown-fields": true
+      "additionalProperties": false
     }
   }
 }
