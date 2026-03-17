@@ -523,6 +523,18 @@
           "type": "string",
           "pattern": "^([0-9]+(\\\\.[0-9]+)?(ms|s|m|h))*$"
         },
+        "ipv4ElevatedRoutePriority": {
+          "type": "integer"
+        },
+        "ipv4NormalRoutePriority": {
+          "type": "integer"
+        },
+        "ipv6ElevatedRoutePriority": {
+          "type": "integer"
+        },
+        "ipv6NormalRoutePriority": {
+          "type": "integer"
+        },
         "ipv6Support": {
           "type": "boolean"
         },
@@ -552,6 +564,10 @@
             ],
             "x-kubernetes-int-or-string": true
           }
+        },
+        "liveMigrationRouteConvergenceTime": {
+          "type": "string",
+          "pattern": "^([0-9]+(\\.[0-9]+)?(ms|s|m|h))*$"
         },
         "logActionRateLimit": {
           "type": "string",
