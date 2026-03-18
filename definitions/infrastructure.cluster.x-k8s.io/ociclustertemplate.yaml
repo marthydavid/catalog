@@ -79,6 +79,9 @@ spec:
                               is serving.
                             format: int32
                             type: integer
+                        required:
+                        - host
+                        - port
                         type: object
                       definedTags:
                         additionalProperties:
@@ -1178,6 +1181,9 @@ spec:
                               is serving.
                             format: int32
                             type: integer
+                        required:
+                        - host
+                        - port
                         type: object
                       definedTags:
                         additionalProperties:
