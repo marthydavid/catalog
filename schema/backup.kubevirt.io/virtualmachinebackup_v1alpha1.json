@@ -16,18 +16,26 @@
     "spec": {
       "type": "object",
       "required": [
-        "target",
-        "virtualMachineSnapshotName"
+        "source"
       ],
       "properties": {
-        "patches": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "x-kubernetes-list-type": "atomic"
+        "forceFullBackup": {
+          "type": "boolean"
         },
-        "target": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "Push",
+            "Pull"
+          ]
+        },
+        "pvcName": {
+          "type": "string"
+        },
+        "skipQuiesce": {
+          "type": "boolean"
+        },
+        "source": {
           "type": "object",
           "required": [
             "kind",
@@ -45,56 +53,54 @@
             }
           },
           "additionalProperties": false,
-          "x-kubernetes-map-type": "atomic"
-        },
-        "targetReadinessPolicy": {
-          "type": "string"
-        },
-        "virtualMachineSnapshotName": {
-          "type": "string"
-        },
-        "volumeOwnershipPolicy": {
-          "type": "string"
-        },
-        "volumeRestoreOverrides": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "annotations": {
-                "type": "object",
-                "additionalProperties": {
-                  "type": "string"
-                }
-              },
-              "labels": {
-                "type": "object",
-                "additionalProperties": {
-                  "type": "string"
-                }
-              },
-              "restoreName": {
-                "type": "string"
-              },
-              "volumeName": {
-                "type": "string"
-              }
+          "x-kubernetes-map-type": "atomic",
+          "x-kubernetes-validations": [
+            {
+              "rule": "has(self.apiGroup)",
+              "message": "apiGroup is required"
             },
-            "additionalProperties": false
-          },
-          "x-kubernetes-list-type": "atomic"
+            {
+              "rule": "!has(self.apiGroup) || self.apiGroup == 'kubevirt.io' || self.apiGroup == 'backup.kubevirt.io'",
+              "message": "apiGroup must be kubevirt.io or backup.kubevirt.io"
+            },
+            {
+              "rule": "!has(self.apiGroup) || (self.apiGroup == 'kubevirt.io' \u0026\u0026 self.kind == 'VirtualMachine') || (self.apiGroup == 'backup.kubevirt.io' \u0026\u0026 self.kind == 'VirtualMachineBackupTracker')",
+              "message": "kind must be VirtualMachine for kubevirt.io or VirtualMachineBackupTracker for backup.kubevirt.io"
+            },
+            {
+              "rule": "self.name != ''",
+              "message": "name is required"
+            }
+          ]
         },
-        "volumeRestorePolicy": {
+        "tokenSecretRef": {
+          "type": "string"
+        },
+        "ttlDuration": {
           "type": "string"
         }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "x-kubernetes-validations": [
+        {
+          "rule": "self == oldSelf",
+          "message": "spec is immutable after creation"
+        },
+        {
+          "rule": "has(self.pvcName) \u0026\u0026 self.pvcName != \"\"",
+          "message": "pvcName is required"
+        },
+        {
+          "rule": "!has(self.mode) || self.mode != 'Pull' || (has(self.tokenSecretRef) \u0026\u0026 self.tokenSecretRef != \"\")",
+          "message": "tokenSecretRef is required when mode is Pull"
+        }
+      ]
     },
     "status": {
       "type": "object",
       "properties": {
-        "complete": {
-          "type": "boolean"
+        "checkpointName": {
+          "type": "string"
         },
         "conditions": {
           "type": "array",
@@ -132,43 +138,37 @@
           },
           "x-kubernetes-list-type": "atomic"
         },
-        "deletedDataVolumes": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "x-kubernetes-list-type": "set"
+        "endpointCert": {
+          "type": "string"
         },
-        "restoreTime": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "restores": {
+        "includedVolumes": {
           "type": "array",
           "items": {
             "type": "object",
             "required": [
-              "persistentVolumeClaim",
-              "volumeName",
-              "volumeSnapshotName"
+              "diskTarget",
+              "volumeName"
             ],
             "properties": {
-              "dataVolumeName": {
+              "dataEndpoint": {
                 "type": "string"
               },
-              "persistentVolumeClaim": {
+              "diskTarget": {
+                "type": "string"
+              },
+              "mapEndpoint": {
                 "type": "string"
               },
               "volumeName": {
-                "type": "string"
-              },
-              "volumeSnapshotName": {
                 "type": "string"
               }
             },
             "additionalProperties": false
           },
           "x-kubernetes-list-type": "atomic"
+        },
+        "type": {
+          "type": "string"
         }
       },
       "additionalProperties": false
