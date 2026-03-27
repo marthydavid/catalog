@@ -26,7 +26,8 @@
               "BGP",
               "Routes"
             ]
-          }
+          },
+          "x-kubernetes-list-type": "set"
         },
         "node": {
           "type": "string"
@@ -151,7 +152,8 @@
                   }
                 },
                 "additionalProperties": false
-              }
+              },
+              "x-kubernetes-list-type": "atomic"
             },
             "peersV6": {
               "type": "array",
@@ -186,7 +188,8 @@
                   }
                 },
                 "additionalProperties": false
-              }
+              },
+              "x-kubernetes-list-type": "atomic"
             }
           },
           "additionalProperties": false
@@ -241,7 +244,8 @@
                   }
                 },
                 "additionalProperties": false
-              }
+              },
+              "x-kubernetes-list-type": "atomic"
             },
             "routesV6": {
               "type": "array",
@@ -285,7 +289,8 @@
                   }
                 },
                 "additionalProperties": false
-              }
+              },
+              "x-kubernetes-list-type": "atomic"
             }
           },
           "additionalProperties": false

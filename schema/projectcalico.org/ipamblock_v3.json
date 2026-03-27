@@ -37,14 +37,15 @@
           "items": {
             "type": "integer",
             "nullable": true
-          }
+          },
+          "x-kubernetes-list-type": "atomic"
         },
         "attributes": {
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
-              "alternate": {
+              "alternateOwnerAttrs": {
                 "type": "object",
                 "additionalProperties": {
                   "type": "string"
@@ -61,7 +62,8 @@
               }
             },
             "additionalProperties": false
-          }
+          },
+          "x-kubernetes-list-type": "atomic"
         },
         "cidr": {
           "type": "string",
@@ -89,7 +91,8 @@
           "type": "array",
           "items": {
             "type": "integer"
-          }
+          },
+          "x-kubernetes-list-type": "atomic"
         }
       },
       "additionalProperties": false

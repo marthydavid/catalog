@@ -51,7 +51,8 @@
                     "type": "array",
                     "items": {
                       "type": "string"
-                    }
+                    },
+                    "x-kubernetes-list-type": "set"
                   },
                   "notPorts": {
                     "type": "array",
@@ -66,7 +67,8 @@
                         }
                       ],
                       "x-kubernetes-int-or-string": true
-                    }
+                    },
+                    "x-kubernetes-list-type": "atomic"
                   },
                   "notSelector": {
                     "type": "string"
@@ -84,7 +86,8 @@
                         }
                       ],
                       "x-kubernetes-int-or-string": true
-                    }
+                    },
+                    "x-kubernetes-list-type": "atomic"
                   },
                   "selector": {
                     "type": "string"
@@ -128,7 +131,8 @@
                     "maxItems": 20,
                     "items": {
                       "type": "string"
-                    }
+                    },
+                    "x-kubernetes-list-type": "atomic"
                   },
                   "paths": {
                     "type": "array",
@@ -146,7 +150,8 @@
                         }
                       },
                       "additionalProperties": false
-                    }
+                    },
+                    "x-kubernetes-list-type": "atomic"
                   }
                 },
                 "additionalProperties": false
@@ -257,7 +262,8 @@
                     "type": "array",
                     "items": {
                       "type": "string"
-                    }
+                    },
+                    "x-kubernetes-list-type": "set"
                   },
                   "notPorts": {
                     "type": "array",
@@ -272,7 +278,8 @@
                         }
                       ],
                       "x-kubernetes-int-or-string": true
-                    }
+                    },
+                    "x-kubernetes-list-type": "atomic"
                   },
                   "notSelector": {
                     "type": "string"
@@ -290,7 +297,8 @@
                         }
                       ],
                       "x-kubernetes-int-or-string": true
-                    }
+                    },
+                    "x-kubernetes-list-type": "atomic"
                   },
                   "selector": {
                     "type": "string"
@@ -345,7 +353,8 @@
                 "reason": "FieldValueForbidden"
               }
             ]
-          }
+          },
+          "x-kubernetes-list-type": "atomic"
         },
         "ingress": {
           "type": "array",
@@ -381,7 +390,8 @@
                     "type": "array",
                     "items": {
                       "type": "string"
-                    }
+                    },
+                    "x-kubernetes-list-type": "set"
                   },
                   "notPorts": {
                     "type": "array",
@@ -396,7 +406,8 @@
                         }
                       ],
                       "x-kubernetes-int-or-string": true
-                    }
+                    },
+                    "x-kubernetes-list-type": "atomic"
                   },
                   "notSelector": {
                     "type": "string"
@@ -414,7 +425,8 @@
                         }
                       ],
                       "x-kubernetes-int-or-string": true
-                    }
+                    },
+                    "x-kubernetes-list-type": "atomic"
                   },
                   "selector": {
                     "type": "string"
@@ -458,7 +470,8 @@
                     "maxItems": 20,
                     "items": {
                       "type": "string"
-                    }
+                    },
+                    "x-kubernetes-list-type": "atomic"
                   },
                   "paths": {
                     "type": "array",
@@ -476,7 +489,8 @@
                         }
                       },
                       "additionalProperties": false
-                    }
+                    },
+                    "x-kubernetes-list-type": "atomic"
                   }
                 },
                 "additionalProperties": false
@@ -587,7 +601,8 @@
                     "type": "array",
                     "items": {
                       "type": "string"
-                    }
+                    },
+                    "x-kubernetes-list-type": "set"
                   },
                   "notPorts": {
                     "type": "array",
@@ -602,7 +617,8 @@
                         }
                       ],
                       "x-kubernetes-int-or-string": true
-                    }
+                    },
+                    "x-kubernetes-list-type": "atomic"
                   },
                   "notSelector": {
                     "type": "string"
@@ -620,7 +636,8 @@
                         }
                       ],
                       "x-kubernetes-int-or-string": true
-                    }
+                    },
+                    "x-kubernetes-list-type": "atomic"
                   },
                   "selector": {
                     "type": "string"
@@ -675,7 +692,8 @@
                 "reason": "FieldValueForbidden"
               }
             ]
-          }
+          },
+          "x-kubernetes-list-type": "atomic"
         },
         "order": {
           "type": "number"
@@ -687,7 +705,8 @@
             "enum": [
               "AssumeNeededOnEveryNode"
             ]
-          }
+          },
+          "x-kubernetes-list-type": "set"
         },
         "selector": {
           "type": "string"

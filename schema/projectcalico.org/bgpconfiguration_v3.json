@@ -124,7 +124,8 @@
                 "type": "array",
                 "items": {
                   "type": "string"
-                }
+                },
+                "x-kubernetes-list-type": "atomic"
               }
             },
             "additionalProperties": false,
