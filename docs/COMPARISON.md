@@ -9,7 +9,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 97.99% | 3486 | 10080 | 83 |
+| 97.88% | 3494 | 10080 | 83 |
 
 ### Missing Schemas
 
@@ -32,6 +32,10 @@ This page lists missing CRD validation schemas that are present in alternative c
 | machineclass | v1alpha1 |
 | machinedeployment | v1alpha1 |
 | machineset | v1alpha1 |
+
+| cognitoidentityprovider.services.k8s.aws | |
+| --- | --- |
+| userpool | v1alpha1 |
 
 | compute.cnrm.cloud.google.com | |
 | --- | --- |
@@ -80,6 +84,11 @@ This page lists missing CRD validation schemas that are present in alternative c
 | --- | --- |
 | helmrelease | v1 |
 
+| holmesgpt.dev | |
+| --- | --- |
+| healthcheck | v1alpha1 |
+| scheduledhealthcheck | v1alpha1 |
+
 | http.keda.sh | |
 | --- | --- |
 | httpscaledobject | v1alpha1 |
@@ -110,6 +119,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | networking.gke.io | |
 | --- | --- |
+| fqdnnetworkpolicy | v1alpha1 |
 | gcproutingextension | v1 |
 | gcptrafficextension | v1 |
 | gcpwasmplugin | v1 |
