@@ -25,6 +25,7 @@
         },
         "egress": {
           "type": "array",
+          "maxItems": 1024,
           "items": {
             "type": "object",
             "required": [
@@ -44,10 +45,12 @@
                 "type": "object",
                 "properties": {
                   "namespaceSelector": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 1024
                   },
                   "nets": {
                     "type": "array",
+                    "maxItems": 256,
                     "items": {
                       "type": "string"
                     },
@@ -55,6 +58,7 @@
                   },
                   "notNets": {
                     "type": "array",
+                    "maxItems": 256,
                     "items": {
                       "type": "string"
                     },
@@ -62,6 +66,7 @@
                   },
                   "notPorts": {
                     "type": "array",
+                    "maxItems": 50,
                     "items": {
                       "pattern": "^.*",
                       "anyOf": [
@@ -77,10 +82,12 @@
                     "x-kubernetes-list-type": "atomic"
                   },
                   "notSelector": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 1024
                   },
                   "ports": {
                     "type": "array",
+                    "maxItems": 50,
                     "items": {
                       "pattern": "^.*",
                       "anyOf": [
@@ -96,7 +103,8 @@
                     "x-kubernetes-list-type": "atomic"
                   },
                   "selector": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 1024
                   },
                   "serviceAccounts": {
                     "type": "object",
@@ -118,16 +126,50 @@
                     "type": "object",
                     "properties": {
                       "name": {
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 253
                       },
                       "namespace": {
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 253
                       }
                     },
                     "additionalProperties": false
                   }
                 },
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-kubernetes-validations": [
+                  {
+                    "rule": "!has(self.selector) || !self.selector.contains('global(')",
+                    "message": "global() can only be used in an EntityRule namespaceSelector",
+                    "reason": "FieldValueInvalid"
+                  },
+                  {
+                    "rule": "!has(self.services) || !has(self.namespaceSelector) || size(self.namespaceSelector) == 0",
+                    "message": "cannot specify NamespaceSelector and Services on the same rule",
+                    "reason": "FieldValueForbidden"
+                  },
+                  {
+                    "rule": "!has(self.services) || !has(self.serviceAccounts)",
+                    "message": "cannot specify ServiceAccounts and Services on the same rule",
+                    "reason": "FieldValueForbidden"
+                  },
+                  {
+                    "rule": "!has(self.services) || size(self.services.name) \u003e 0",
+                    "message": "services must specify a service name",
+                    "reason": "FieldValueRequired"
+                  },
+                  {
+                    "rule": "!has(self.services) || (!has(self.selector) || size(self.selector) == 0) \u0026\u0026 (!has(self.notSelector) || size(self.notSelector) == 0)",
+                    "message": "cannot specify Selector/NotSelector and Services on the same rule",
+                    "reason": "FieldValueForbidden"
+                  },
+                  {
+                    "rule": "!has(self.services) || (!has(self.nets) || size(self.nets) == 0) \u0026\u0026 (!has(self.notNets) || size(self.notNets) == 0)",
+                    "message": "cannot specify Nets/NotNets and Services on the same rule",
+                    "reason": "FieldValueForbidden"
+                  }
+                ]
               },
               "http": {
                 "type": "object",
@@ -255,10 +297,12 @@
                 "type": "object",
                 "properties": {
                   "namespaceSelector": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 1024
                   },
                   "nets": {
                     "type": "array",
+                    "maxItems": 256,
                     "items": {
                       "type": "string"
                     },
@@ -266,6 +310,7 @@
                   },
                   "notNets": {
                     "type": "array",
+                    "maxItems": 256,
                     "items": {
                       "type": "string"
                     },
@@ -273,6 +318,7 @@
                   },
                   "notPorts": {
                     "type": "array",
+                    "maxItems": 50,
                     "items": {
                       "pattern": "^.*",
                       "anyOf": [
@@ -288,10 +334,12 @@
                     "x-kubernetes-list-type": "atomic"
                   },
                   "notSelector": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 1024
                   },
                   "ports": {
                     "type": "array",
+                    "maxItems": 50,
                     "items": {
                       "pattern": "^.*",
                       "anyOf": [
@@ -307,7 +355,8 @@
                     "x-kubernetes-list-type": "atomic"
                   },
                   "selector": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 1024
                   },
                   "serviceAccounts": {
                     "type": "object",
@@ -329,16 +378,50 @@
                     "type": "object",
                     "properties": {
                       "name": {
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 253
                       },
                       "namespace": {
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 253
                       }
                     },
                     "additionalProperties": false
                   }
                 },
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-kubernetes-validations": [
+                  {
+                    "rule": "!has(self.selector) || !self.selector.contains('global(')",
+                    "message": "global() can only be used in an EntityRule namespaceSelector",
+                    "reason": "FieldValueInvalid"
+                  },
+                  {
+                    "rule": "!has(self.services) || !has(self.namespaceSelector) || size(self.namespaceSelector) == 0",
+                    "message": "cannot specify NamespaceSelector and Services on the same rule",
+                    "reason": "FieldValueForbidden"
+                  },
+                  {
+                    "rule": "!has(self.services) || !has(self.serviceAccounts)",
+                    "message": "cannot specify ServiceAccounts and Services on the same rule",
+                    "reason": "FieldValueForbidden"
+                  },
+                  {
+                    "rule": "!has(self.services) || size(self.services.name) \u003e 0",
+                    "message": "services must specify a service name",
+                    "reason": "FieldValueRequired"
+                  },
+                  {
+                    "rule": "!has(self.services) || (!has(self.selector) || size(self.selector) == 0) \u0026\u0026 (!has(self.notSelector) || size(self.notSelector) == 0)",
+                    "message": "cannot specify Selector/NotSelector and Services on the same rule",
+                    "reason": "FieldValueForbidden"
+                  },
+                  {
+                    "rule": "!has(self.services) || (!has(self.nets) || size(self.nets) == 0) \u0026\u0026 (!has(self.notNets) || size(self.notNets) == 0)",
+                    "message": "cannot specify Nets/NotNets and Services on the same rule",
+                    "reason": "FieldValueForbidden"
+                  }
+                ]
               }
             },
             "additionalProperties": false,
@@ -357,6 +440,31 @@
                 "rule": "!has(self.destination) || !has(self.destination.services) || (!has(self.destination.ports) || size(self.destination.ports) == 0) \u0026\u0026 (!has(self.destination.notPorts) || size(self.destination.notPorts) == 0)",
                 "message": "ports and notPorts cannot be specified with services",
                 "reason": "FieldValueForbidden"
+              },
+              {
+                "rule": "!has(self.icmp) || (has(self.protocol) \u0026\u0026 (self.protocol == 'ICMP' || self.protocol == 'ICMPv6' || self.protocol == 1 || self.protocol == 58))",
+                "message": "ICMP fields require protocol to be ICMP or ICMPv6",
+                "reason": "FieldValueInvalid"
+              },
+              {
+                "rule": "(!has(self.protocol) || (self.protocol != 'ICMP' \u0026\u0026 self.protocol != 1)) || !has(self.ipVersion) || self.ipVersion == 4",
+                "message": "protocol ICMP requires ipVersion 4",
+                "reason": "FieldValueInvalid"
+              },
+              {
+                "rule": "(!has(self.protocol) || (self.protocol != 'ICMPv6' \u0026\u0026 self.protocol != 58)) || !has(self.ipVersion) || self.ipVersion == 6",
+                "message": "protocol ICMPv6 requires ipVersion 6",
+                "reason": "FieldValueInvalid"
+              },
+              {
+                "rule": "(!has(self.notProtocol) || (self.notProtocol != 'ICMP' \u0026\u0026 self.notProtocol != 1)) || !has(self.ipVersion) || self.ipVersion == 4",
+                "message": "protocol ICMP requires ipVersion 4",
+                "reason": "FieldValueInvalid"
+              },
+              {
+                "rule": "(!has(self.notProtocol) || (self.notProtocol != 'ICMPv6' \u0026\u0026 self.notProtocol != 58)) || !has(self.ipVersion) || self.ipVersion == 6",
+                "message": "protocol ICMPv6 requires ipVersion 6",
+                "reason": "FieldValueInvalid"
               }
             ]
           },
@@ -364,6 +472,7 @@
         },
         "ingress": {
           "type": "array",
+          "maxItems": 1024,
           "items": {
             "type": "object",
             "required": [
@@ -383,10 +492,12 @@
                 "type": "object",
                 "properties": {
                   "namespaceSelector": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 1024
                   },
                   "nets": {
                     "type": "array",
+                    "maxItems": 256,
                     "items": {
                       "type": "string"
                     },
@@ -394,6 +505,7 @@
                   },
                   "notNets": {
                     "type": "array",
+                    "maxItems": 256,
                     "items": {
                       "type": "string"
                     },
@@ -401,6 +513,7 @@
                   },
                   "notPorts": {
                     "type": "array",
+                    "maxItems": 50,
                     "items": {
                       "pattern": "^.*",
                       "anyOf": [
@@ -416,10 +529,12 @@
                     "x-kubernetes-list-type": "atomic"
                   },
                   "notSelector": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 1024
                   },
                   "ports": {
                     "type": "array",
+                    "maxItems": 50,
                     "items": {
                       "pattern": "^.*",
                       "anyOf": [
@@ -435,7 +550,8 @@
                     "x-kubernetes-list-type": "atomic"
                   },
                   "selector": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 1024
                   },
                   "serviceAccounts": {
                     "type": "object",
@@ -457,16 +573,50 @@
                     "type": "object",
                     "properties": {
                       "name": {
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 253
                       },
                       "namespace": {
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 253
                       }
                     },
                     "additionalProperties": false
                   }
                 },
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-kubernetes-validations": [
+                  {
+                    "rule": "!has(self.selector) || !self.selector.contains('global(')",
+                    "message": "global() can only be used in an EntityRule namespaceSelector",
+                    "reason": "FieldValueInvalid"
+                  },
+                  {
+                    "rule": "!has(self.services) || !has(self.namespaceSelector) || size(self.namespaceSelector) == 0",
+                    "message": "cannot specify NamespaceSelector and Services on the same rule",
+                    "reason": "FieldValueForbidden"
+                  },
+                  {
+                    "rule": "!has(self.services) || !has(self.serviceAccounts)",
+                    "message": "cannot specify ServiceAccounts and Services on the same rule",
+                    "reason": "FieldValueForbidden"
+                  },
+                  {
+                    "rule": "!has(self.services) || size(self.services.name) \u003e 0",
+                    "message": "services must specify a service name",
+                    "reason": "FieldValueRequired"
+                  },
+                  {
+                    "rule": "!has(self.services) || (!has(self.selector) || size(self.selector) == 0) \u0026\u0026 (!has(self.notSelector) || size(self.notSelector) == 0)",
+                    "message": "cannot specify Selector/NotSelector and Services on the same rule",
+                    "reason": "FieldValueForbidden"
+                  },
+                  {
+                    "rule": "!has(self.services) || (!has(self.nets) || size(self.nets) == 0) \u0026\u0026 (!has(self.notNets) || size(self.notNets) == 0)",
+                    "message": "cannot specify Nets/NotNets and Services on the same rule",
+                    "reason": "FieldValueForbidden"
+                  }
+                ]
               },
               "http": {
                 "type": "object",
@@ -594,10 +744,12 @@
                 "type": "object",
                 "properties": {
                   "namespaceSelector": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 1024
                   },
                   "nets": {
                     "type": "array",
+                    "maxItems": 256,
                     "items": {
                       "type": "string"
                     },
@@ -605,6 +757,7 @@
                   },
                   "notNets": {
                     "type": "array",
+                    "maxItems": 256,
                     "items": {
                       "type": "string"
                     },
@@ -612,6 +765,7 @@
                   },
                   "notPorts": {
                     "type": "array",
+                    "maxItems": 50,
                     "items": {
                       "pattern": "^.*",
                       "anyOf": [
@@ -627,10 +781,12 @@
                     "x-kubernetes-list-type": "atomic"
                   },
                   "notSelector": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 1024
                   },
                   "ports": {
                     "type": "array",
+                    "maxItems": 50,
                     "items": {
                       "pattern": "^.*",
                       "anyOf": [
@@ -646,7 +802,8 @@
                     "x-kubernetes-list-type": "atomic"
                   },
                   "selector": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 1024
                   },
                   "serviceAccounts": {
                     "type": "object",
@@ -668,16 +825,50 @@
                     "type": "object",
                     "properties": {
                       "name": {
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 253
                       },
                       "namespace": {
-                        "type": "string"
+                        "type": "string",
+                        "maxLength": 253
                       }
                     },
                     "additionalProperties": false
                   }
                 },
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-kubernetes-validations": [
+                  {
+                    "rule": "!has(self.selector) || !self.selector.contains('global(')",
+                    "message": "global() can only be used in an EntityRule namespaceSelector",
+                    "reason": "FieldValueInvalid"
+                  },
+                  {
+                    "rule": "!has(self.services) || !has(self.namespaceSelector) || size(self.namespaceSelector) == 0",
+                    "message": "cannot specify NamespaceSelector and Services on the same rule",
+                    "reason": "FieldValueForbidden"
+                  },
+                  {
+                    "rule": "!has(self.services) || !has(self.serviceAccounts)",
+                    "message": "cannot specify ServiceAccounts and Services on the same rule",
+                    "reason": "FieldValueForbidden"
+                  },
+                  {
+                    "rule": "!has(self.services) || size(self.services.name) \u003e 0",
+                    "message": "services must specify a service name",
+                    "reason": "FieldValueRequired"
+                  },
+                  {
+                    "rule": "!has(self.services) || (!has(self.selector) || size(self.selector) == 0) \u0026\u0026 (!has(self.notSelector) || size(self.notSelector) == 0)",
+                    "message": "cannot specify Selector/NotSelector and Services on the same rule",
+                    "reason": "FieldValueForbidden"
+                  },
+                  {
+                    "rule": "!has(self.services) || (!has(self.nets) || size(self.nets) == 0) \u0026\u0026 (!has(self.notNets) || size(self.notNets) == 0)",
+                    "message": "cannot specify Nets/NotNets and Services on the same rule",
+                    "reason": "FieldValueForbidden"
+                  }
+                ]
               }
             },
             "additionalProperties": false,
@@ -696,13 +887,39 @@
                 "rule": "!has(self.destination) || !has(self.destination.services) || (!has(self.destination.ports) || size(self.destination.ports) == 0) \u0026\u0026 (!has(self.destination.notPorts) || size(self.destination.notPorts) == 0)",
                 "message": "ports and notPorts cannot be specified with services",
                 "reason": "FieldValueForbidden"
+              },
+              {
+                "rule": "!has(self.icmp) || (has(self.protocol) \u0026\u0026 (self.protocol == 'ICMP' || self.protocol == 'ICMPv6' || self.protocol == 1 || self.protocol == 58))",
+                "message": "ICMP fields require protocol to be ICMP or ICMPv6",
+                "reason": "FieldValueInvalid"
+              },
+              {
+                "rule": "(!has(self.protocol) || (self.protocol != 'ICMP' \u0026\u0026 self.protocol != 1)) || !has(self.ipVersion) || self.ipVersion == 4",
+                "message": "protocol ICMP requires ipVersion 4",
+                "reason": "FieldValueInvalid"
+              },
+              {
+                "rule": "(!has(self.protocol) || (self.protocol != 'ICMPv6' \u0026\u0026 self.protocol != 58)) || !has(self.ipVersion) || self.ipVersion == 6",
+                "message": "protocol ICMPv6 requires ipVersion 6",
+                "reason": "FieldValueInvalid"
+              },
+              {
+                "rule": "(!has(self.notProtocol) || (self.notProtocol != 'ICMP' \u0026\u0026 self.notProtocol != 1)) || !has(self.ipVersion) || self.ipVersion == 4",
+                "message": "protocol ICMP requires ipVersion 4",
+                "reason": "FieldValueInvalid"
+              },
+              {
+                "rule": "(!has(self.notProtocol) || (self.notProtocol != 'ICMPv6' \u0026\u0026 self.notProtocol != 58)) || !has(self.ipVersion) || self.ipVersion == 6",
+                "message": "protocol ICMPv6 requires ipVersion 6",
+                "reason": "FieldValueInvalid"
               }
             ]
           },
           "x-kubernetes-list-type": "atomic"
         },
         "namespaceSelector": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 1024
         },
         "order": {
           "type": "number"
@@ -721,10 +938,12 @@
           "type": "boolean"
         },
         "selector": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 1024
         },
         "serviceAccountSelector": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 1024
         },
         "stagedAction": {
           "type": "string",
@@ -774,6 +993,21 @@
         {
           "rule": "(has(self.applyOnForward) \u0026\u0026 self.applyOnForward) || ((!has(self.doNotTrack) || !self.doNotTrack) \u0026\u0026 (!has(self.preDNAT) || !self.preDNAT))",
           "message": "applyOnForward must be true if either preDNAT or doNotTrack is true",
+          "reason": "FieldValueInvalid"
+        },
+        {
+          "rule": "!has(self.selector) || !self.selector.contains('global(')",
+          "message": "global() can only be used in an EntityRule namespaceSelector",
+          "reason": "FieldValueInvalid"
+        },
+        {
+          "rule": "!has(self.serviceAccountSelector) || !self.serviceAccountSelector.contains('global(')",
+          "message": "global() can only be used in an EntityRule namespaceSelector",
+          "reason": "FieldValueInvalid"
+        },
+        {
+          "rule": "!has(self.namespaceSelector) || !self.namespaceSelector.contains('global(')",
+          "message": "global() can only be used in an EntityRule namespaceSelector",
           "reason": "FieldValueInvalid"
         }
       ]

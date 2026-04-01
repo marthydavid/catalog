@@ -9,7 +9,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 97.88% | 3494 | 10093 | 83 |
+| 97.35% | 3513 | 10111 | 83 |
 
 ### Missing Schemas
 
@@ -20,6 +20,16 @@ This page lists missing CRD validation schemas that are present in alternative c
 | backendsecuritypolicy | v1alpha1 |
 | gatewayconfig | v1alpha1 |
 | mcproute | v1alpha1 |
+
+| auditlog.cattle.io | |
+| --- | --- |
+| auditpolicy | v1 |
+
+| catalog.cattle.io | |
+| --- | --- |
+| app | v1 |
+| clusterrepo | v1 |
+| uiplugin | v1 |
 
 | cloud.google.com | |
 | --- | --- |
@@ -59,6 +69,11 @@ This page lists missing CRD validation schemas that are present in alternative c
 | nodeclass | v1 |
 | nodediagnostic | v1alpha1 |
 | targetgroupbinding | v1 |
+
+| fleet.cattle.io | |
+| --- | --- |
+| bundle | v1alpha1 |
+| clustergroup | v1alpha1 |
 
 | gateway.kgateway.dev | |
 | --- | --- |
@@ -107,6 +122,19 @@ This page lists missing CRD validation schemas that are present in alternative c
 | --- | --- |
 | imagecache | v1alpha2 |
 
+| management.cattle.io | |
+| --- | --- |
+| authconfig | v3 |
+| clusterregistrationtoken | v3 |
+| clusterroletemplatebinding | v3 |
+| globalrole | v3 |
+| globalrolebinding | v3 |
+| managedchart | v3 |
+| podsecurityadmissionconfigurationtemplate | v3 |
+| project | v3 |
+| projectroletemplatebinding | v3 |
+| roletemplate | v3 |
+
 | monitoring.googleapis.com | |
 | --- | --- |
 | clusternodemonitoring | v1 |
@@ -132,10 +160,19 @@ This page lists missing CRD validation schemas that are present in alternative c
 | --- | --- |
 | referencegrant | v1beta1 |
 
+| provisioning.cattle.io | |
+| --- | --- |
+| cluster | v1 |
+
 | ram.services.k8s.aws | |
 | --- | --- |
 | permission | v1alpha1 |
 | resourceshare | v1alpha1 |
+
+| rke.cattle.io | |
+| --- | --- |
+| custommachine | v1 |
+| etcdsnapshot | v1 |
 
 | secret-sync.gke.io | |
 | --- | --- |

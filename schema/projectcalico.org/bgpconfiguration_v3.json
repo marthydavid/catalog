@@ -30,14 +30,17 @@
         },
         "communities": {
           "type": "array",
+          "maxItems": 500,
           "items": {
             "type": "object",
             "properties": {
               "name": {
-                "type": "string"
+                "type": "string",
+                "maxLength": 253
               },
               "value": {
                 "type": "string",
+                "maxLength": 40,
                 "pattern": "^(\\d+):(\\d+)$|^(\\d+):(\\d+):(\\d+)$"
               }
             },
@@ -113,6 +116,7 @@
         },
         "prefixAdvertisements": {
           "type": "array",
+          "maxItems": 500,
           "items": {
             "type": "object",
             "properties": {
@@ -122,6 +126,7 @@
               },
               "communities": {
                 "type": "array",
+                "maxItems": 50,
                 "items": {
                   "type": "string"
                 },
@@ -205,6 +210,11 @@
           "rule": "!has(self.nodeMeshMaxRestartTime) || !has(self.nodeToNodeMeshEnabled) || self.nodeToNodeMeshEnabled == true",
           "message": "nodeMeshMaxRestartTime cannot be set when nodeToNodeMeshEnabled is false",
           "reason": "FieldValueForbidden"
+        },
+        {
+          "rule": "!has(self.communities) || size(self.communities) == 0 || (has(self.prefixAdvertisements) \u0026\u0026 size(self.prefixAdvertisements) \u003e 0)",
+          "message": "communities are defined but not used in prefixAdvertisements",
+          "reason": "FieldValueInvalid"
         }
       ]
     }
