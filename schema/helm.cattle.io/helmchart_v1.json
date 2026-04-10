@@ -54,6 +54,21 @@
           "additionalProperties": false,
           "x-kubernetes-map-type": "atomic"
         },
+        "driver": {
+          "type": "string",
+          "default": "secret",
+          "enum": [
+            "secret",
+            "configmap"
+          ],
+          "x-kubernetes-validations": [
+            {
+              "rule": "!oldSelf.hasValue() || self == oldSelf.value()",
+              "message": "driver is immutable after creation",
+              "optionalOldSelf": true
+            }
+          ]
+        },
         "failurePolicy": {
           "type": "string",
           "default": "reinstall",

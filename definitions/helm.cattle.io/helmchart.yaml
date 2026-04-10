@@ -78,6 +78,16 @@ spec:
                     type: string
                 type: object
                 x-kubernetes-map-type: atomic
+              driver:
+                default: secret
+                enum:
+                - secret
+                - configmap
+                type: string
+                x-kubernetes-validations:
+                - message: driver is immutable after creation
+                  optionalOldSelf: true
+                  rule: '!oldSelf.hasValue() || self == oldSelf.value()'
               failurePolicy:
                 default: reinstall
                 enum:
