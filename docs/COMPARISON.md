@@ -9,7 +9,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 97.36% | 3517 | 10179 | 83 |
+| 97.19% | 3526 | 10179 | 83 |
 
 ### Missing Schemas
 
@@ -58,6 +58,10 @@ This page lists missing CRD validation schemas that are present in alternative c
 | controlplane.cluster.x-k8s.io | |
 | --- | --- |
 | taloscontrolplane | v1alpha3 |
+
+| datadoghq.com | |
+| --- | --- |
+| datadogagentinternal | v1alpha1 |
 
 | distro.eks.amazonaws.com | |
 | --- | --- |
@@ -117,6 +121,10 @@ This page lists missing CRD validation schemas that are present in alternative c
 | gcpcluster | v1alpha2 |
 | gcpmachine | v1alpha2 |
 | gcpmachinetemplate | v1alpha2 |
+| osccluster | v1beta1 |
+| oscclustertemplate | v1beta1 |
+| oscmachine | v1beta1 |
+| oscmachinetemplate | v1beta1 |
 
 | kubefledged.io | |
 | --- | --- |
@@ -168,6 +176,10 @@ This page lists missing CRD validation schemas that are present in alternative c
 | --- | --- |
 | permission | v1alpha1 |
 | resourceshare | v1alpha1 |
+
+| readiness.node.x-k8s.io | |
+| --- | --- |
+| nodereadinessrule | v1alpha1 |
 
 | rke.cattle.io | |
 | --- | --- |
