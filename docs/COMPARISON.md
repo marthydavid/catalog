@@ -9,7 +9,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 97.19% | 3526 | 10184 | 83 |
+| 97.14% | 3530 | 10184 | 83 |
 
 ### Missing Schemas
 
@@ -20,6 +20,10 @@ This page lists missing CRD validation schemas that are present in alternative c
 | backendsecuritypolicy | v1alpha1 |
 | gatewayconfig | v1alpha1 |
 | mcproute | v1alpha1 |
+
+| apps.gitlab.com | |
+| --- | --- |
+| runner | v1beta2 |
 
 | auditlog.cattle.io | |
 | --- | --- |
@@ -180,6 +184,10 @@ This page lists missing CRD validation schemas that are present in alternative c
 | readiness.node.x-k8s.io | |
 | --- | --- |
 | nodereadinessrule | v1alpha1 |
+
+| rke-machine-config.cattle.io | |
+| --- | --- |
+| hetznerconfig | v1 |
 
 | rke.cattle.io | |
 | --- | --- |
