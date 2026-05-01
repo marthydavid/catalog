@@ -10,23 +10,23 @@ metadata:
     helm.sh/chart: teleport-operator-18.7.6
     teleport.dev/majorVersion: "18"
     teleport.dev/release: _release
-  name: teleportautoupdateversionsv1.resources.teleport.dev
+  name: teleportscopedroleassignmentsv1.resources.teleport.dev
 spec:
   group: resources.teleport.dev
   names:
-    kind: TeleportAutoupdateVersionV1
-    listKind: TeleportAutoupdateVersionV1List
-    plural: teleportautoupdateversionsv1
+    kind: TeleportScopedRoleAssignmentV1
+    listKind: TeleportScopedRoleAssignmentV1List
+    plural: teleportscopedroleassignmentsv1
     shortNames:
-    - autoupdateversionv1
-    - autoupdateversionsv1
-    singular: teleportautoupdateversionv1
+    - scopedroleassignmentv1
+    - scopedroleassignmentsv1
+    singular: teleportscopedroleassignmentv1
   scope: Namespaced
   versions:
   - name: v1
     schema:
       openAPIV3Schema:
-        description: AutoupdateVersionV1 is the Schema for the autoupdateversionsv1
+        description: ScopedRoleAssignmentV1 is the Schema for the scopedroleassignmentsv1
           API
         properties:
           apiVersion:
@@ -41,37 +41,41 @@ spec:
             type: string
           metadata:
             type: object
+          scope:
+            description: Scope is the scope of the role assignment resource.
+            type: string
           spec:
-            description: AutoupdateVersion resource definition v1 from Teleport
+            description: ScopedRoleAssignment resource definition v1 from Teleport
             properties:
-              agents:
+              assignments:
+                description: Assignments is a list of individual role @ scope assignments.
+                items:
+                  properties:
+                    role:
+                      description: Roles is the name of the role that is assigned
+                        by this assignment.
+                      type: string
+                    scope:
+                      description: Scope is the scope to which the role is assigned.
+                        This must be a member/child of the scope of the [ScopedRoleAssignment]
+                        in which this assignment is contained.
+                      type: string
+                  type: object
                 nullable: true
-                properties:
-                  mode:
-                    description: autoupdate_mode to use for the rollout
-                    type: string
-                  schedule:
-                    description: schedule to use for the rollout
-                    type: string
-                  start_version:
-                    description: start_version is the version used for newly installed
-                      agents before their update window.
-                    type: string
-                  target_version:
-                    description: target_version is the version that all agents will
-                      update to during their update window.
-                    type: string
-                type: object
-              tools:
-                nullable: true
-                properties:
-                  target_version:
-                    description: TargetVersion specifies the semantic version required
-                      for tools to establish a connection with the cluster. Client
-                      tools after connection to the cluster going to be updated to
-                      this version automatically.
-                    type: string
-                type: object
+                type: array
+              bot_name:
+                description: Name of the Bot to whom all contained assignments apply.
+                  Mutually exclusive with `user`.
+                type: string
+              bot_scope:
+                description: Scope of the Bot to whom all contained assignments apply.
+                  Required if `bot_name` is set. If specified, assignment scopes must
+                  be equal or descendent of this scope.
+                type: string
+              user:
+                description: User is the user to whom all contained assignments apply.
+                  Mutually exclusive with `bot_name`.
+                type: string
             type: object
           status:
             description: Status defines the observed state of the Teleport resource
