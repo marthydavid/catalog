@@ -1314,6 +1314,24 @@
                   },
                   "additionalProperties": false
                 },
+                "softirqs": {
+                  "description": "softirqs configures the softirqs collector, which exposes detailed softirq statistics\nfrom /proc/softirqs.\nsoftirqs is optional.\nWhen omitted, this means no opinion and the platform is left to choose a reasonable default,\nwhich is subject to change over time. The current default is disabled.\nEnable when you need visibility into kernel softirq processing across CPUs.",
+                  "type": "object",
+                  "required": [
+                    "collectionPolicy"
+                  ],
+                  "properties": {
+                    "collectionPolicy": {
+                      "description": "collectionPolicy declares whether the softirqs collector collects metrics.\nThis field is required.\nValid values are \"Collect\" and \"DoNotCollect\".\nWhen set to \"Collect\", the softirqs collector is active and softirq statistics are collected.\nWhen set to \"DoNotCollect\", the softirqs collector is inactive.",
+                      "type": "string",
+                      "enum": [
+                        "Collect",
+                        "DoNotCollect"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
                 "systemd": {
                   "description": "systemd configures the systemd collector, which collects statistics on the systemd daemon\nand its managed services.\nsystemd is optional.\nWhen omitted, this means no opinion and the platform is left to choose a reasonable default,\nwhich is subject to change over time. The current default is disabled.\nEnabling this collector with a long list of selected units may produce metrics with high\ncardinality. If you enable this collector, closely monitor the prometheus-k8s deployment\nfor excessive memory usage.\nEnable when you need metrics for specific units; scope units carefully.",
                   "type": "object",
