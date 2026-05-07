@@ -56,7 +56,7 @@
             "additionalProperties": false,
             "x-kubernetes-map-type": "atomic"
           },
-          "x-kubernetes-list-type": "set"
+          "x-kubernetes-list-type": "atomic"
         },
         "ignoredInterfaces": {
           "description": "IgnoredInterfaces indicates the network interfaces that needs to be excluded when reading device routes.",
@@ -163,7 +163,7 @@
             "additionalProperties": false,
             "x-kubernetes-map-type": "atomic"
           },
-          "x-kubernetes-list-type": "set"
+          "x-kubernetes-list-type": "atomic"
         },
         "programClusterRoutes": {
           "description": "ProgramClusterRoutes controls how a cluster node gets a route to a workload on another node,\nwhen that workload's IP comes from an IP Pool with vxlanMode: Never. When ProgramClusterRoutes is Enabled,\nconfd and BIRD program that route. When ProgramClusterRoutes is Disabled, it is expected that Felix will program that route.\nFelix always programs such routes for IP Pools with vxlanMode: Always or vxlanMode: CrossSubnet. [Default: Enabled]",
@@ -188,7 +188,7 @@
             "additionalProperties": false,
             "x-kubernetes-map-type": "atomic"
           },
-          "x-kubernetes-list-type": "set"
+          "x-kubernetes-list-type": "atomic"
         },
         "serviceExternalIPs": {
           "description": "ServiceExternalIPs are the CIDR blocks for Kubernetes Service External IPs.\nKubernetes Service ExternalIPs will only be advertised if they are within one of these blocks.",
@@ -205,7 +205,7 @@
             "additionalProperties": false,
             "x-kubernetes-map-type": "atomic"
           },
-          "x-kubernetes-list-type": "set"
+          "x-kubernetes-list-type": "atomic"
         },
         "serviceLoadBalancerAggregation": {
           "description": "ServiceLoadBalancerAggregation controls how LoadBalancer service IPs are advertised.\nWhen set to \"Disabled\", individual /32 routes are advertised for each service instead of\nthe full CIDR range. This is useful for anycast failover mechanisms where failed service\nroutes need to be withdrawn. [Default: Enabled]",
@@ -231,7 +231,7 @@
             "additionalProperties": false,
             "x-kubernetes-map-type": "atomic"
           },
-          "x-kubernetes-list-type": "set"
+          "x-kubernetes-list-type": "atomic"
         }
       },
       "additionalProperties": false,
