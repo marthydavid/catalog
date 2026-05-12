@@ -10,24 +10,23 @@ metadata:
     helm.sh/chart: teleport-operator-18.8.0
     teleport.dev/majorVersion: "18"
     teleport.dev/release: _release
-  name: teleportscopedroleassignmentsv1.resources.teleport.dev
+  name: teleportretrievalmodelsv1.resources.teleport.dev
 spec:
   group: resources.teleport.dev
   names:
-    kind: TeleportScopedRoleAssignmentV1
-    listKind: TeleportScopedRoleAssignmentV1List
-    plural: teleportscopedroleassignmentsv1
+    kind: TeleportRetrievalModelV1
+    listKind: TeleportRetrievalModelV1List
+    plural: teleportretrievalmodelsv1
     shortNames:
-    - scopedroleassignmentv1
-    - scopedroleassignmentsv1
-    singular: teleportscopedroleassignmentv1
+    - retrievalmodelv1
+    - retrievalmodelsv1
+    singular: teleportretrievalmodelv1
   scope: Namespaced
   versions:
   - name: v1
     schema:
       openAPIV3Schema:
-        description: ScopedRoleAssignmentV1 is the Schema for the scopedroleassignmentsv1
-          API
+        description: RetrievalModelV1 is the Schema for the retrievalmodelsv1 API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -41,41 +40,62 @@ spec:
             type: string
           metadata:
             type: object
-          scope:
-            description: Scope is the scope of the role assignment resource.
-            type: string
           spec:
-            description: ScopedRoleAssignment resource definition v1 from Teleport
+            description: RetrievalModel resource definition v1 from Teleport
             properties:
-              assignments:
-                description: Assignments is a list of individual role @ scope assignments.
-                items:
-                  properties:
-                    role:
-                      description: Roles is the name of the role that is assigned
-                        by this assignment.
-                      type: string
-                    scope:
-                      description: Scope is the scope to which the role is assigned.
-                        This must be a member/child of the scope of the [ScopedRoleAssignment]
-                        in which this assignment is contained.
-                      type: string
-                  type: object
+              bedrock:
+                description: Bedrock indicates that this model uses Amazon Bedrock
+                  as the embeddings provider and specifies Bedrock-specific parameters.
                 nullable: true
-                type: array
-              bot_name:
-                description: Name of the Bot to whom all contained assignments apply.
-                  Mutually exclusive with `user`.
+                properties:
+                  bedrock_model_id:
+                    description: BedrockModelId specifies a model ID or an inference
+                      profile as understood by the Bedrock API.
+                    type: string
+                  integration:
+                    description: Integration is the AWS OIDC Integration name. If
+                      unset, Teleport will use AWS credentials available on the Auth
+                      Service machine; otherwise, it will use the specified OIDC integration
+                      for assuming appropriate role.
+                    type: string
+                  region:
+                    description: Region is the AWS region which will be used for inference.
+                    type: string
+                  temperature:
+                    description: Temperature controls the randomness of the model's
+                      output.
+                    type: number
+                type: object
+              inference_model_name:
+                description: inference_model_name is the name of the model used to
+                  convert natural language search queries into API requests and generate
+                  prose from a session summary.
                 type: string
-              bot_scope:
-                description: Scope of the Bot to whom all contained assignments apply.
-                  Required if `bot_name` is set. If specified, assignment scopes must
-                  be equal or descendent of this scope.
-                type: string
-              user:
-                description: User is the user to whom all contained assignments apply.
-                  Mutually exclusive with `bot_name`.
-                type: string
+              openai:
+                description: Openai indicates that this model uses OpenAI as the embeddings
+                  provider and specifies OpenAI-specific parameters.
+                nullable: true
+                properties:
+                  api_key_secret_ref:
+                    description: ApiKeySecretRef is a reference to an InferenceSecret
+                      that contains the OpenAI API key.
+                    type: string
+                  base_url:
+                    description: BaseUrl is the OpenAI API base URL. Optional, defaults
+                      to the public OpenAI API URL. May be used to point to a custom
+                      OpenAI-compatible API, such as LiteLLM. In such case, the `api_key_secret_ref`
+                      must point to a secret that contains the API key for that custom
+                      API.
+                    type: string
+                  openai_model_id:
+                    description: OpenaiModelId specifies the model ID, as understood
+                      by the OpenAI API.
+                    type: string
+                  temperature:
+                    description: Temperature controls the randomness of the model's
+                      output.
+                    type: number
+                type: object
             type: object
           status:
             description: Status defines the observed state of the Teleport resource
