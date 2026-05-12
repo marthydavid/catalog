@@ -140,7 +140,7 @@
                           ],
                           "properties": {
                             "secret": {
-                              "description": "secret references a secret in the openshift-config namespace containing\nthe AppRole credentials used to authenticate with Vault.\nThe secret must contain two keys: \"roleID\" for the AppRole Role ID and \"secretID\" for the AppRole Secret ID.\n\nThe namespace for the secret is openshift-config.",
+                              "description": "secret references a secret in the openshift-config namespace containing\nthe AppRole credentials used to authenticate with Vault.\nThe secret must contain two keys: \"role-id\" for the AppRole Role ID and \"secret-id\" for the AppRole Secret ID.",
                               "type": "object",
                               "required": [
                                 "name"
@@ -239,23 +239,23 @@
                       "additionalProperties": false
                     },
                     "transitKey": {
-                      "description": "transitKey specifies the name of the encryption key in Vault's Transit engine.\nThis key is used to encrypt and decrypt data.\n\nThe key name must be between 1 and 512 characters and cannot contain spaces or forward slashes.",
+                      "description": "transitKey specifies the name of the encryption key in Vault's Transit engine.\nThis key is used to encrypt and decrypt data.\n\nThe transit key must be between 1 and 512 characters, cannot contain forward slashes,\nand must only contain alphanumeric characters, hyphens, periods, and underscores.",
                       "type": "string",
                       "maxLength": 512,
                       "minLength": 1,
                       "x-kubernetes-validations": [
                         {
-                          "rule": "!self.contains(' ')",
-                          "message": "transitKey cannot contain spaces"
-                        },
-                        {
                           "rule": "!self.contains('/')",
                           "message": "transitKey cannot contain forward slashes"
+                        },
+                        {
+                          "rule": "self.matches('^[a-zA-Z0-9._-]+$')",
+                          "message": "transitKey must only contain alphanumeric characters, hyphens, periods, and underscores"
                         }
                       ]
                     },
                     "transitMount": {
-                      "description": "transitMount specifies the mount path of the Vault Transit engine.\nThe value must be between 1 and 1024 characters when specified.\n\nWhen omitted, this means the user has no opinion and the platform is left\nto choose a reasonable default. These defaults are subject to change over time.\nThe current default is \"transit\".\n\nThe mount path cannot start or end with a forward slash, cannot contain spaces,\nand cannot contain consecutive forward slashes.",
+                      "description": "transitMount specifies the mount path of the Vault Transit engine.\n\nWhen omitted, this means the user has no opinion and the platform is left\nto choose a reasonable default. These defaults are subject to change over time.\nThe current default is \"transit\".\n\nThe transit mount must be between 1 and 1024 characters when specified, cannot start or\nend with a forward slash, cannot contain consecutive forward slashes, and must only contain\nRFC 3986 unreserved characters (alphanumeric, hyphen, period, underscore, tilde) and forward\nslashes as path separators.",
                       "type": "string",
                       "maxLength": 1024,
                       "minLength": 1,
@@ -269,12 +269,12 @@
                           "message": "transitMount cannot end with a forward slash"
                         },
                         {
-                          "rule": "!self.contains(' ')",
-                          "message": "transitMount cannot contain spaces"
-                        },
-                        {
                           "rule": "!self.contains('//')",
                           "message": "transitMount cannot contain consecutive forward slashes"
+                        },
+                        {
+                          "rule": "self.matches('^[a-zA-Z0-9._~/-]+$')",
+                          "message": "transitMount must only contain RFC 3986 unreserved characters (alphanumeric, hyphen, period, underscore, tilde) and forward slashes"
                         }
                       ]
                     },
@@ -354,7 +354,13 @@
               ]
             }
           },
-          "additionalProperties": false
+          "additionalProperties": false,
+          "x-kubernetes-validations": [
+            {
+              "rule": "has(self.type) \u0026\u0026 self.type == 'KMS' ?  has(self.kms) : !has(self.kms)",
+              "message": "kms config is required when encryption type is KMS, and forbidden otherwise"
+            }
+          ]
         },
         "servingCerts": {
           "description": "servingCert is the TLS cert info for serving secure traffic. If not specified, operator managed certificates\nwill be used for serving secure traffic.",
