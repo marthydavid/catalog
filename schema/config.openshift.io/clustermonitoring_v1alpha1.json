@@ -1418,15 +1418,6 @@
               "maximum": 1024,
               "minimum": 1
             },
-            "nodeSelector": {
-              "description": "nodeSelector defines the nodes on which the Pods are scheduled.\nnodeSelector is optional.\n\nWhen omitted, this means the user has no opinion and the platform is left\nto choose reasonable defaults. These defaults are subject to change over time.\nThe current default value is `kubernetes.io/os: linux`.\nWhen specified, nodeSelector must contain at least 1 entry and must not contain more than 10 entries.",
-              "type": "object",
-              "maxProperties": 10,
-              "minProperties": 1,
-              "additionalProperties": {
-                "type": "string"
-              }
-            },
             "resources": {
               "description": "resources defines the compute resource requests and limits for the node-exporter container.\nThis includes CPU, memory and HugePages constraints to help control scheduling and resource usage.\nWhen not specified, defaults are used by the platform. Requests cannot exceed limits.\nThis field is optional.\nMore info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/\nThis is a simplified API that maps to Kubernetes ResourceRequirements.\nThe current default values are:\n  resources:\n   - name: cpu\n     request: 8m\n     limit: null\n   - name: memory\n     request: 32Mi\n     limit: null",
               "type": "array",
@@ -1510,41 +1501,6 @@
                 "name"
               ],
               "x-kubernetes-list-type": "map"
-            },
-            "tolerations": {
-              "description": "tolerations defines tolerations for the pods.\ntolerations is optional.\n\nWhen omitted, this means the user has no opinion and the platform is left\nto choose reasonable defaults. These defaults are subject to change over time.\nThe current default is to tolerate all taints (operator: Exists without any key),\nwhich is typical for DaemonSets that must run on every node.\nMaximum length for this list is 10.\nMinimum length for this list is 1.",
-              "type": "array",
-              "maxItems": 10,
-              "minItems": 1,
-              "items": {
-                "description": "The pod this Toleration is attached to tolerates any taint that matches\nthe triple \u003ckey,value,effect\u003e using the matching operator \u003coperator\u003e.",
-                "type": "object",
-                "properties": {
-                  "effect": {
-                    "description": "Effect indicates the taint effect to match. Empty means match all taint effects.\nWhen specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.",
-                    "type": "string"
-                  },
-                  "key": {
-                    "description": "Key is the taint key that the toleration applies to. Empty means match all taint keys.\nIf the key is empty, operator must be Exists; this combination means to match all values and all keys.",
-                    "type": "string"
-                  },
-                  "operator": {
-                    "description": "Operator represents a key's relationship to the value.\nValid operators are Exists, Equal, Lt, and Gt. Defaults to Equal.\nExists is equivalent to wildcard for value, so that a pod can\ntolerate all taints of a particular category.\nLt and Gt perform numeric comparisons (requires feature gate TaintTolerationComparisonOperators).",
-                    "type": "string"
-                  },
-                  "tolerationSeconds": {
-                    "description": "TolerationSeconds represents the period of time the toleration (which must be\nof effect NoExecute, otherwise this field is ignored) tolerates the taint. By default,\nit is not set, which means tolerate the taint forever (do not evict). Zero and\nnegative values will be treated as 0 (evict immediately) by the system.",
-                    "type": "integer",
-                    "format": "int64"
-                  },
-                  "value": {
-                    "description": "Value is the taint value the toleration matches to.\nIf the operator is Exists, the value should be empty, otherwise just a regular string.",
-                    "type": "string"
-                  }
-                },
-                "additionalProperties": false
-              },
-              "x-kubernetes-list-type": "atomic"
             }
           },
           "additionalProperties": false
