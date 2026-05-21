@@ -122,6 +122,7 @@
                     "authentication",
                     "kmsPluginImage",
                     "transitKey",
+                    "transitMount",
                     "vaultAddress"
                   ],
                   "properties": {
@@ -140,7 +141,7 @@
                           ],
                           "properties": {
                             "secret": {
-                              "description": "secret references a secret in the openshift-config namespace containing\nthe AppRole credentials used to authenticate with Vault.\nThe secret must contain two keys: \"role-id\" for the AppRole Role ID and \"secret-id\" for the AppRole Secret ID.",
+                              "description": "secret references a secret in the openshift-config namespace containing\nthe AppRole credentials used to authenticate with Vault.\nThe referenced Secret must contain two keys: \"role-id\" for the AppRole Role ID and \"secret-id\" for the AppRole Secret ID.",
                               "type": "object",
                               "required": [
                                 "name"
@@ -202,7 +203,7 @@
                       "minProperties": 1,
                       "properties": {
                         "caBundle": {
-                          "description": "caBundle references a ConfigMap in the openshift-config namespace containing\nthe CA certificate bundle used to verify the TLS connection to the Vault server.\nThe ConfigMap must contain the CA bundle in the key \"ca-bundle.crt\".\nWhen this field is not set, the system's trusted CA certificates are used.\n\nThe namespace for the ConfigMap is openshift-config.\n\nExample ConfigMap:\n  apiVersion: v1\n  kind: ConfigMap\n  metadata:\n    name: vault-ca-bundle\n    namespace: openshift-config\n  data:\n    ca-bundle.crt: |\n      -----BEGIN CERTIFICATE-----\n      ...\n      -----END CERTIFICATE-----",
+                          "description": "caBundle references a ConfigMap in the openshift-config namespace containing\nthe CA certificate bundle used to verify the TLS connection to the Vault server.\nThe referenced ConfigMap must contain the CA bundle in the key \"ca-bundle.crt\".\nWhen this field is not set, the system's trusted CA certificates are used.\n\nThe namespace for the ConfigMap is openshift-config.\n\nExample ConfigMap:\n  apiVersion: v1\n  kind: ConfigMap\n  metadata:\n    name: vault-ca-bundle\n    namespace: openshift-config\n  data:\n    ca-bundle.crt: |\n      -----BEGIN CERTIFICATE-----\n      ...\n      -----END CERTIFICATE-----",
                           "type": "object",
                           "required": [
                             "name"
@@ -255,7 +256,7 @@
                       ]
                     },
                     "transitMount": {
-                      "description": "transitMount specifies the mount path of the Vault Transit engine.\n\nWhen omitted, this means the user has no opinion and the platform is left\nto choose a reasonable default. These defaults are subject to change over time.\nThe current default is \"transit\".\n\nThe transit mount must be between 1 and 1024 characters when specified, cannot start or\nend with a forward slash, cannot contain consecutive forward slashes, and must only contain\nRFC 3986 unreserved characters (alphanumeric, hyphen, period, underscore, tilde) and forward\nslashes as path separators.",
+                      "description": "transitMount specifies the mount path of the Vault Transit engine.\n\nThe transit mount must be between 1 and 1024 characters, cannot start or\nend with a forward slash, cannot contain consecutive forward slashes, and\nmust only contain RFC 3986 unreserved characters (alphanumeric, hyphen,\nperiod, underscore, tilde) and forward slashes as path separators.",
                       "type": "string",
                       "maxLength": 1024,
                       "minLength": 1,
