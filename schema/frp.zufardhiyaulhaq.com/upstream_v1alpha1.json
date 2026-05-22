@@ -776,6 +776,13 @@
             "port": {
               "type": "integer"
             },
+            "proxyProtocol": {
+              "type": "string",
+              "enum": [
+                "v1",
+                "v2"
+              ]
+            },
             "server": {
               "type": "object",
               "required": [
@@ -784,6 +791,49 @@
               "properties": {
                 "port": {
                   "type": "integer"
+                }
+              },
+              "additionalProperties": false
+            },
+            "transport": {
+              "type": "object",
+              "required": [
+                "useCompression",
+                "useEncryption"
+              ],
+              "properties": {
+                "bandwidthLimit": {
+                  "type": "object",
+                  "required": [
+                    "enabled",
+                    "limit",
+                    "type"
+                  ],
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "limit": {
+                      "type": "integer"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "KB",
+                        "MB"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "useCompression": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "useEncryption": {
+                  "type": "boolean",
+                  "default": true
                 }
               },
               "additionalProperties": false

@@ -542,12 +542,46 @@ spec:
                     type: string
                   port:
                     type: integer
+                  proxyProtocol:
+                    enum:
+                    - v1
+                    - v2
+                    type: string
                   server:
                     properties:
                       port:
                         type: integer
                     required:
                     - port
+                    type: object
+                  transport:
+                    properties:
+                      bandwidthLimit:
+                        properties:
+                          enabled:
+                            default: false
+                            type: boolean
+                          limit:
+                            type: integer
+                          type:
+                            enum:
+                            - KB
+                            - MB
+                            type: string
+                        required:
+                        - enabled
+                        - limit
+                        - type
+                        type: object
+                      useCompression:
+                        default: false
+                        type: boolean
+                      useEncryption:
+                        default: true
+                        type: boolean
+                    required:
+                    - useCompression
+                    - useEncryption
                     type: object
                 required:
                 - host
@@ -660,4 +694,3 @@ spec:
     storage: true
     subresources:
       status: {}
-
