@@ -9,7 +9,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 96.07% | 3812 | 10237 | 83 |
+| 95.59% | 3834 | 10237 | 83 |
 
 ### Missing Schemas
 
@@ -28,6 +28,20 @@ This page lists missing CRD validation schemas that are present in alternative c
 | auditlog.cattle.io | |
 | --- | --- |
 | auditpolicy | v1 |
+
+| autoscaling.internal.knative.dev | |
+| --- | --- |
+| metric | v1alpha1 |
+| podautoscaler | v1alpha1 |
+
+| caching.internal.knative.dev | |
+| --- | --- |
+| image | v1alpha1 |
+
+| capsule.clastix.io | |
+| --- | --- |
+| globalproxysettings | v1beta1 |
+| proxysetting | v1beta1 |
 
 | catalog.cattle.io | |
 | --- | --- |
@@ -219,6 +233,13 @@ This page lists missing CRD validation schemas that are present in alternative c
 | servicefunctionchain | v1 |
 | trafficselector | v1 |
 
+| networking.internal.knative.dev | |
+| --- | --- |
+| certificate | v1alpha1 |
+| clusterdomainclaim | v1alpha1 |
+| ingress | v1alpha1 |
+| serverlessservice | v1alpha1 |
+
 | operator.knative.dev | |
 | --- | --- |
 | knativeeventing | v1beta1 |
@@ -254,6 +275,14 @@ This page lists missing CRD validation schemas that are present in alternative c
 | --- | --- |
 | secretsync | v1 |
 
+| serving.knative.dev | |
+| --- | --- |
+| configuration | v1 |
+| domainmapping | v1beta1 |
+| revision | v1 |
+| route | v1 |
+| service | v1 |
+
 | sinks.knative.dev | |
 | --- | --- |
 | integrationsink | v1alpha1 |
@@ -275,6 +304,14 @@ This page lists missing CRD validation schemas that are present in alternative c
 | --- | --- |
 | tempomonolithic | v1alpha1 |
 | tempostack | v1alpha1 |
+
+| temporal.io | |
+| --- | --- |
+| connection | v1alpha1 |
+| temporalconnection | v1alpha1 |
+| temporalworkerdeployment | v1alpha1 |
+| workerdeployment | v1alpha1 |
+| workerresourcetemplate | v1alpha1 |
 
 ### Ignored Schemas
 
