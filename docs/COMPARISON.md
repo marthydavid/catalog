@@ -9,7 +9,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 97.29% | 3733 | 10237 | 83 |
+| 96.07% | 3812 | 10237 | 83 |
 
 ### Missing Schemas
 
@@ -59,8 +59,19 @@ This page lists missing CRD validation schemas that are present in alternative c
 | --- | --- |
 | nodepool | v1alpha1 |
 
+| config.projectsveltos.io | |
+| --- | --- |
+| clusterconfiguration | v1beta1 |
+| clusterprofile | v1beta1 |
+| clusterpromotion | v1beta1 |
+| clusterreport | v1beta1 |
+| clustersummary | v1beta1 |
+| profile | v1beta1 |
+
 | controlplane.cluster.x-k8s.io | |
 | --- | --- |
+| kamajicontrolplane | v1alpha1 |
+| kamajicontrolplanetemplate | v1alpha1 |
 | taloscontrolplane | v1alpha3 |
 
 | datadoghq.com | |
@@ -78,10 +89,24 @@ This page lists missing CRD validation schemas that are present in alternative c
 | nodediagnostic | v1alpha1 |
 | targetgroupbinding | v1 |
 
+| eventing.knative.dev | |
+| --- | --- |
+| broker | v1 |
+| eventpolicy | v1alpha1 |
+| eventtransform | v1alpha1 |
+| eventtype | v1beta1, v1beta2, v1beta3 |
+| requestreply | v1alpha1 |
+| trigger | v1 |
+
 | fleet.cattle.io | |
 | --- | --- |
 | bundle | v1alpha1 |
 | clustergroup | v1alpha1 |
+
+| flows.knative.dev | |
+| --- | --- |
+| parallel | v1 |
+| sequence | v1 |
 
 | gateway.kgateway.dev | |
 | --- | --- |
@@ -134,6 +159,27 @@ This page lists missing CRD validation schemas that are present in alternative c
 | --- | --- |
 | imagecache | v1alpha2 |
 
+| lib.projectsveltos.io | |
+| --- | --- |
+| accessrequest | v1beta1 |
+| classifier | v1beta1 |
+| classifierreport | v1beta1 |
+| clusterhealthcheck | v1beta1 |
+| clusterset | v1beta1 |
+| configurationbundle | v1beta1 |
+| configurationgroup | v1beta1 |
+| debuggingconfiguration | v1beta1 |
+| eventreport | v1beta1 |
+| eventsource | v1beta1 |
+| eventtrigger | v1beta1 |
+| healthcheck | v1beta1 |
+| healthcheckreport | v1beta1 |
+| reloader | v1beta1 |
+| reloaderreport | v1beta1 |
+| resourcesummary | v1beta1 |
+| sveltoscluster | v1beta1 |
+| techsupport | v1beta1 |
+
 | management.cattle.io | |
 | --- | --- |
 | authconfig | v3 |
@@ -146,6 +192,11 @@ This page lists missing CRD validation schemas that are present in alternative c
 | project | v3 |
 | projectroletemplatebinding | v3 |
 | roletemplate | v3 |
+
+| messaging.knative.dev | |
+| --- | --- |
+| channel | v1 |
+| subscription | v1 |
 
 | monitoring.googleapis.com | |
 | --- | --- |
@@ -167,6 +218,11 @@ This page lists missing CRD validation schemas that are present in alternative c
 | networklogging | v1alpha1 |
 | servicefunctionchain | v1 |
 | trafficselector | v1 |
+
+| operator.knative.dev | |
+| --- | --- |
+| knativeeventing | v1beta1 |
+| knativeserving | v1beta1 |
 
 | platform.confluent.io | |
 | --- | --- |
@@ -197,6 +253,23 @@ This page lists missing CRD validation schemas that are present in alternative c
 | secret-sync.gke.io | |
 | --- | --- |
 | secretsync | v1 |
+
+| sinks.knative.dev | |
+| --- | --- |
+| integrationsink | v1alpha1 |
+| jobsink | v1alpha1 |
+
+| source.extensions.fluxcd.io | |
+| --- | --- |
+| artifactgenerator | v1beta1 |
+
+| sources.knative.dev | |
+| --- | --- |
+| apiserversource | v1 |
+| containersource | v1 |
+| integrationsource | v1alpha1 |
+| pingsource | v1, v1beta2 |
+| sinkbinding | v1 |
 
 | tempo.grafana.com | |
 | --- | --- |
