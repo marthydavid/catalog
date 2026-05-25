@@ -4,18 +4,19 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.20.0
   labels:
-    pgv2.percona.com/version: v3.0.0
-  name: perconapgupgrades.pgv2.percona.com
+    app.kubernetes.io/name: pgo
+    app.kubernetes.io/version: latest
+  name: pgupgrades.upstream.pgv2.percona.com
 spec:
-  group: pgv2.percona.com
+  group: upstream.pgv2.percona.com
   names:
-    kind: PerconaPGUpgrade
-    listKind: PerconaPGUpgradeList
-    plural: perconapgupgrades
-    singular: perconapgupgrade
+    kind: PGUpgrade
+    listKind: PGUpgradeList
+    plural: pgupgrades
+    singular: pgupgrade
   scope: Namespaced
   versions:
-  - name: v2
+  - name: v1beta1
     schema:
       openAPIV3Schema:
         properties:
@@ -467,7 +468,7 @@ spec:
                     type: object
                 type: object
               fromPostgresVersion:
-                maximum: 17
+                maximum: 18
                 minimum: 12
                 type: integer
               image:
@@ -483,6 +484,7 @@ spec:
                   properties:
                     name:
                       default: ""
+                      description: 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names'
                       type: string
                   type: object
                   x-kubernetes-map-type: atomic
@@ -1258,10 +1260,6 @@ spec:
                       x-kubernetes-int-or-string: true
                     type: object
                 type: object
-              toPgBackRestImage:
-                type: string
-              toPgBouncerImage:
-                type: string
               toPostgresImage:
                 type: string
               toPostgresVersion:
@@ -1308,11 +1306,7 @@ spec:
                 type: array
             required:
             - fromPostgresVersion
-            - image
             - postgresClusterName
-            - toPgBackRestImage
-            - toPgBouncerImage
-            - toPostgresImage
             - toPostgresVersion
             type: object
           status:
@@ -1361,9 +1355,6 @@ spec:
                 minimum: 0
                 type: integer
             type: object
-        required:
-        - metadata
-        - spec
         type: object
     served: true
     storage: true
