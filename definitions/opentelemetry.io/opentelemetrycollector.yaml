@@ -3365,6 +3365,8 @@ spec:
                     type: object
                   prometheusCR:
                     properties:
+                      denyFSAccessThroughSMs:
+                        type: boolean
                       enabled:
                         type: boolean
                       podMonitorSelector:
@@ -8304,6 +8306,8 @@ spec:
                         items:
                           type: string
                         type: array
+                      denyFSAccessThroughSMs:
+                        type: boolean
                       denyNamespaces:
                         items:
                           type: string
