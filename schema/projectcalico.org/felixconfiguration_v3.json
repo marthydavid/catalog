@@ -680,8 +680,15 @@
         },
         "istioDSCPMark": {
           "description": "IstioDSCPMark sets the value to use when directing traffic to Istio ZTunnel, when Istio is enabled. The mark is set only on\nSYN packets at the final hop to avoid interference with other protocols. This value is reserved by Calico and must not be used\nwith other Istio installation. [Default: 23]",
-          "type": "integer",
           "pattern": "^.*",
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "string"
+            }
+          ],
           "x-kubernetes-int-or-string": true
         },
         "kubeNodePortRanges": {
