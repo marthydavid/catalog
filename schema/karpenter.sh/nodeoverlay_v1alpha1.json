@@ -54,7 +54,7 @@
           "pattern": "^(([+-]{1}(\\d*\\.?\\d+))|(\\+{1}\\d*\\.?\\d+%)|(^(-\\d{1,2}(\\.\\d+)?%)$)|(-100%))$"
         },
         "requirements": {
-          "description": "Requirements constrain when this NodeOverlay is applied during scheduling simulations.\nThese requirements can match:\n- Well-known labels (e.g., node.kubernetes.io/instance-type, karpenter.sh/nodepool)\n- Custom labels from NodePool's spec.template.labels",
+          "description": "requirements constrain when this NodeOverlay is applied during scheduling simulations.\nThese requirements can match:\n- Well-known labels (e.g., node.kubernetes.io/instance-type, karpenter.sh/nodepool)\n- Custom labels from NodePool's spec.template.labels",
           "type": "array",
           "maxItems": 100,
           "items": {
@@ -112,6 +112,7 @@
             },
             "additionalProperties": false
           },
+          "x-kubernetes-list-type": "atomic",
           "x-kubernetes-validations": [
             {
               "rule": "self.all(x, x.operator == 'NotIn' ? x.values.size() != 0 : true)",
@@ -201,7 +202,11 @@
               }
             },
             "additionalProperties": false
-          }
+          },
+          "x-kubernetes-list-map-keys": [
+            "type"
+          ],
+          "x-kubernetes-list-type": "map"
         }
       },
       "additionalProperties": false
