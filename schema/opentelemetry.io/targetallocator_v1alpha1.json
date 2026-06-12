@@ -1868,6 +1868,9 @@
             "per-node"
           ]
         },
+        "allowInsecureAuthSecrets": {
+          "type": "boolean"
+        },
         "args": {
           "type": "object",
           "additionalProperties": {
@@ -3642,6 +3645,19 @@
             "managed",
             "unmanaged"
           ]
+        },
+        "mtls": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "useCertManager": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          "additionalProperties": false
         },
         "networkPolicy": {
           "type": "object",

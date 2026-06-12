@@ -721,6 +721,10 @@
             "PodsAndLoadBalancers"
           ]
         },
+        "localSubnetL2ReachabilityRefreshInterval": {
+          "description": "LocalSubnetL2ReachabilityRefreshInterval controls how often Felix re-announces\n(gratuitous ARP / unsolicited NA) every IP it proxies ARP/NDP for when\nLocalSubnetL2Reachability is enabled, keeping neighbor caches and switch\nforwarding tables warm even when the set of proxied IPs is unchanged. Set to 0\nto disable periodic re-announcement, leaving only the one-shot announce when an\nIP is added. [Default: 120s]",
+          "type": "string"
+        },
         "logActionRateLimit": {
           "description": "LogActionRateLimit sets the rate of hitting a Log action. The value must be in the format \"N/unit\",\nwhere N is a number and unit is one of: second, minute, hour, or day. For example: \"10/second\" or \"100/hour\".",
           "type": "string",
