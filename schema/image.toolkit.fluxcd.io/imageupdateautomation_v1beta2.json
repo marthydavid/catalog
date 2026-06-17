@@ -91,7 +91,7 @@
                   "additionalProperties": false
                 },
                 "messageTemplate": {
-                  "description": "MessageTemplate provides a template for the commit message,\ninto which will be interpolated the details of the change made.\nNote: The `Updated` template field has been removed. Use `Changed` instead.",
+                  "description": "MessageTemplate provides a template for the commit message,\ninto which will be interpolated the details of the change made.",
                   "type": "string"
                 },
                 "messageTemplateValues": {
@@ -246,6 +246,9 @@
           "default": {
             "strategy": "Setters"
           },
+          "required": [
+            "strategy"
+          ],
           "properties": {
             "path": {
               "description": "Path to the directory containing the manifests to be updated.\nDefaults to 'None', which translates to the root path\nof the GitRepositoryRef.",
