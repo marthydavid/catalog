@@ -9,7 +9,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 95.46% | 3858 | 10335 | 83 |
+| 95.44% | 3859 | 10335 | 83 |
 
 ### Missing Schemas
 
@@ -313,6 +313,10 @@ This page lists missing CRD validation schemas that are present in alternative c
 | temporalworkerdeployment | v1alpha1 |
 | workerdeployment | v1alpha1 |
 | workerresourcetemplate | v1alpha1 |
+
+| tinkerbell.org | |
+| --- | --- |
+| workflowruleset | v1alpha1 |
 
 ### Ignored Schemas
 
