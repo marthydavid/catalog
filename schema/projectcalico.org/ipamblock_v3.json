@@ -64,6 +64,11 @@
                 "description": "HandleID is the ID of the IPAM handle that owns this allocation.",
                 "type": "string"
               },
+              "releasedAt": {
+                "description": "ReleasedAt is the time this allocation was released, and is set during the allocation's\n\"cooldown\" phase. After `IPCooldownSeconds` have elapsed, the IP is deallocated (moved\nfrom `Allocated` to `Unallocated`).",
+                "type": "string",
+                "format": "date-time"
+              },
               "secondary": {
                 "description": "ActiveOwnerAttrs stores attributes of the primary owner of this allocation (e.g., pod name, namespace).",
                 "type": "object",
