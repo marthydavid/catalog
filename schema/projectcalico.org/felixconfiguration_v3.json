@@ -881,7 +881,7 @@
           "type": "string"
         },
         "prometheusMetricsClientAuth": {
-          "description": "PrometheusMetricsClientAuth specifies the client authentication type for the /metrics endpoint.\nThis determines how the server validates client certificates. Default is \"RequireAndVerifyClientCert\".",
+          "description": "PrometheusMetricsClientAuth specifies the client authentication type for the /metrics endpoint.\nThis determines how the server validates client certificates. Default is \"NoClientCert\".",
           "type": "string"
         },
         "prometheusMetricsEnabled": {
