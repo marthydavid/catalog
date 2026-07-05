@@ -9,9 +9,15 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 95.44% | 3859 | 10351 | 83 |
+| 95.23% | 3876 | 10351 | 83 |
 
 ### Missing Schemas
+
+| agentgateway.dev | |
+| --- | --- |
+| agentgatewaybackend | v1alpha1 |
+| agentgatewayparameters | v1alpha1 |
+| agentgatewaypolicy | v1alpha1 |
 
 | aigateway.envoyproxy.io | |
 | --- | --- |
@@ -241,6 +247,12 @@ This page lists missing CRD validation schemas that are present in alternative c
 | ingress | v1alpha1 |
 | serverlessservice | v1alpha1 |
 
+| networking.k8s.aws | |
+| --- | --- |
+| applicationnetworkpolicy | v1alpha1 |
+| clusternetworkpolicy | v1alpha1 |
+| clusterpolicyendpoint | v1alpha1 |
+
 | operator.knative.dev | |
 | --- | --- |
 | knativeeventing | v1beta1 |
@@ -262,6 +274,12 @@ This page lists missing CRD validation schemas that are present in alternative c
 | readiness.node.x-k8s.io | |
 | --- | --- |
 | nodereadinessrule | v1alpha1 |
+
+| repo-manager.pulpproject.org | |
+| --- | --- |
+| pulp | v1 |
+| pulpbackup | v1 |
+| pulprestore | v1 |
 
 | rke-machine-config.cattle.io | |
 | --- | --- |
