@@ -9,7 +9,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 95.23% | 3876 | 10351 | 83 |
+| 95.25% | 3876 | 10355 | 83 |
 
 ### Missing Schemas
 
@@ -231,7 +231,6 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | networking.gke.io | |
 | --- | --- |
-| fqdnnetworkpolicy | v1alpha1 |
 | gcproutingextension | v1 |
 | gcptrafficextension | v1 |
 | gcpwasmplugin | v1 |
