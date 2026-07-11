@@ -834,7 +834,7 @@
           "minimum": 0
         },
         "nftablesMode": {
-          "description": "NFTablesMode configures nftables support in Felix. [Default: Auto]",
+          "description": "NFTablesMode configures nftables support in Felix. In Auto mode, Felix uses the\nnftables dataplane if kube-proxy is detected to be running in nftables mode.\n[Default: Auto]",
           "type": "string",
           "default": "Auto",
           "enum": [
