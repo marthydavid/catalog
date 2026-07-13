@@ -16,7 +16,7 @@ kind: CustomResourceDefinition
 metadata:
   name: serviceimports.multicluster.x-k8s.io
   labels:
-    multicluster.x-k8s.io/release-version: "v0.5.0"
+    multicluster.x-k8s.io/release-version: "v0.5.2"
     # The revision is updated on each CRD change and reset back to 0 on every new version.
     # It can be used together with the version label when installing those CRDs
     # and prevent any downgrades.
@@ -269,6 +269,14 @@ spec:
                   x-kubernetes-list-map-keys:
                     - type
                   x-kubernetes-list-type: map
+                endpointSliceObjects:
+                  description: |-
+                    EndpointSliceObjects indicates whether imported EndpointSlice objects are
+                    present for this ServiceImport.
+                  type: string
+                  enum:
+                    - Present
+                    - Absent
     - name: v1beta1
       served: true
       storage: true
@@ -506,4 +514,12 @@ spec:
                   x-kubernetes-list-map-keys:
                     - type
                   x-kubernetes-list-type: map
+                endpointSliceObjects:
+                  description: |-
+                    EndpointSliceObjects indicates whether imported EndpointSlice objects are
+                    present for this ServiceImport.
+                  type: string
+                  enum:
+                    - Present
+                    - Absent
 
