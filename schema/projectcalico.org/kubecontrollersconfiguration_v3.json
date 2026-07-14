@@ -96,6 +96,13 @@
                       "items": {
                         "type": "object",
                         "properties": {
+                          "annotations": {
+                            "description": "Annotations adds the specified annotations to the generated AutoHostEndpoint.",
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "string"
+                            }
+                          },
                           "generateName": {
                             "description": "GenerateName is appended to the end of the generated AutoHostEndpoint name",
                             "type": "string",
@@ -320,6 +327,13 @@
                           "items": {
                             "type": "object",
                             "properties": {
+                              "annotations": {
+                                "description": "Annotations adds the specified annotations to the generated AutoHostEndpoint.",
+                                "type": "object",
+                                "additionalProperties": {
+                                  "type": "string"
+                                }
+                              },
                               "generateName": {
                                 "description": "GenerateName is appended to the end of the generated AutoHostEndpoint name",
                                 "type": "string",
