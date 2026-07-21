@@ -9,7 +9,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 95.25% | 3876 | 10362 | 83 |
+| 94.98% | 3887 | 10362 | 83 |
 
 ### Missing Schemas
 
@@ -103,6 +103,10 @@ This page lists missing CRD validation schemas that are present in alternative c
 | --- | --- |
 | release | v1alpha1 |
 
+| dsql.services.k8s.aws | |
+| --- | --- |
+| cluster | v1alpha1 |
+
 | eks.amazonaws.com | |
 | --- | --- |
 | ingressclassparams | v1 |
@@ -175,6 +179,10 @@ This page lists missing CRD validation schemas that are present in alternative c
 | oscclustertemplate | v1beta1 |
 | oscmachine | v1beta1 |
 | oscmachinetemplate | v1beta1 |
+| proxmoxcluster | v1alpha1, v1alpha2 |
+| proxmoxclustertemplate | v1alpha1, v1alpha2 |
+| proxmoxmachine | v1alpha1, v1alpha2 |
+| proxmoxmachinetemplate | v1alpha1, v1alpha2 |
 
 | kubefledged.io | |
 | --- | --- |
@@ -334,6 +342,11 @@ This page lists missing CRD validation schemas that are present in alternative c
 | tinkerbell.org | |
 | --- | --- |
 | workflowruleset | v1alpha1 |
+
+| valkey.io | |
+| --- | --- |
+| valkeycluster | v1alpha1 |
+| valkeynode | v1alpha1 |
 
 ### Ignored Schemas
 
