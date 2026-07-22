@@ -93,7 +93,10 @@ spec:
                 enum:
                 - abort
                 - reinstall
+                - retry
                 type: string
+              forceConflicts:
+                type: boolean
               helmVersion:
                 type: string
               insecureSkipTLSVerify:

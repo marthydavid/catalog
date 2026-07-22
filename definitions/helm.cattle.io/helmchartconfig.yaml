@@ -32,7 +32,10 @@ spec:
                 enum:
                 - abort
                 - reinstall
+                - retry
                 type: string
+              forceConflicts:
+                type: boolean
               values:
                 x-kubernetes-preserve-unknown-fields: true
               valuesContent:

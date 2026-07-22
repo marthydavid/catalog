@@ -18,8 +18,12 @@
           "default": "reinstall",
           "enum": [
             "abort",
-            "reinstall"
+            "reinstall",
+            "retry"
           ]
+        },
+        "forceConflicts": {
+          "type": "boolean"
         },
         "values": {
           "x-kubernetes-preserve-unknown-fields": true

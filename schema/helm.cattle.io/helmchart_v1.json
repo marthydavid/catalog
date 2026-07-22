@@ -74,8 +74,12 @@
           "default": "reinstall",
           "enum": [
             "abort",
-            "reinstall"
+            "reinstall",
+            "retry"
           ]
+        },
+        "forceConflicts": {
+          "type": "boolean"
         },
         "helmVersion": {
           "type": "string"
