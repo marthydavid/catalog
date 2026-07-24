@@ -829,6 +829,19 @@
           "type": "string",
           "pattern": "^(?i)(Drop|Reject)?$"
         },
+        "nftablesFlowTableDataIfacePattern": {
+          "description": "NFTablesFlowTableDataIfacePattern is a regular expression that controls which host\ninterfaces are added to the nftables flowtable, so that traffic forwarded between those\ninterfaces and local workloads is offloaded to the flowtable fast path. Leave empty to\noffload only workload-to-workload traffic. Only takes effect when NFTablesFlowTableOffload\nis not Disabled. [Default: \"\"]",
+          "type": "string"
+        },
+        "nftablesFlowTableOffload": {
+          "description": "NFTablesFlowTableOffload controls which traffic nftables flowtable offload is enabled for,\nfor improved forwarding performance. When set to \"All\", established connections accepted by\nCalico policy are offloaded to the kernel's flowtable fast path. Only applies when\nnftables mode is active. [Default: Disabled]",
+          "type": "string",
+          "default": "Disabled",
+          "enum": [
+            "All",
+            "Disabled"
+          ]
+        },
         "nftablesMangleAllowAction": {
           "description": "NftablesMangleAllowAction controls the nftables action that Felix uses to represent the \"allow\" policy verdict\nin the mangle table. The default is to `ACCEPT` the traffic, which is a terminal action.  Alternatively,\n`RETURN` can be used to return the traffic back to the top-level chain for further processing by your rules.",
           "type": "string",
