@@ -648,7 +648,7 @@
                   ]
                 },
                 "failureDomains": {
-                  "description": "failureDomains contains the definition of region, zone and the vCenter topology.\nIf this is omitted failure domains (regions and zones) will not be used.",
+                  "description": "failureDomains contains the definition of region, zone and the vCenter topology.\nIf this is omitted failure domains (regions and zones) will not be used.\nEach failure domain's server must match the server field of an entry in the vcenters list.",
                   "type": "array",
                   "items": {
                     "description": "VSpherePlatformFailureDomainSpec holds the region and zone failure domain and the vCenter topology of that failure domain.",
@@ -692,7 +692,7 @@
                         "additionalProperties": false
                       },
                       "server": {
-                        "description": "server is the fully-qualified domain name or the IP address of the vCenter server.",
+                        "description": "server is the fully-qualified domain name or the IP address of the vCenter server.\nThis must match the server field of an entry in the vcenters list.\nThe match is case-sensitive; the value must be specified exactly as it appears in the vcenters entry.\nThe value must be between 1 and 255 characters long.",
                         "type": "string",
                         "maxLength": 255,
                         "minLength": 1,
@@ -1024,6 +1024,10 @@
               },
               "additionalProperties": false,
               "x-kubernetes-validations": [
+                {
+                  "rule": "!has(self.failureDomains) || size(self.failureDomains) == 0 || (has(self.vcenters) \u0026\u0026 self.failureDomains.all(fd, self.vcenters.exists(vc, vc.server == fd.server)))",
+                  "message": "all failure domains must have a corresponding vCenter entry"
+                },
                 {
                   "rule": "!has(oldSelf.apiServerInternalIPs) || has(self.apiServerInternalIPs)",
                   "message": "apiServerInternalIPs list is required once set"
