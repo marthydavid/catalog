@@ -349,6 +349,14 @@
           },
           "additionalProperties": false
         },
+        "serverSide": {
+          "type": "string",
+          "enum": [
+            "true",
+            "false",
+            "auto"
+          ]
+        },
         "set": {
           "type": "object",
           "additionalProperties": {

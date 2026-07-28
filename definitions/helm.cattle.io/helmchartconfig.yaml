@@ -36,6 +36,12 @@ spec:
                 type: string
               forceConflicts:
                 type: boolean
+              serverSide:
+                enum:
+                - "true"
+                - "false"
+                - auto
+                type: string
               values:
                 x-kubernetes-preserve-unknown-fields: true
               valuesContent:

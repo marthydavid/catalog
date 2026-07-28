@@ -25,6 +25,14 @@
         "forceConflicts": {
           "type": "boolean"
         },
+        "serverSide": {
+          "type": "string",
+          "enum": [
+            "true",
+            "false",
+            "auto"
+          ]
+        },
         "values": {
           "x-kubernetes-preserve-unknown-fields": true
         },
