@@ -141,17 +141,17 @@
           "minProperties": 1,
           "properties": {
             "healthReports": {
-              "description": "healthReports contains all KMS plugin health reports.\nWhen omitted, no health reports are available.\nEach entry must have a unique combination of nodeName and keyId.",
+              "description": "healthReports contains all KMS plugin health reports.\nWhen omitted, no health reports are available.\nEach entry must have a unique combination of nodeName and keyID.",
               "type": "array",
               "maxItems": 200,
               "minItems": 1,
               "items": {
                 "type": "object",
                 "required": [
-                  "kekId",
-                  "keyId",
+                  "keyID",
                   "lastCheckedTime",
                   "nodeName",
+                  "remoteKeyID",
                   "status"
                 ],
                 "properties": {
@@ -161,14 +161,8 @@
                     "maxLength": 1024,
                     "minLength": 1
                   },
-                  "kekId": {
-                    "description": "kekId refers to the remote KEK id from KMS v2 StatusResponse.key_id.\nThis is not a cryptographic key, but a unique representation of the KEK.\nThe value must be between 1 and 1024 characters.",
-                    "type": "string",
-                    "maxLength": 1024,
-                    "minLength": 1
-                  },
-                  "keyId": {
-                    "description": "keyId is the encryption-key-secret id (kms-{keyId}.sock), a unique identifier of the plugin on that node.\nThis is not a cryptographic key used to encrypt/decrypt any resources.\nThe value must be between 1 and 512 characters.",
+                  "keyID": {
+                    "description": "keyID is the encryption-key-secret id (kms-{keyID}.sock), a unique identifier of the plugin on that node.\nThis is not a cryptographic key used to encrypt/decrypt any resources.\nThe value must be between 1 and 512 characters.",
                     "type": "string",
                     "maxLength": 512,
                     "minLength": 1
@@ -179,7 +173,7 @@
                     "format": "date-time"
                   },
                   "nodeName": {
-                    "description": "nodeName is the name of the node this instance of the plugin runs on.\nThe combination of nodeName and keyId makes this health report unique.\nThe value must be a valid Kubernetes node name: a lowercase RFC 1123 subdomain\nconsisting of lowercase alphanumeric characters, '-' or '.', starting and ending with\nan alphanumeric character, and be at most 253 characters in length.",
+                    "description": "nodeName is the name of the node this instance of the plugin runs on.\nThe combination of nodeName and keyID makes this health report unique.\nThe value must be a valid Kubernetes node name: a lowercase RFC 1123 subdomain\nconsisting of lowercase alphanumeric characters, '-' or '.', starting and ending with\nan alphanumeric character, and be at most 253 characters in length.",
                     "type": "string",
                     "maxLength": 253,
                     "minLength": 1,
@@ -190,9 +184,17 @@
                       }
                     ]
                   },
+                  "remoteKeyID": {
+                    "description": "remoteKeyID refers to the remote key identifier from KMS v2 StatusResponse.key_id.\nThis is not a cryptographic key, but a unique representation of the KEK.\nThe value must be between 1 and 1024 characters.",
+                    "type": "string",
+                    "maxLength": 1024,
+                    "minLength": 1
+                  },
                   "status": {
                     "description": "status contains a health indicator for the respective KMS plugin\nThe field can have three states: healthy, unhealthy, error.\nWith error and unhealthy containing additional information in Detail.",
                     "type": "string",
+                    "maxLength": 512,
+                    "minLength": 1,
                     "enum": [
                       "Healthy",
                       "Unhealthy",
@@ -204,7 +206,7 @@
               },
               "x-kubernetes-list-map-keys": [
                 "nodeName",
-                "keyId"
+                "keyID"
               ],
               "x-kubernetes-list-type": "map"
             },
