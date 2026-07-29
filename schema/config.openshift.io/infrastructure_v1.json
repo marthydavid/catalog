@@ -1280,7 +1280,7 @@
                   ]
                 },
                 "ipFamily": {
-                  "description": "ipFamily specifies the IP protocol family that should be used for AWS\nnetwork resources. This controls whether AWS resources are created with\nIPv4-only, or dual-stack networking with IPv4 or IPv6 as the primary\nprotocol family.",
+                  "description": "ipFamily specifies the IP protocol family that should be used for AWS\nnetwork resources. This controls whether AWS resources are created with\nIPv4-only, or dual-stack networking with IPv4 or IPv6 as the primary\nprotocol family.\n\nValid values are:\n* \"IPv4\" (default): Cloud platform resources use IPv4 addressing only.\n* \"DualStackIPv6Primary\": Cloud platform resources use dual-stack networking with IPv6 as the primary protocol family.\n* \"DualStackIPv4Primary\": Cloud platform resources use dual-stack networking with IPv4 as the primary protocol family.\n\nWhen omitted, this field defaults to \"IPv4\".\n\nThis field is immutable and cannot be changed once set.",
                   "type": "string",
                   "default": "IPv4",
                   "enum": [
