@@ -9,7 +9,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 94.99% | 3896 | 10376 | 83 |
+| 94.95% | 3918 | 10376 | 83 |
 
 ### Missing Schemas
 
@@ -187,6 +187,11 @@ This page lists missing CRD validation schemas that are present in alternative c
 | kubefledged.io | |
 | --- | --- |
 | imagecache | v1alpha2 |
+
+| kustomize.config.k8s.io | |
+| --- | --- |
+| component | v1alpha1 |
+| kustomization | v1, v1beta1 |
 
 | lib.projectsveltos.io | |
 | --- | --- |
