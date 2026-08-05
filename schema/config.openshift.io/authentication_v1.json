@@ -380,7 +380,7 @@
                                   "minLength": 1,
                                   "x-kubernetes-validations": [
                                     {
-                                      "rule": "!format.dns1123Subdomain().validate(self).hasValue()",
+                                      "rule": "self.matches('^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\\\\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$')",
                                       "message": "name must start and end with a lowercase alphanumeric character, and must only contain lowercase alphanumeric characters, '-' or '.'"
                                     }
                                   ]
@@ -428,7 +428,7 @@
                                       "minLength": 1,
                                       "x-kubernetes-validations": [
                                         {
-                                          "rule": "!format.dns1123Subdomain().validate(self).hasValue()",
+                                          "rule": "self.matches('^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\\\\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$')",
                                           "message": "name must start and end with a lowercase alphanumeric character, and must only contain lowercase alphanumeric characters, '-' or '.'"
                                         }
                                       ]
@@ -581,7 +581,7 @@
                               "minLength": 1,
                               "x-kubernetes-validations": [
                                 {
-                                  "rule": "!format.dns1123Subdomain().validate(self).hasValue()",
+                                  "rule": "self.matches('^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\\\\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$')",
                                   "message": "name must start and end with a lowercase alphanumeric character, and must only contain lowercase alphanumeric characters, '-' or '.'"
                                 }
                               ]
@@ -611,7 +611,7 @@
                               "message": "hostname must be a valid hostname"
                             },
                             {
-                              "rule": "!format.dns1123Subdomain().validate(self.split(':')[0]).hasValue()",
+                              "rule": "self.split(':')[0].matches('^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\\\\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$')",
                               "message": "hostname before port must start and end with a lowercase alphanumeric character, and must only contain lowercase alphanumeric characters, '-' or '.'"
                             },
                             {

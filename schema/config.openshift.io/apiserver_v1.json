@@ -153,7 +153,7 @@
                                   "minLength": 1,
                                   "x-kubernetes-validations": [
                                     {
-                                      "rule": "!format.dns1123Subdomain().validate(self).hasValue()",
+                                      "rule": "self.matches('^[a-z0-9]([a-z0-9\\\\-]*[a-z0-9])?(\\\\.[a-z0-9]([a-z0-9\\\\-]*[a-z0-9])?)*$')",
                                       "message": "name must be a valid DNS subdomain name: contain no more than 253 characters, contain only lowercase alphanumeric characters, '-' or '.', and start and end with an alphanumeric character"
                                     }
                                   ]
@@ -215,7 +215,7 @@
                               "minLength": 1,
                               "x-kubernetes-validations": [
                                 {
-                                  "rule": "!format.dns1123Subdomain().validate(self).hasValue()",
+                                  "rule": "self.matches('^[a-z0-9]([a-z0-9\\\\-]*[a-z0-9])?(\\\\.[a-z0-9]([a-z0-9\\\\-]*[a-z0-9])?)*$')",
                                   "message": "name must be a valid DNS subdomain name: contain no more than 253 characters, contain only lowercase alphanumeric characters, '-' or '.', and start and end with an alphanumeric character"
                                 }
                               ]
@@ -230,7 +230,7 @@
                           "minLength": 1,
                           "x-kubernetes-validations": [
                             {
-                              "rule": "!format.dns1123Subdomain().validate(self).hasValue()",
+                              "rule": "self.matches('^[a-z0-9]([a-z0-9\\\\-]*[a-z0-9])?(\\\\.[a-z0-9]([a-z0-9\\\\-]*[a-z0-9])?)*$')",
                               "message": "serverName must be a valid DNS hostname: contain no more than 253 characters, contain only lowercase alphanumeric characters, '-' or '.', and start and end with an alphanumeric character"
                             }
                           ]
