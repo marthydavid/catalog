@@ -1644,6 +1644,24 @@
                   },
                   "additionalProperties": false
                 },
+                "nvmExpressSubsystem": {
+                  "description": "nvmExpressSubsystem configures the nvmesubsystem collector, which\ncollects statistics about NVM Express (NVMe) subsystem devices.\nnvmExpressSubsystem is optional.\nWhen omitted, this means no opinion and the platform is left to choose a reasonable default,\nwhich is subject to change over time. The current default is enabled.",
+                  "type": "object",
+                  "required": [
+                    "collectionPolicy"
+                  ],
+                  "properties": {
+                    "collectionPolicy": {
+                      "description": "collectionPolicy declares whether the nvmesubsystem collector collects metrics.\nThis field is required.\nValid values are \"Collect\" and \"DoNotCollect\".\nWhen set to \"Collect\", the nvmesubsystem collector is active and NVMe subsystem statistics are collected.\nWhen set to \"DoNotCollect\", the nvmesubsystem collector is inactive and the corresponding metrics become unavailable.",
+                      "type": "string",
+                      "enum": [
+                        "Collect",
+                        "DoNotCollect"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                },
                 "processes": {
                   "description": "processes configures the processes collector, which collects statistics from processes and\nthreads running in the system.\nprocesses is optional.\nWhen omitted, this means no opinion and the platform is left to choose a reasonable default,\nwhich is subject to change over time. The current default is disabled.\nEnable for process/thread-level insight; can be expensive on busy nodes.",
                   "type": "object",
