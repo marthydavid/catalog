@@ -205,19 +205,9 @@
         "bpfJITHardening": {
           "description": "BPFJITHardening controls BPF JIT hardening. When set to \"Auto\", Felix will set JIT hardening to 1\nif it detects the current value is 2 (strict mode that hurts performance). When set to \"Strict\",\nFelix will not modify the JIT hardening setting. [Default: Auto]",
           "type": "string",
-          "allOf": [
-            {
-              "enum": [
-                "Auto",
-                "Strict"
-              ]
-            },
-            {
-              "enum": [
-                "Auto",
-                "Strict"
-              ]
-            }
+          "enum": [
+            "Auto",
+            "Strict"
           ]
         },
         "bpfKubeProxyHealthzPort": {
@@ -903,7 +893,13 @@
         },
         "prometheusMetricsClientAuth": {
           "description": "PrometheusMetricsClientAuth specifies the client authentication type for the /metrics endpoint.\nThis determines how the server validates client certificates. Default is \"NoClientCert\".",
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "RequireAndVerifyClientCert",
+            "RequireAnyClientCert",
+            "VerifyClientCertIfGiven",
+            "NoClientCert"
+          ]
         },
         "prometheusMetricsEnabled": {
           "description": "PrometheusMetricsEnabled enables the Prometheus metrics server in Felix if set to true. [Default: false]",
