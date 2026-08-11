@@ -1920,6 +1920,18 @@
                       "message": "resourceTags are immutable and may only be configured during installation"
                     }
                   ]
+                },
+                "universeDomain": {
+                  "description": "universeDomain is the GCP universe domain for the cluster, detected from\nthe installer credentials. Components with their own GCP credentials should\nread the universe domain from those credentials, as they are the authoritative\nsource. This field is provided for components that do not have GCP credentials\nand for general observability.\n\nWhen omitted, standard public GCP (googleapis.com) is assumed.\n\nuniverseDomain is an optional field that, when specified, must be non-empty and at most\n253 characters. It must be a valid DNS subdomain: containing only lowercase alphanumeric\ncharacters, '-' or '.', and starting and ending with an alphanumeric character.",
+                  "type": "string",
+                  "maxLength": 253,
+                  "minLength": 1,
+                  "x-kubernetes-validations": [
+                    {
+                      "rule": "!format.dns1123Subdomain().validate(self).hasValue()",
+                      "message": "universeDomain must be a valid DNS subdomain: contain no more than 253 characters, contain only lowercase alphanumeric characters, '-' or '.', and start and end with an alphanumeric character"
+                    }
+                  ]
                 }
               },
               "additionalProperties": false,
