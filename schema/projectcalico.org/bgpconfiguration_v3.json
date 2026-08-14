@@ -166,11 +166,13 @@
           "x-kubernetes-list-type": "atomic"
         },
         "programClusterRoutes": {
-          "description": "ProgramClusterRoutes controls how a cluster node gets a route to a workload on another node,\nwhen that workload's IP comes from an IP Pool with vxlanMode: Never. When ProgramClusterRoutes is Enabled,\nconfd and BIRD program that route. When ProgramClusterRoutes is Disabled, it is expected that Felix will program that route.\nFelix always programs such routes for IP Pools with vxlanMode: Always or vxlanMode: CrossSubnet. [Default: Enabled]",
+          "description": "ProgramClusterRoutes controls which \"cluster routes\" are programmed by Calico's BGP\nstack, i.e. the routes that a node needs in order to reach workloads on other nodes.  It\nonly applies to IP Pools with vxlanMode: Never; the cluster routes for IP Pools with\nvxlanMode: Always or vxlanMode: CrossSubnet are always programmed by Felix.  The routes\nthat BIRD does not program here are expected to be programmed by Felix instead.  Below,\nan IPIP IP Pool is one with ipipMode: Always or CrossSubnet, and an unencapsulated one\nhas ipipMode and vxlanMode both Never.\n\n- Disabled: BIRD programs no cluster routes.\n- EnabledNoEncapOnly: BIRD programs them for unencapsulated IP Pools.\n- EnabledIPIPOnly: BIRD programs them for IPIP IP Pools.\n- Enabled: BIRD programs them for both.\n\nThis field must be kept consistent with FelixConfiguration.ProgramClusterRoutes, which\nmakes the same choice from Felix's side.  If both Felix and BIRD are enabled for the same\nkind of IP Pool they will fight over the routes; if neither is, there will be no cluster\nroutes at all.\n\nNote: asking BIRD to program IPIP cluster routes, which the Enabled and EnabledIPIPOnly\nvalues do, is deprecated as of v3.33 and will be removed in v3.35.\n\n[Default: EnabledNoEncapOnly]",
           "type": "string",
           "enum": [
             "Enabled",
-            "Disabled"
+            "Disabled",
+            "EnabledIPIPOnly",
+            "EnabledNoEncapOnly"
           ]
         },
         "serviceClusterIPs": {
