@@ -9,7 +9,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 94.25% | 3963 | 10469 | 83 |
+| 94.19% | 3977 | 10469 | 83 |
 
 ### Missing Schemas
 
@@ -308,7 +308,10 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | platform.confluent.io | |
 | --- | --- |
-| referencegrant | v1beta1 |
+| flinkbluegreendeployment | v1beta1 |
+| flinkdeployment | v1beta1 |
+| flinksessionjob | v1beta1 |
+| flinkstatesnapshot | v1beta1 |
 
 | provisioning.cattle.io | |
 | --- | --- |
