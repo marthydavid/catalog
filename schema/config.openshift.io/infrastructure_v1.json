@@ -194,9 +194,9 @@
               "type": "object",
               "properties": {
                 "serviceEndpoints": {
-                  "description": "serviceEndpoints is a list of custom endpoints which will override the default\nservice endpoints of an IBM service. These endpoints are used by components\nwithin the cluster when trying to reach the IBM Cloud Services that have been\noverridden. The CCCMO reads in the IBMCloudPlatformSpec and validates each\nendpoint is resolvable. Once validated, the cloud config and IBMCloudPlatformStatus\nare updated to reflect the same custom endpoints.\nA maximum of 13 service endpoints overrides are supported.",
+                  "description": "serviceEndpoints is a list of custom endpoints which will override the default\nservice endpoints of an IBM service. These endpoints are used by components\nwithin the cluster when trying to reach the IBM Cloud Services that have been\noverridden. The CCCMO reads in the IBMCloudPlatformSpec and validates each\nendpoint is resolvable. Once validated, the cloud config and IBMCloudPlatformStatus\nare updated to reflect the same custom endpoints.\nA maximum of 15 service endpoints overrides are supported.",
                   "type": "array",
-                  "maxItems": 13,
+                  "maxItems": 15,
                   "items": {
                     "description": "IBMCloudServiceEndpoint stores the configuration of a custom url to\noverride existing defaults of IBM Cloud Services.",
                     "type": "object",
@@ -206,7 +206,7 @@
                     ],
                     "properties": {
                       "name": {
-                        "description": "name is the name of the IBM Cloud service.\nPossible values are: CIS, COS, COSConfig, DNSServices, GlobalCatalog, GlobalSearch, GlobalTagging, HyperProtect, IAM, KeyProtect, ResourceController, ResourceManager, or VPC.\nFor example, the IBM Cloud Private IAM service could be configured with the\nservice `name` of `IAM` and `url` of `https://private.iam.cloud.ibm.com`\nWhereas the IBM Cloud Private VPC service for US South (Dallas) could be configured\nwith the service `name` of `VPC` and `url` of `https://us.south.private.iaas.cloud.ibm.com`",
+                        "description": "name is the name of the IBM Cloud service.\nPossible values are: CIS, COS, COSConfig, DNSServices, GlobalCatalog, GlobalSearch, GlobalTagging, HyperProtect, IAM, KeyProtect, ResourceController, ResourceManager, VPC, TransitGateway, or PowerVS.\nFor example, the IBM Cloud Private IAM service could be configured with the\nservice `name` of `IAM` and `url` of `https://private.iam.cloud.ibm.com`\nWhereas the IBM Cloud Private VPC service for US South (Dallas) could be configured\nwith the service `name` of `VPC` and `url` of `https://us.south.private.iaas.cloud.ibm.com`",
                         "type": "string",
                         "enum": [
                           "CIS",
@@ -221,7 +221,9 @@
                           "KeyProtect",
                           "ResourceController",
                           "ResourceManager",
-                          "VPC"
+                          "VPC",
+                          "TransitGateway",
+                          "PowerVS"
                         ]
                       },
                       "url": {
@@ -576,7 +578,8 @@
                           "Power",
                           "ResourceController",
                           "ResourceManager",
-                          "VPC"
+                          "VPC",
+                          "TransitGateway"
                         ]
                       },
                       "url": {
@@ -1974,7 +1977,7 @@
                 "serviceEndpoints": {
                   "description": "serviceEndpoints is a list of custom endpoints which will override the default\nservice endpoints of an IBM service. These endpoints are used by components\nwithin the cluster when trying to reach the IBM Cloud Services that have been\noverridden. The CCCMO reads in the IBMCloudPlatformSpec and validates each\nendpoint is resolvable. Once validated, the cloud config and IBMCloudPlatformStatus\nare updated to reflect the same custom endpoints.",
                   "type": "array",
-                  "maxItems": 13,
+                  "maxItems": 15,
                   "items": {
                     "description": "IBMCloudServiceEndpoint stores the configuration of a custom url to\noverride existing defaults of IBM Cloud Services.",
                     "type": "object",
@@ -1984,7 +1987,7 @@
                     ],
                     "properties": {
                       "name": {
-                        "description": "name is the name of the IBM Cloud service.\nPossible values are: CIS, COS, COSConfig, DNSServices, GlobalCatalog, GlobalSearch, GlobalTagging, HyperProtect, IAM, KeyProtect, ResourceController, ResourceManager, or VPC.\nFor example, the IBM Cloud Private IAM service could be configured with the\nservice `name` of `IAM` and `url` of `https://private.iam.cloud.ibm.com`\nWhereas the IBM Cloud Private VPC service for US South (Dallas) could be configured\nwith the service `name` of `VPC` and `url` of `https://us.south.private.iaas.cloud.ibm.com`",
+                        "description": "name is the name of the IBM Cloud service.\nPossible values are: CIS, COS, COSConfig, DNSServices, GlobalCatalog, GlobalSearch, GlobalTagging, HyperProtect, IAM, KeyProtect, ResourceController, ResourceManager, VPC, TransitGateway, or PowerVS.\nFor example, the IBM Cloud Private IAM service could be configured with the\nservice `name` of `IAM` and `url` of `https://private.iam.cloud.ibm.com`\nWhereas the IBM Cloud Private VPC service for US South (Dallas) could be configured\nwith the service `name` of `VPC` and `url` of `https://us.south.private.iaas.cloud.ibm.com`",
                         "type": "string",
                         "enum": [
                           "CIS",
@@ -1999,7 +2002,9 @@
                           "KeyProtect",
                           "ResourceController",
                           "ResourceManager",
-                          "VPC"
+                          "VPC",
+                          "TransitGateway",
+                          "PowerVS"
                         ]
                       },
                       "url": {
@@ -2388,7 +2393,8 @@
                           "Power",
                           "ResourceController",
                           "ResourceManager",
-                          "VPC"
+                          "VPC",
+                          "TransitGateway"
                         ]
                       },
                       "url": {
