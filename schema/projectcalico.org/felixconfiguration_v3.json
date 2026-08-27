@@ -725,7 +725,7 @@
           "type": "string"
         },
         "logActionRateLimit": {
-          "description": "LogActionRateLimit sets the rate of hitting a Log action. The value must be in the format \"N/unit\",\nwhere N is a number and unit is one of: second, minute, hour, or day. For example: \"10/second\" or \"100/hour\".",
+          "description": "LogActionRateLimit sets the rate of hitting a Log action. The value must be in the format \"N/unit\",\nwhere N is a number and unit is one of: second, minute, hour, or day. For example: \"10/second\" or \"100/hour\".\nWhen LogConnectionTransitions is enabled, this also bounds the follow-up logs: a connection whose\ninitial log was suppressed by this rate limit gets no follow-up log either.",
           "type": "string",
           "pattern": "^[1-9]\\d{0,3}/(?:second|minute|hour|day)$"
         },
@@ -734,6 +734,18 @@
           "type": "integer",
           "maximum": 9999,
           "minimum": 0
+        },
+        "logConnectionTransitions": {
+          "description": "LogConnectionTransitions controls whether Felix emits an additional kernel log recording the\nfirst observed response for each connection that matched a policy rule with a Log action.\nWhen set to FirstResponseAfterLog, each connection whose initial log was emitted gets one\nfollow-up log, prefixed with LogConnectionTransitionsPrefix plus a suffix identifying the\ntransition: \"-est\" when the first reply packet is seen, \"-rst\" when the response is a TCP\nRST (connection refused), or \"-icmp-err\" when the response is a related ICMP error (e.g.\nport unreachable). The log body is the standard kernel packet log of the response packet,\nso the flow is identified by its 5-tuple and can be correlated with the original policy Log\nline (with source and destination swapped). A logged connection with no follow-up log never\nreceived a response. Connections whose initial log was suppressed by LogActionRateLimit get\nno follow-up log either, so every follow-up log pairs with an initial one. Enabling this\nconsumes one bit from the Iptables/NftablesMarkMask space. Not supported in eBPF mode.\n[Default: Disabled]",
+          "type": "string",
+          "enum": [
+            "Disabled",
+            "FirstResponseAfterLog"
+          ]
+        },
+        "logConnectionTransitionsPrefix": {
+          "description": "LogConnectionTransitionsPrefix is the log prefix used for the logs emitted when\nLogConnectionTransitions is enabled; the transition suffix (\"-est\", \"-rst\" or \"-icmp-err\")\nis appended to it. Unlike LogPrefix, it does not support %-specifiers (such as %p): the\nrules that emit these logs are shared by all policies, so per-policy values cannot be\nsubstituted and any %-specifiers are rendered literally. [Default: calico-response]",
+          "type": "string"
         },
         "logDebugFilenameRegex": {
           "description": "LogDebugFilenameRegex controls which source code files have their Debug log output included in the logs.\nOnly logs from files with names that match the given regular expression are included.  The filter only applies\nto Debug level logs.",
