@@ -295,7 +295,7 @@
                 ],
                 "properties": {
                   "actions": {
-                    "description": "actions represents the series of commands to be executed on changes to the file at\nthe corresponding file path. Actions will be applied in the order that\nthey are set in this list. If there are other incoming changes to other MachineConfig\nentries in the same update that require a reboot, the reboot will supercede these actions.\nValid actions are Reboot, Drain, Reload, DaemonReload and None.\nThe Reboot action and the None action cannot be used in conjunction with any of the other actions.\nThis list supports a maximum of 10 entries.",
+                    "description": "actions represents the series of commands to be executed on changes to the file at\nthe corresponding file path. Actions will be applied in the order that\nthey are set in this list. If there are other incoming changes to other MachineConfig\nentries in the same update that require a reboot, the reboot will supersede these actions.\nValid actions are Reboot, Drain, Reload, DaemonReload and None.\nThe Reboot action and the None action cannot be used in conjunction with any of the other actions.\nThis list supports a maximum of 10 entries.",
                     "type": "array",
                     "maxItems": 10,
                     "items": {
@@ -411,7 +411,7 @@
               ],
               "properties": {
                 "actions": {
-                  "description": "actions represents the series of commands to be executed on changes to the file at\nthe corresponding file path. Actions will be applied in the order that\nthey are set in this list. If there are other incoming changes to other MachineConfig\nentries in the same update that require a reboot, the reboot will supercede these actions.\nValid actions are Reboot, Drain, Reload, DaemonReload and None.\nThe Reboot action and the None action cannot be used in conjunction with any of the other actions.\nThis list supports a maximum of 10 entries.",
+                  "description": "actions represents the series of commands to be executed on changes to the file at\nthe corresponding file path. Actions will be applied in the order that\nthey are set in this list. If there are other incoming changes to other MachineConfig\nentries in the same update that require a reboot, the reboot will supersede these actions.\nValid actions are Reboot, Drain, Reload, DaemonReload and None.\nThe Reboot action and the None action cannot be used in conjunction with any of the other actions.\nThis list supports a maximum of 10 entries.",
                   "type": "array",
                   "maxItems": 10,
                   "items": {
@@ -523,7 +523,7 @@
                 ],
                 "properties": {
                   "actions": {
-                    "description": "actions represents the series of commands to be executed on changes to the file at\nthe corresponding file path. Actions will be applied in the order that\nthey are set in this list. If there are other incoming changes to other MachineConfig\nentries in the same update that require a reboot, the reboot will supercede these actions.\nValid actions are Reboot, Drain, Reload, DaemonReload and None.\nThe Reboot action and the None action cannot be used in conjunction with any of the other actions.\nThis list supports a maximum of 10 entries.",
+                    "description": "actions represents the series of commands to be executed on changes to the file at\nthe corresponding file path. Actions will be applied in the order that\nthey are set in this list. If there are other incoming changes to other MachineConfig\nentries in the same update that require a reboot, the reboot will supersede these actions.\nValid actions are Reboot, Drain, Reload, DaemonReload and None.\nThe Reboot action and the None action cannot be used in conjunction with any of the other actions.\nThis list supports a maximum of 10 entries.",
                     "type": "array",
                     "maxItems": 10,
                     "items": {
@@ -1013,7 +1013,7 @@
                     ],
                     "properties": {
                       "actions": {
-                        "description": "actions represents the series of commands to be executed on changes to the file at\nthe corresponding file path. Actions will be applied in the order that\nthey are set in this list. If there are other incoming changes to other MachineConfig\nentries in the same update that require a reboot, the reboot will supercede these actions.\nValid actions are Reboot, Drain, Reload, DaemonReload and None.\nThe Reboot action and the None action cannot be used in conjunction with any of the other actions.\nThis list supports a maximum of 10 entries.",
+                        "description": "actions represents the series of commands to be executed on changes to the file at\nthe corresponding file path. Actions will be applied in the order that\nthey are set in this list. If there are other incoming changes to other MachineConfig\nentries in the same update that require a reboot, the reboot will supersede these actions.\nValid actions are Reboot, Drain, Reload, DaemonReload and None.\nThe Reboot action and the None action cannot be used in conjunction with any of the other actions.\nThis list supports a maximum of 10 entries.",
                         "type": "array",
                         "maxItems": 10,
                         "items": {
@@ -1130,7 +1130,7 @@
                   ],
                   "properties": {
                     "actions": {
-                      "description": "actions represents the series of commands to be executed on changes to the file at\nthe corresponding file path. Actions will be applied in the order that\nthey are set in this list. If there are other incoming changes to other MachineConfig\nentries in the same update that require a reboot, the reboot will supercede these actions.\nValid actions are Reboot, Drain, Reload, DaemonReload and None.\nThe Reboot action and the None action cannot be used in conjunction with any of the other actions.\nThis list supports a maximum of 10 entries.",
+                      "description": "actions represents the series of commands to be executed on changes to the file at\nthe corresponding file path. Actions will be applied in the order that\nthey are set in this list. If there are other incoming changes to other MachineConfig\nentries in the same update that require a reboot, the reboot will supersede these actions.\nValid actions are Reboot, Drain, Reload, DaemonReload and None.\nThe Reboot action and the None action cannot be used in conjunction with any of the other actions.\nThis list supports a maximum of 10 entries.",
                       "type": "array",
                       "maxItems": 10,
                       "items": {
@@ -1243,7 +1243,7 @@
                     ],
                     "properties": {
                       "actions": {
-                        "description": "actions represents the series of commands to be executed on changes to the file at\nthe corresponding file path. Actions will be applied in the order that\nthey are set in this list. If there are other incoming changes to other MachineConfig\nentries in the same update that require a reboot, the reboot will supercede these actions.\nValid actions are Reboot, Drain, Reload, DaemonReload and None.\nThe Reboot action and the None action cannot be used in conjunction with any of the other actions.\nThis list supports a maximum of 10 entries.",
+                        "description": "actions represents the series of commands to be executed on changes to the file at\nthe corresponding file path. Actions will be applied in the order that\nthey are set in this list. If there are other incoming changes to other MachineConfig\nentries in the same update that require a reboot, the reboot will supersede these actions.\nValid actions are Reboot, Drain, Reload, DaemonReload and None.\nThe Reboot action and the None action cannot be used in conjunction with any of the other actions.\nThis list supports a maximum of 10 entries.",
                         "type": "array",
                         "maxItems": 10,
                         "items": {
