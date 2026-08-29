@@ -52,6 +52,13 @@ spec:
           spec:
             description: ClientSpec defines the desired state of Client
             properties:
+              clientID:
+                description: |-
+                  ClientID identifies this frpc instance to the FRP server (shown in the frps dashboard).
+                  Unset: defaults to "<namespace>/<name>". Set to "" to omit the key entirely — frps enforces
+                  that only one client per clientID may be online at a time, so omit it if you run the same
+                  manifests against one frps from multiple clusters.
+                type: string
               podTemplate:
                 description: PodTemplate allows customization of the FRP client pod
                 properties:
@@ -1660,6 +1667,14 @@ spec:
                         description: TCPMux enables TCP stream multiplexing to reduce
                           connection overhead
                         type: boolean
+                      wireProtocol:
+                        description: |-
+                          WireProtocol selects the frpc/frps wire protocol. "v2" adds AEAD encryption to the
+                          control channel and requires frps >= v0.69.0. Defaults to frpc's default ("v1").
+                        enum:
+                        - v1
+                        - v2
+                        type: string
                     type: object
                 required:
                 - authentication
