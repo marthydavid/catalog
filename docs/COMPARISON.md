@@ -9,13 +9,14 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 94.19% | 3977 | 10493 | 83 |
+| 94.06% | 3990 | 10494 | 83 |
 
 ### Missing Schemas
 
 | agentgateway.dev | |
 | --- | --- |
 | agentgatewaybackend | v1alpha1 |
+| agentgatewaymodel | v1alpha1 |
 | agentgatewayparameters | v1alpha1 |
 | agentgatewaypolicy | v1alpha1 |
 
@@ -130,6 +131,9 @@ This page lists missing CRD validation schemas that are present in alternative c
 | datadoghq.com | |
 | --- | --- |
 | datadogagentinternal | v1alpha1 |
+| datadogcsidriver | v1alpha1 |
+| datadoginstrumentation | v1alpha1 |
+| datadogpodautoscalerclusterprofile | v1alpha2 |
 
 | distro.eks.amazonaws.com | |
 | --- | --- |
@@ -301,10 +305,18 @@ This page lists missing CRD validation schemas that are present in alternative c
 | clusternetworkpolicy | v1alpha1 |
 | clusterpolicyendpoint | v1alpha1 |
 
+| observability.giantswarm.io | |
+| --- | --- |
+| silence | v1alpha2 |
+
 | operator.knative.dev | |
 | --- | --- |
 | knativeeventing | v1beta1 |
 | knativeserving | v1beta1 |
+
+| orgpolicy.cnrm.cloud.google.com | |
+| --- | --- |
+| orgpolicypolicy | v1beta1 |
 
 | platform.confluent.io | |
 | --- | --- |
