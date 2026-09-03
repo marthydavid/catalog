@@ -9,7 +9,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 94.06% | 3990 | 10495 | 83 |
+| 94.09% | 3990 | 10496 | 83 |
 
 ### Missing Schemas
 
@@ -179,10 +179,6 @@ This page lists missing CRD validation schemas that are present in alternative c
 | httplistenerpolicy | v1alpha1 |
 | listenerpolicy | v1alpha1 |
 | trafficpolicy | v1alpha1 |
-
-| gateway.networking.x-k8s.io | |
-| --- | --- |
-| xbackend | v1alpha1 |
 
 | gateway.nginx.org | |
 | --- | --- |
