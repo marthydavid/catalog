@@ -9,7 +9,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 94.09% | 3990 | 10496 | 83 |
+| 93.97% | 3995 | 10499 | 83 |
 
 ### Missing Schemas
 
@@ -220,9 +220,21 @@ This page lists missing CRD validation schemas that are present in alternative c
 | proxmoxmachine | v1alpha1, v1alpha2 |
 | proxmoxmachinetemplate | v1alpha1, v1alpha2 |
 
+| installation.mattermost.com | |
+| --- | --- |
+| mattermost | v1beta1 |
+
+| keycloak.crossplane.io | |
+| --- | --- |
+| providerconfig | v1beta1 |
+
 | kubefledged.io | |
 | --- | --- |
 | imagecache | v1alpha2 |
+
+| kubernetes.crossplane.io | |
+| --- | --- |
+| providerconfig | v1alpha1 |
 
 | kustomize.config.k8s.io | |
 | --- | --- |
@@ -262,6 +274,11 @@ This page lists missing CRD validation schemas that are present in alternative c
 | project | v3 |
 | projectroletemplatebinding | v3 |
 | roletemplate | v3 |
+
+| mattermost.com | |
+| --- | --- |
+| clusterinstallation | v1alpha1 |
+| mattermostrestoredb | v1alpha1 |
 
 | messaging.knative.dev | |
 | --- | --- |
