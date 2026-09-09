@@ -4,7 +4,7 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.20.0
   labels:
-    pgv2.percona.com/version: v3.0.0
+    pgv2.percona.com/version: v3.1.0
   name: perconapgrestores.pgv2.percona.com
 spec:
   group: pgv2.percona.com
@@ -166,7 +166,7 @@ spec:
                 - message: pgCluster is an immutable field
                   rule: self == oldSelf
               repoName:
-                pattern: ^repo[1-4]
+                pattern: ^repo[1-4]$
                 type: string
                 x-kubernetes-validations:
                 - message: repoName is an immutable field

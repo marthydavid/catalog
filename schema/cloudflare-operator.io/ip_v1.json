@@ -23,7 +23,14 @@
         },
         "interval": {
           "description": "Interval at which a dynamic IP should be checked",
-          "type": "string"
+          "type": "string",
+          "pattern": "^([0-9]+(\\.[0-9]*)?|\\.[0-9]+)(ns|us|µs|μs|ms|s|m|h)(([0-9]+(\\.[0-9]*)?|\\.[0-9]+)(ns|us|µs|μs|ms|s|m|h))*$",
+          "x-kubernetes-validations": [
+            {
+              "rule": "duration(self) \u003e duration('0s')",
+              "message": "interval must be a valid positive Go duration"
+            }
+          ]
         },
         "ipSources": {
           "description": "IPSources can be configured to get an IP from an external source (e.g. an API or public IP echo service)",
