@@ -194,6 +194,13 @@
           },
           "additionalProperties": false
         },
+        "debugProfileHost": {
+          "description": "DebugProfileHost is the host IP or hostname to bind the profiling port to. Set to \"0.0.0.0\"\nfor all interfaces to make profiles reachable from off-host. The profiling endpoints are\nunauthenticated and expose heap dumps, goroutine stacks and CPU profiles, so prefer the\ndefault and use kubectl port-forward for remote access. Only used if DebugProfilePort is set.\n[Default: localhost]",
+          "type": "string",
+          "maxLength": 64,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9:._+-]+$"
+        },
         "debugProfilePort": {
           "description": "DebugProfilePort configures the port to serve memory and cpu profiles on. If not specified, profiling\nis disabled.\nValid values are: 0-65535.",
           "type": "integer",
@@ -424,6 +431,13 @@
                 }
               },
               "additionalProperties": false
+            },
+            "debugProfileHost": {
+              "description": "DebugProfileHost is the host IP or hostname to bind the profiling port to. Set to \"0.0.0.0\"\nfor all interfaces to make profiles reachable from off-host. The profiling endpoints are\nunauthenticated and expose heap dumps, goroutine stacks and CPU profiles, so prefer the\ndefault and use kubectl port-forward for remote access. Only used if DebugProfilePort is set.\n[Default: localhost]",
+              "type": "string",
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9:._+-]+$"
             },
             "debugProfilePort": {
               "description": "DebugProfilePort configures the port to serve memory and cpu profiles on. If not specified, profiling\nis disabled.\nValid values are: 0-65535.",
