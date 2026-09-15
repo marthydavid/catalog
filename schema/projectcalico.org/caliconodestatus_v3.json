@@ -40,7 +40,9 @@
         "updatePeriodSeconds": {
           "description": "UpdatePeriodSeconds is the period at which CalicoNodeStatus should be updated.\nSet to 0 to disable CalicoNodeStatus refresh. Maximum update period is one day.",
           "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "maximum": 86400,
+          "minimum": 0
         }
       },
       "additionalProperties": false
