@@ -23,10 +23,19 @@
         "nets": {
           "description": "The list of IP networks that belong to this set. Each entry must be in CIDR notation,\ne.g. \"192.168.1.0/24\". To include a single IP address, use a /32 (IPv4) or /128 (IPv6) mask.",
           "type": "array",
+          "maxItems": 100000,
           "items": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 49
           },
-          "x-kubernetes-list-type": "set"
+          "x-kubernetes-list-type": "set",
+          "x-kubernetes-validations": [
+            {
+              "rule": "self.all(n, isCIDR(n) || isIP(n))",
+              "message": "nets entries must be IP addresses or CIDRs",
+              "reason": "FieldValueInvalid"
+            }
+          ]
         }
       },
       "additionalProperties": false

@@ -514,6 +514,16 @@
                 "rule": "(!has(self.notProtocol) || (self.notProtocol != 'ICMPv6' \u0026\u0026 self.notProtocol != 58)) || !has(self.ipVersion) || self.ipVersion == 6",
                 "message": "protocol ICMPv6 requires ipVersion 6",
                 "reason": "FieldValueInvalid"
+              },
+              {
+                "rule": "!has(self.protocol) || (type(self.protocol) == int ? self.protocol \u003e= 1 \u0026\u0026 self.protocol \u003c= 255 : self.protocol in ['TCP', 'UDP', 'ICMP', 'ICMPv6', 'SCTP', 'UDPLite'])",
+                "message": "protocol must be a name (TCP, UDP, ICMP, ICMPv6, SCTP, UDPLite) or a number in 1-255",
+                "reason": "FieldValueInvalid"
+              },
+              {
+                "rule": "!has(self.notProtocol) || (type(self.notProtocol) == int ? self.notProtocol \u003e= 1 \u0026\u0026 self.notProtocol \u003c= 255 : self.notProtocol in ['TCP', 'UDP', 'ICMP', 'ICMPv6', 'SCTP', 'UDPLite'])",
+                "message": "protocol must be a name (TCP, UDP, ICMP, ICMPv6, SCTP, UDPLite) or a number in 1-255",
+                "reason": "FieldValueInvalid"
               }
             ]
           },
@@ -1005,6 +1015,16 @@
               {
                 "rule": "(!has(self.notProtocol) || (self.notProtocol != 'ICMPv6' \u0026\u0026 self.notProtocol != 58)) || !has(self.ipVersion) || self.ipVersion == 6",
                 "message": "protocol ICMPv6 requires ipVersion 6",
+                "reason": "FieldValueInvalid"
+              },
+              {
+                "rule": "!has(self.protocol) || (type(self.protocol) == int ? self.protocol \u003e= 1 \u0026\u0026 self.protocol \u003c= 255 : self.protocol in ['TCP', 'UDP', 'ICMP', 'ICMPv6', 'SCTP', 'UDPLite'])",
+                "message": "protocol must be a name (TCP, UDP, ICMP, ICMPv6, SCTP, UDPLite) or a number in 1-255",
+                "reason": "FieldValueInvalid"
+              },
+              {
+                "rule": "!has(self.notProtocol) || (type(self.notProtocol) == int ? self.notProtocol \u003e= 1 \u0026\u0026 self.notProtocol \u003c= 255 : self.notProtocol in ['TCP', 'UDP', 'ICMP', 'ICMPv6', 'SCTP', 'UDPLite'])",
+                "message": "protocol must be a name (TCP, UDP, ICMP, ICMPv6, SCTP, UDPLite) or a number in 1-255",
                 "reason": "FieldValueInvalid"
               }
             ]

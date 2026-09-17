@@ -257,7 +257,7 @@
                 "description": "If non-empty, this filter rule will only apply when the route being exported or imported\n\"matches\" the given CIDR - where the definition of \"matches\" is according to\nMatchOperator and PrefixLength.  CIDR should be in conventional CIDR notation,\n\u003cprefix\u003e/\u003clength\u003e.",
                 "type": "string",
                 "format": "cidr",
-                "maxLength": 43
+                "maxLength": 49
               },
               "communities": {
                 "description": "If set, this filter rule will only apply to routes that carry the specified BGP\ncommunity.  On import, this matches communities set by the remote peer.  On export,\nthis matches communities already present on the route, whether received from a BGP\npeer (e.g. on a route reflector re-advertising to an eBGP peer) or added locally\nby an import filter or an earlier export rule's AddCommunity operation.",
@@ -671,7 +671,7 @@
                 "description": "If non-empty, this filter rule will only apply when the route being exported or imported\n\"matches\" the given CIDR - where the definition of \"matches\" is according to\nMatchOperator and PrefixLength.  CIDR should be in conventional CIDR notation,\n\u003cprefix\u003e/\u003clength\u003e.",
                 "type": "string",
                 "format": "cidr",
-                "maxLength": 43
+                "maxLength": 49
               },
               "communities": {
                 "description": "If set, this filter rule will only apply to routes that carry the specified BGP\ncommunity.  On import, this matches communities set by the remote peer.  On export,\nthis matches communities already present on the route, whether received from a BGP\npeer (e.g. on a route reflector re-advertising to an eBGP peer) or added locally\nby an import filter or an earlier export rule's AddCommunity operation.",

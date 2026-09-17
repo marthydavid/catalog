@@ -64,7 +64,7 @@
           "description": "The pool CIDR.",
           "type": "string",
           "format": "cidr",
-          "maxLength": 48,
+          "maxLength": 49,
           "x-kubernetes-validations": [
             {
               "rule": "self == oldSelf",
