@@ -53,6 +53,7 @@
         "bpfConnectTimeLoadBalancing": {
           "description": "BPFConnectTimeLoadBalancing when in BPF mode, controls whether Felix installs the connect-time load\nbalancer. The connect-time load balancer is required for the host to be able to reach Kubernetes services\nand it improves the performance of pod-to-service connections.When set to TCP, connect time load balancing\nis available only for services with TCP ports. [Default: TCP]",
           "type": "string",
+          "default": "TCP",
           "enum": [
             "TCP",
             "Enabled",
@@ -191,6 +192,7 @@
         "bpfHostNetworkedNATWithoutCTLB": {
           "description": "BPFHostNetworkedNATWithoutCTLB when in BPF mode, controls whether Felix does a NAT without CTLB. This along with BPFConnectTimeLoadBalancing\ndetermines the CTLB behavior. [Default: Enabled]",
           "type": "string",
+          "default": "Enabled",
           "enum": [
             "Enabled",
             "Disabled"
@@ -491,6 +493,7 @@
         "floatingIPs": {
           "description": "FloatingIPs configures whether or not Felix will program non-OpenStack floating IP addresses.  (OpenStack-derived\nfloating IPs are always programmed, regardless of this setting.)",
           "type": "string",
+          "default": "Disabled",
           "enum": [
             "Enabled",
             "Disabled"
