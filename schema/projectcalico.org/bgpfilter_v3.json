@@ -41,8 +41,11 @@
                 "description": "If non-empty, this filter rule will only apply to routes whose AS path begins with the\nspecified sequence of AS numbers.",
                 "type": "array",
                 "items": {
+                  "description": "ASNumber is a BGP autonomous system number. RFC 4893 defines the 4-byte AS\nnumber space as an unsigned 32-bit value, so the valid range is 0-4294967295.",
                   "type": "integer",
-                  "format": "int32"
+                  "format": "int64",
+                  "maximum": 4294967295,
+                  "minimum": 0
                 },
                 "x-kubernetes-list-type": "atomic"
               },
@@ -132,8 +135,11 @@
                           "maxItems": 10,
                           "minItems": 1,
                           "items": {
+                            "description": "ASNumber is a BGP autonomous system number. RFC 4893 defines the 4-byte AS\nnumber space as an unsigned 32-bit value, so the valid range is 0-4294967295.",
                             "type": "integer",
-                            "format": "int32"
+                            "format": "int64",
+                            "maximum": 4294967295,
+                            "minimum": 0
                           },
                           "x-kubernetes-list-type": "atomic"
                         }
@@ -248,8 +254,11 @@
                 "description": "If non-empty, this filter rule will only apply to routes whose AS path begins with the\nspecified sequence of AS numbers.",
                 "type": "array",
                 "items": {
+                  "description": "ASNumber is a BGP autonomous system number. RFC 4893 defines the 4-byte AS\nnumber space as an unsigned 32-bit value, so the valid range is 0-4294967295.",
                   "type": "integer",
-                  "format": "int32"
+                  "format": "int64",
+                  "maximum": 4294967295,
+                  "minimum": 0
                 },
                 "x-kubernetes-list-type": "atomic"
               },
@@ -339,8 +348,11 @@
                           "maxItems": 10,
                           "minItems": 1,
                           "items": {
+                            "description": "ASNumber is a BGP autonomous system number. RFC 4893 defines the 4-byte AS\nnumber space as an unsigned 32-bit value, so the valid range is 0-4294967295.",
                             "type": "integer",
-                            "format": "int32"
+                            "format": "int64",
+                            "maximum": 4294967295,
+                            "minimum": 0
                           },
                           "x-kubernetes-list-type": "atomic"
                         }
@@ -455,8 +467,11 @@
                 "description": "If non-empty, this filter rule will only apply to routes whose AS path begins with the\nspecified sequence of AS numbers.",
                 "type": "array",
                 "items": {
+                  "description": "ASNumber is a BGP autonomous system number. RFC 4893 defines the 4-byte AS\nnumber space as an unsigned 32-bit value, so the valid range is 0-4294967295.",
                   "type": "integer",
-                  "format": "int32"
+                  "format": "int64",
+                  "maximum": 4294967295,
+                  "minimum": 0
                 },
                 "x-kubernetes-list-type": "atomic"
               },
@@ -546,8 +561,11 @@
                           "maxItems": 10,
                           "minItems": 1,
                           "items": {
+                            "description": "ASNumber is a BGP autonomous system number. RFC 4893 defines the 4-byte AS\nnumber space as an unsigned 32-bit value, so the valid range is 0-4294967295.",
                             "type": "integer",
-                            "format": "int32"
+                            "format": "int64",
+                            "maximum": 4294967295,
+                            "minimum": 0
                           },
                           "x-kubernetes-list-type": "atomic"
                         }
@@ -662,8 +680,11 @@
                 "description": "If non-empty, this filter rule will only apply to routes whose AS path begins with the\nspecified sequence of AS numbers.",
                 "type": "array",
                 "items": {
+                  "description": "ASNumber is a BGP autonomous system number. RFC 4893 defines the 4-byte AS\nnumber space as an unsigned 32-bit value, so the valid range is 0-4294967295.",
                   "type": "integer",
-                  "format": "int32"
+                  "format": "int64",
+                  "maximum": 4294967295,
+                  "minimum": 0
                 },
                 "x-kubernetes-list-type": "atomic"
               },
@@ -753,8 +774,11 @@
                           "maxItems": 10,
                           "minItems": 1,
                           "items": {
+                            "description": "ASNumber is a BGP autonomous system number. RFC 4893 defines the 4-byte AS\nnumber space as an unsigned 32-bit value, so the valid range is 0-4294967295.",
                             "type": "integer",
-                            "format": "int32"
+                            "format": "int64",
+                            "maximum": 4294967295,
+                            "minimum": 0
                           },
                           "x-kubernetes-list-type": "atomic"
                         }

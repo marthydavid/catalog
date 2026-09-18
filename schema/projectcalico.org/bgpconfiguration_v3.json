@@ -23,7 +23,9 @@
         "asNumber": {
           "description": "ASNumber is the default AS number used by a node. [Default: 64512]",
           "type": "integer",
-          "format": "int32"
+          "format": "int64",
+          "maximum": 4294967295,
+          "minimum": 0
         },
         "bindMode": {
           "description": "BindMode indicates whether to listen for BGP connections on all addresses (None)\nor only on the node's canonical IP address Node.Spec.BGP.IPvXAddress (NodeIP).\nDefault behaviour is to listen for BGP connections on all addresses.",

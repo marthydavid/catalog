@@ -23,7 +23,9 @@
         "asNumber": {
           "description": "The AS Number of the peer.",
           "type": "integer",
-          "format": "int32"
+          "format": "int64",
+          "maximum": 4294967295,
+          "minimum": 0
         },
         "filters": {
           "description": "The ordered set of BGPFilters applied on this BGP peer.",
@@ -44,7 +46,9 @@
         "localASNumber": {
           "description": "The optional Local AS Number to use when peering with this remote peer.\nIf not specified, the AS Number defined in default BGPConfiguration will be used.",
           "type": "integer",
-          "format": "int32"
+          "format": "int64",
+          "maximum": 4294967295,
+          "minimum": 0
         },
         "localWorkloadSelector": {
           "description": "Selector for the local workload that the node should peer with. When this is set, the peerSelector and peerIP fields must be empty,\nand the ASNumber must not be empty.",
