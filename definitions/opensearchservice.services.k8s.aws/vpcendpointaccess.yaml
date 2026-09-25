@@ -3,20 +3,20 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.19.0
-  name: vpcendpoints.opensearchservice.services.k8s.aws
+  name: vpcendpointaccesses.opensearchservice.services.k8s.aws
 spec:
   group: opensearchservice.services.k8s.aws
   names:
-    kind: VPCEndpoint
-    listKind: VPCEndpointList
-    plural: vpcendpoints
-    singular: vpcendpoint
+    kind: VPCEndpointAccess
+    listKind: VPCEndpointAccessList
+    plural: vpcendpointaccesses
+    singular: vpcendpointaccess
   scope: Namespaced
   versions:
   - name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: VPCEndpoint is the Schema for the VPCEndpoints API
+        description: VPCEndpointAccess is the Schema for the VPCEndpointAccesses API
         properties:
           apiVersion:
             description: |-
@@ -36,17 +36,13 @@ spec:
           metadata:
             type: object
           spec:
-            description: |-
-              VpcEndpointSpec defines the desired state of VpcEndpoint.
-
-              The connection endpoint for connecting to an Amazon OpenSearch Service domain
-              through a proxy.
+            description: VpcEndpointAccessSpec defines the desired state of VpcEndpointAccess.
             properties:
-              domainARN:
+              domainName:
                 description: |-
-                  The Amazon Resource Name (ARN) of the domain to create the endpoint for.
+                  The name of the OpenSearch Service domain to provide access to.
 
-                  Regex Pattern: `^arn:aws[a-z\-]*:[a-z]+:[a-z0-9\-]+:[0-9]+:domain\/[a-z0-9\-]+$`
+                  Regex Pattern: `^[a-z][a-z0-9\-]+$`
                 type: string
                 x-kubernetes-validations:
                 - message: Value is immutable once set
@@ -68,64 +64,38 @@ spec:
                         type: string
                     type: object
                 type: object
-              vpcOptions:
-                description: Options to specify the subnets and security groups for
-                  the endpoint.
+              principal:
+                description: |-
+                  The AWS account or service authorized to access the domain through its
+                  interface VPC endpoints.
+
+                  Either a 12-digit AWS account ID or an AWS service principal (for example
+                  application.opensearchservice.amazonaws.com). The controller passes it to
+                  AuthorizeVpcEndpointAccess and RevokeVpcEndpointAccess as the account or the
+                  service argument accordingly.
+                type: string
+                x-kubernetes-validations:
+                - message: Value is immutable once set
+                  rule: self == oldSelf
+              serviceOptions:
+                description: |-
+                  Options that scope the authorization, such as the Regions it applies to.
+
+                  When left unset, the domain's own Region is authorized and reported back
+                  here. Regions can be added or removed afterwards. Removing every Region
+                  removes the authorization itself, so that is rejected: delete this resource
+                  instead.
                 properties:
-                  securityGroupIDs:
+                  supportedRegions:
                     items:
                       type: string
-                    type: array
-                  securityGroupRefs:
-                    description: Reference field for SecurityGroupIDs
-                    items:
-                      description: "AWSResourceReferenceWrapper provides a wrapper
-                        around *AWSResourceReference\ntype to provide more user friendly
-                        syntax for references using 'from' field\nEx:\nAPIIDRef:\n\n\tfrom:\n\t
-                        \ name: my-api"
-                      properties:
-                        from:
-                          description: |-
-                            AWSResourceReference provides all the values necessary to reference another
-                            k8s resource for finding the identifier(Id/ARN/Name)
-                          properties:
-                            name:
-                              type: string
-                            namespace:
-                              type: string
-                          type: object
-                      type: object
-                    type: array
-                  subnetIDs:
-                    items:
-                      type: string
-                    type: array
-                  subnetRefs:
-                    description: Reference field for SubnetIDs
-                    items:
-                      description: "AWSResourceReferenceWrapper provides a wrapper
-                        around *AWSResourceReference\ntype to provide more user friendly
-                        syntax for references using 'from' field\nEx:\nAPIIDRef:\n\n\tfrom:\n\t
-                        \ name: my-api"
-                      properties:
-                        from:
-                          description: |-
-                            AWSResourceReference provides all the values necessary to reference another
-                            k8s resource for finding the identifier(Id/ARN/Name)
-                          properties:
-                            name:
-                              type: string
-                            namespace:
-                              type: string
-                          type: object
-                      type: object
                     type: array
                 type: object
             required:
-            - vpcOptions
+            - principal
             type: object
           status:
-            description: VPCEndpointStatus defines the observed state of VPCEndpoint
+            description: VPCEndpointAccessStatus defines the observed state of VPCEndpointAccess
             properties:
               ackResourceMetadata:
                 description: |-
@@ -195,30 +165,10 @@ spec:
                   - type
                   type: object
                 type: array
-              endpoint:
-                description: |-
-                  The connection endpoint ID for connecting to the domain.
-
-                  Regex Pattern: `^[A-Za-z0-9\-\.]+$`
-                type: string
-              status:
-                description: The current status of the endpoint.
-                type: string
-              vpcEndpointID:
-                description: |-
-                  The unique identifier of the endpoint.
-
-                  Regex Pattern: `^aos-[a-zA-Z0-9]*$`
-                type: string
-              vpcEndpointOwner:
-                description: |-
-                  The creator of the endpoint.
-
-                  Regex Pattern: `^[0-9]+$`
-                type: string
             type: object
         type: object
     served: true
     storage: true
     subresources:
       status: {}
+
