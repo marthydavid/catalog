@@ -9,7 +9,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 93.97% | 3995 | 10754 | 83 |
+| 92.96% | 4046 | 10757 | 83 |
 
 ### Missing Schemas
 
@@ -182,12 +182,17 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | gateway.nginx.org | |
 | --- | --- |
+| authenticationfilter | v1alpha1 |
 | clientsettingspolicy | v1alpha1 |
 | nginxgateway | v1alpha1 |
 | nginxproxy | v1alpha2 |
 | observabilitypolicy | v1alpha1, v1alpha2 |
+| proxysettingspolicy | v1alpha1 |
+| ratelimitpolicy | v1alpha1 |
 | snippetsfilter | v1alpha1 |
+| snippetspolicy | v1alpha1 |
 | upstreamsettingspolicy | v1alpha1 |
+| wafpolicy | v1alpha1 |
 
 | helm.toolkit.fluxcd.io | |
 | --- | --- |
@@ -295,6 +300,40 @@ This page lists missing CRD validation schemas that are present in alternative c
 | podmonitoring | v1, v1alpha1 |
 | rules | v1, v1alpha1 |
 
+| mssql.sql.crossplane.io | |
+| --- | --- |
+| database | v1alpha1 |
+| grant | v1alpha1 |
+| providerconfig | v1alpha1 |
+| providerconfigusage | v1alpha1 |
+| user | v1alpha1 |
+
+| mssql.sql.m.crossplane.io | |
+| --- | --- |
+| clusterproviderconfig | v1alpha1 |
+| database | v1alpha1 |
+| grant | v1alpha1 |
+| providerconfig | v1alpha1 |
+| providerconfigusage | v1alpha1 |
+| user | v1alpha1 |
+
+| mysql.sql.crossplane.io | |
+| --- | --- |
+| database | v1alpha1 |
+| grant | v1alpha1 |
+| providerconfig | v1alpha1 |
+| providerconfigusage | v1alpha1 |
+| user | v1alpha1 |
+
+| mysql.sql.m.crossplane.io | |
+| --- | --- |
+| clusterproviderconfig | v1alpha1 |
+| database | v1alpha1 |
+| grant | v1alpha1 |
+| providerconfig | v1alpha1 |
+| providerconfigusage | v1alpha1 |
+| user | v1alpha1 |
+
 | networking.gke.io | |
 | --- | --- |
 | gcproutingextension | v1 |
@@ -337,6 +376,29 @@ This page lists missing CRD validation schemas that are present in alternative c
 | flinkdeployment | v1beta1 |
 | flinksessionjob | v1beta1 |
 | flinkstatesnapshot | v1beta1 |
+
+| postgresql.sql.crossplane.io | |
+| --- | --- |
+| database | v1alpha1 |
+| defaultprivileges | v1alpha1 |
+| extension | v1alpha1 |
+| grant | v1alpha1 |
+| providerconfig | v1alpha1 |
+| providerconfigusage | v1alpha1 |
+| role | v1alpha1 |
+| schema | v1alpha1 |
+
+| postgresql.sql.m.crossplane.io | |
+| --- | --- |
+| clusterproviderconfig | v1alpha1 |
+| database | v1alpha1 |
+| defaultprivileges | v1alpha1 |
+| extension | v1alpha1 |
+| grant | v1alpha1 |
+| providerconfig | v1alpha1 |
+| providerconfigusage | v1alpha1 |
+| role | v1alpha1 |
+| schema | v1alpha1 |
 
 | provisioning.cattle.io | |
 | --- | --- |
