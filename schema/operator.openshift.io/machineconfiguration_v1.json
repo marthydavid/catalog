@@ -183,7 +183,7 @@
                     ],
                     "properties": {
                       "mode": {
-                        "description": "mode determines how machine managers will be selected for updates.\nValid values are All, Partial and None.\nAll means that every resource matched by the machine manager will be updated.\nPartial requires specified selector(s) and allows customisation of which resources matched by the machine manager will be updated.\nPartial is not permitted for the controlplanemachinesets resource type as they are a singleton within the cluster.\nNone means that every resource matched by the machine manager will not be updated.",
+                        "description": "mode determines how machine managers will be selected for updates.\nValid values are All, Partial and None.\nAll means that every resource matched by the machine manager will be updated.\nPartial requires specified selector(s) and allows customisation of which resources matched by the machine manager will be updated.\nPartial is not permitted for the controlplanemachinesets resource type as they are a singleton within the cluster.\nNone means that every resource matched by the machine manager will not be updated.\nWhen boot image skew enforcement is in Automatic mode, only All is permitted for the\nmachinesets and machinedeployments resource types, in any API group.",
                         "type": "string",
                         "enum": [
                           "All",
@@ -912,7 +912,7 @@
                     ],
                     "properties": {
                       "mode": {
-                        "description": "mode determines how machine managers will be selected for updates.\nValid values are All, Partial and None.\nAll means that every resource matched by the machine manager will be updated.\nPartial requires specified selector(s) and allows customisation of which resources matched by the machine manager will be updated.\nPartial is not permitted for the controlplanemachinesets resource type as they are a singleton within the cluster.\nNone means that every resource matched by the machine manager will not be updated.",
+                        "description": "mode determines how machine managers will be selected for updates.\nValid values are All, Partial and None.\nAll means that every resource matched by the machine manager will be updated.\nPartial requires specified selector(s) and allows customisation of which resources matched by the machine manager will be updated.\nPartial is not permitted for the controlplanemachinesets resource type as they are a singleton within the cluster.\nNone means that every resource matched by the machine manager will not be updated.\nWhen boot image skew enforcement is in Automatic mode, only All is permitted for the\nmachinesets and machinedeployments resource types, in any API group.",
                         "type": "string",
                         "enum": [
                           "All",
@@ -1399,6 +1399,22 @@
     }
   },
   "x-kubernetes-validations": [
+    {
+      "rule": "self.?status.bootImageSkewEnforcementStatus.mode.orValue(\"\") == 'Automatic' ? !(self.?spec.managedBootImages.machineManagers.hasValue()) || !self.spec.managedBootImages.machineManagers.exists(m, m.resource == 'machinesets' \u0026\u0026 m.apiGroup == 'cluster.x-k8s.io') || self.spec.managedBootImages.machineManagers.exists(m, m.resource == 'machinesets' \u0026\u0026 m.apiGroup == 'cluster.x-k8s.io' \u0026\u0026 m.selection.mode == 'All') : true",
+      "message": "when skew enforcement is in Automatic mode, any CAPI MachineSet MachineManager must use selection mode 'All'"
+    },
+    {
+      "rule": "self.?status.bootImageSkewEnforcementStatus.mode.orValue(\"\") == 'Automatic' ? !(self.?status.managedBootImagesStatus.machineManagers.hasValue()) || self.status.managedBootImagesStatus.machineManagers.exists(m, m.selection.mode == 'All' \u0026\u0026 m.resource == 'machinesets' \u0026\u0026 m.apiGroup == 'cluster.x-k8s.io'): true",
+      "message": "when skew enforcement is in Automatic mode, managedBootImagesStatus must contain a MachineManager opting in all CAPI MachineSets"
+    },
+    {
+      "rule": "self.?status.bootImageSkewEnforcementStatus.mode.orValue(\"\") == 'Automatic' ? !(self.?spec.managedBootImages.machineManagers.hasValue()) || !self.spec.managedBootImages.machineManagers.exists(m, m.resource == 'machinedeployments' \u0026\u0026 m.apiGroup == 'cluster.x-k8s.io') || self.spec.managedBootImages.machineManagers.exists(m, m.resource == 'machinedeployments' \u0026\u0026 m.selection.mode == 'All') : true",
+      "message": "when skew enforcement is in Automatic mode, any CAPI MachineDeployment MachineManager must use selection mode 'All'"
+    },
+    {
+      "rule": "self.?status.bootImageSkewEnforcementStatus.mode.orValue(\"\") == 'Automatic' ? !(self.?status.managedBootImagesStatus.machineManagers.hasValue()) || self.status.managedBootImagesStatus.machineManagers.exists(m, m.selection.mode == 'All' \u0026\u0026 m.resource == 'machinedeployments'): true",
+      "message": "when skew enforcement is in Automatic mode, managedBootImagesStatus must contain a MachineManager opting in all CAPI MachineDeployments"
+    },
     {
       "rule": "self.?status.bootImageSkewEnforcementStatus.mode.orValue(\"\") == 'Automatic' ? self.?spec.managedBootImages.hasValue() || self.?status.managedBootImagesStatus.hasValue() : true",
       "message": "when skew enforcement is in Automatic mode, a boot image configuration is required"
