@@ -9,7 +9,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 92.96% | 4046 | 10773 | 83 |
+| 92.75% | 4055 | 10773 | 83 |
 
 ### Missing Schemas
 
@@ -28,6 +28,17 @@ This page lists missing CRD validation schemas that are present in alternative c
 | gatewayconfig | v1alpha1, v1beta1 |
 | mcproute | v1alpha1, v1beta1 |
 | quotapolicy | v1alpha1 |
+
+| alb.networking.azure.io | |
+| --- | --- |
+| applicationloadbalancer | v1 |
+| backendloadbalancingpolicy | v1 |
+| backendtlspolicy | v1 |
+| frontendtlspolicy | v1 |
+| healthcheckpolicy | v1 |
+| ingressextension | v1 |
+| routepolicy | v1 |
+| webapplicationfirewallpolicy | v1 |
 
 | apps.gitlab.com | |
 | --- | --- |
@@ -360,6 +371,10 @@ This page lists missing CRD validation schemas that are present in alternative c
 | observability.giantswarm.io | |
 | --- | --- |
 | silence | v1alpha2 |
+
+| opentelemetry.io | |
+| --- | --- |
+| clusterobservability | v1alpha1 |
 
 | operator.knative.dev | |
 | --- | --- |
