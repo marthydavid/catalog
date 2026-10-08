@@ -508,6 +508,14 @@
           "type": "string",
           "pattern": "^([0-9]+(\\\\.[0-9]+)?(ms|s|m|h))*$"
         },
+        "flowLogsGoldmaneIncludeIPs": {
+          "description": "FlowLogsGoldmaneIncludeIPs controls whether flow data sent to Goldmane (and the local flow\nreporter) includes the source and destination IP addresses of the aggregated connections.\n[Default: Enabled]",
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ]
+        },
         "flowLogsGoldmaneServer": {
           "description": "FlowLogGoldmaneServer is the flow server endpoint to which flow data should be published.",
           "type": "string"
