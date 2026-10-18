@@ -9,7 +9,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 92.75% | 4057 | 10855 | 83 |
+| 92.38% | 4081 | 10855 | 83 |
 
 ### Missing Schemas
 
@@ -205,6 +205,13 @@ This page lists missing CRD validation schemas that are present in alternative c
 | upstreamsettingspolicy | v1alpha1 |
 | wafpolicy | v1alpha1 |
 
+| gravitee.io | |
+| --- | --- |
+| dictionary | v1alpha1 |
+| documentation | v1alpha1 |
+| portal | v1alpha1 |
+| portallisting | v1alpha1 |
+
 | helm.toolkit.fluxcd.io | |
 | --- | --- |
 | helmrelease | v1 |
@@ -217,6 +224,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 | http.keda.sh | |
 | --- | --- |
 | httpscaledobject | v1alpha1 |
+| interceptorroute | v1beta1 |
 
 | infrastructure.cluster.x-k8s.io | |
 | --- | --- |
@@ -239,6 +247,22 @@ This page lists missing CRD validation schemas that are present in alternative c
 | installation.mattermost.com | |
 | --- | --- |
 | mattermost | v1beta1 |
+
+| internal.kro.run | |
+| --- | --- |
+| graphrevision | v1alpha1 |
+
+| kagent.dev | |
+| --- | --- |
+| agent | v1alpha1, v1alpha2 |
+| agentharness | v1alpha2 |
+| mcpserver | v1alpha1 |
+| memory | v1alpha1 |
+| modelconfig | v1alpha1, v1alpha2 |
+| modelproviderconfig | v1alpha2 |
+| remotemcpserver | v1alpha2 |
+| sandboxagent | v1alpha2 |
+| toolserver | v1alpha1 |
 
 | keycloak.crossplane.io | |
 | --- | --- |
