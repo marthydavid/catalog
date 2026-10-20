@@ -268,7 +268,7 @@
           "minimum": 1
         },
         "bpfMapSizeConntrackScaling": {
-          "description": "BPFMapSizeConntrackScaling controls whether and how we scale the conntrack map size depending\non its usage. 'Disabled' make the size stay at the default or whatever is set by\nBPFMapSizeConntrack*. 'DoubleIfFull' doubles the size when the map is pretty much full even\nafter cleanups. [Default: DoubleIfFull]",
+          "description": "BPFMapSizeConntrackScaling controls whether and how we scale the conntrack map size depending\non its usage. 'Disabled' stops the map from growing; a map that already grew keeps its size.\n'DoubleIfFull' doubles the size of an IP family's map when it is pretty much full even\nafter cleanups. [Default: DoubleIfFull]",
           "type": "string",
           "pattern": "^(?i)(Disabled|DoubleIfFull)?$"
         },
