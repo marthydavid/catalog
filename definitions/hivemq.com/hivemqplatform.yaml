@@ -145,10 +145,33 @@ spec:
                 rollingRestart:
                   properties:
                     lastPodMinAgeSeconds:
-                      description: "The minimum age in seconds that the last restarted\
-                      \ Pod must have before the next Pod can be restarted during\
-                      \ a rolling restart. Overrides the global operator configuration.\
-                      \ If not set, the global operator configuration is used."
+                      description: "[DEPRECATED since HiveMQ Platform Operator 2.3.0]\
+                      \ Use lastPodReadyMinAgeSeconds instead. It is only used when\
+                      \ lastPodReadyMinAgeSeconds is not set."
+                      type: "integer"
+                    lastPodReadyMinAgeSeconds:
+                      description: "The minimum time in seconds that the last restarted\
+                      \ Pod must have been ready before the next Pod can be restarted\
+                      \ or the surge Pod can be removed during a rolling restart.\
+                      \ Overrides the global operator configuration. If not set, the\
+                      \ global operator configuration is used."
+                      type: "integer"
+                  type: "object"
+                scaling:
+                  properties:
+                    lastPodReadyMinAgeSeconds:
+                      description: "The minimum time in seconds that the last Pod to\
+                      \ become ready must have been ready before the next Pod can be\
+                      \ added during a scale up or removed during a scale down. Overrides\
+                      \ the global operator configuration. If not set, the global\
+                      \ operator configuration is used."
+                      type: "integer"
+                    lastPodRemovalMinAgeSeconds:
+                      description: "The minimum time in seconds since the HiveMQ Platform\
+                      \ settled after the last Pod removal before the next Pod can be\
+                      \ removed during a scale down. Overrides the global operator\
+                      \ configuration. If not set, the global operator configuration\
+                      \ is used."
                       type: "integer"
                   type: "object"
                 secretName:
@@ -961,6 +984,8 @@ spec:
                                                       - type: "integer"
                                                       - type: "string"
                                                     x-kubernetes-int-or-string: true
+                                                  protocol:
+                                                    type: "string"
                                                   scheme:
                                                     type: "string"
                                                 type: "object"
@@ -1009,6 +1034,8 @@ spec:
                                                       - type: "integer"
                                                       - type: "string"
                                                     x-kubernetes-int-or-string: true
+                                                  protocol:
+                                                    type: "string"
                                                   scheme:
                                                     type: "string"
                                                 type: "object"
@@ -1044,6 +1071,8 @@ spec:
                                             type: "integer"
                                           grpc:
                                             properties:
+                                              mode:
+                                                type: "string"
                                               port:
                                                 type: "integer"
                                               service:
@@ -1069,6 +1098,8 @@ spec:
                                                   - type: "integer"
                                                   - type: "string"
                                                 x-kubernetes-int-or-string: true
+                                              protocol:
+                                                type: "string"
                                               scheme:
                                                 type: "string"
                                             type: "object"
@@ -1123,6 +1154,8 @@ spec:
                                             type: "integer"
                                           grpc:
                                             properties:
+                                              mode:
+                                                type: "string"
                                               port:
                                                 type: "integer"
                                               service:
@@ -1148,6 +1181,8 @@ spec:
                                                   - type: "integer"
                                                   - type: "string"
                                                 x-kubernetes-int-or-string: true
+                                              protocol:
+                                                type: "string"
                                               scheme:
                                                 type: "string"
                                             type: "object"
@@ -1302,6 +1337,8 @@ spec:
                                             type: "integer"
                                           grpc:
                                             properties:
+                                              mode:
+                                                type: "string"
                                               port:
                                                 type: "integer"
                                               service:
@@ -1327,6 +1364,8 @@ spec:
                                                   - type: "integer"
                                                   - type: "string"
                                                 x-kubernetes-int-or-string: true
+                                              protocol:
+                                                type: "string"
                                               scheme:
                                                 type: "string"
                                             type: "object"
@@ -1373,6 +1412,10 @@ spec:
                                       volumeMounts:
                                         items:
                                           properties:
+                                            bindMountOptions:
+                                              items:
+                                                type: "string"
+                                              type: "array"
                                             mountPath:
                                               type: "string"
                                             mountPropagation:
@@ -1544,6 +1587,8 @@ spec:
                                                       - type: "integer"
                                                       - type: "string"
                                                     x-kubernetes-int-or-string: true
+                                                  protocol:
+                                                    type: "string"
                                                   scheme:
                                                     type: "string"
                                                 type: "object"
@@ -1592,6 +1637,8 @@ spec:
                                                       - type: "integer"
                                                       - type: "string"
                                                     x-kubernetes-int-or-string: true
+                                                  protocol:
+                                                    type: "string"
                                                   scheme:
                                                     type: "string"
                                                 type: "object"
@@ -1627,6 +1674,8 @@ spec:
                                             type: "integer"
                                           grpc:
                                             properties:
+                                              mode:
+                                                type: "string"
                                               port:
                                                 type: "integer"
                                               service:
@@ -1652,6 +1701,8 @@ spec:
                                                   - type: "integer"
                                                   - type: "string"
                                                 x-kubernetes-int-or-string: true
+                                              protocol:
+                                                type: "string"
                                               scheme:
                                                 type: "string"
                                             type: "object"
@@ -1706,6 +1757,8 @@ spec:
                                             type: "integer"
                                           grpc:
                                             properties:
+                                              mode:
+                                                type: "string"
                                               port:
                                                 type: "integer"
                                               service:
@@ -1731,6 +1784,8 @@ spec:
                                                   - type: "integer"
                                                   - type: "string"
                                                 x-kubernetes-int-or-string: true
+                                              protocol:
+                                                type: "string"
                                               scheme:
                                                 type: "string"
                                             type: "object"
@@ -1885,6 +1940,8 @@ spec:
                                             type: "integer"
                                           grpc:
                                             properties:
+                                              mode:
+                                                type: "string"
                                               port:
                                                 type: "integer"
                                               service:
@@ -1910,6 +1967,8 @@ spec:
                                                   - type: "integer"
                                                   - type: "string"
                                                 x-kubernetes-int-or-string: true
+                                              protocol:
+                                                type: "string"
                                               scheme:
                                                 type: "string"
                                             type: "object"
@@ -1958,6 +2017,10 @@ spec:
                                       volumeMounts:
                                         items:
                                           properties:
+                                            bindMountOptions:
+                                              items:
+                                                type: "string"
+                                              type: "array"
                                             mountPath:
                                               type: "string"
                                             mountPropagation:
@@ -1976,6 +2039,15 @@ spec:
                                         type: "array"
                                       workingDir:
                                         type: "string"
+                                    type: "object"
+                                  type: "array"
+                                evictionResponders:
+                                  items:
+                                    properties:
+                                      name:
+                                        type: "string"
+                                      priority:
+                                        type: "integer"
                                     type: "object"
                                   type: "array"
                                 hostAliases:
@@ -2135,6 +2207,8 @@ spec:
                                                       - type: "integer"
                                                       - type: "string"
                                                     x-kubernetes-int-or-string: true
+                                                  protocol:
+                                                    type: "string"
                                                   scheme:
                                                     type: "string"
                                                 type: "object"
@@ -2183,6 +2257,8 @@ spec:
                                                       - type: "integer"
                                                       - type: "string"
                                                     x-kubernetes-int-or-string: true
+                                                  protocol:
+                                                    type: "string"
                                                   scheme:
                                                     type: "string"
                                                 type: "object"
@@ -2218,6 +2294,8 @@ spec:
                                             type: "integer"
                                           grpc:
                                             properties:
+                                              mode:
+                                                type: "string"
                                               port:
                                                 type: "integer"
                                               service:
@@ -2243,6 +2321,8 @@ spec:
                                                   - type: "integer"
                                                   - type: "string"
                                                 x-kubernetes-int-or-string: true
+                                              protocol:
+                                                type: "string"
                                               scheme:
                                                 type: "string"
                                             type: "object"
@@ -2297,6 +2377,8 @@ spec:
                                             type: "integer"
                                           grpc:
                                             properties:
+                                              mode:
+                                                type: "string"
                                               port:
                                                 type: "integer"
                                               service:
@@ -2322,6 +2404,8 @@ spec:
                                                   - type: "integer"
                                                   - type: "string"
                                                 x-kubernetes-int-or-string: true
+                                              protocol:
+                                                type: "string"
                                               scheme:
                                                 type: "string"
                                             type: "object"
@@ -2476,6 +2560,8 @@ spec:
                                             type: "integer"
                                           grpc:
                                             properties:
+                                              mode:
+                                                type: "string"
                                               port:
                                                 type: "integer"
                                               service:
@@ -2501,6 +2587,8 @@ spec:
                                                   - type: "integer"
                                                   - type: "string"
                                                 x-kubernetes-int-or-string: true
+                                              protocol:
+                                                type: "string"
                                               scheme:
                                                 type: "string"
                                             type: "object"
@@ -2547,6 +2635,10 @@ spec:
                                       volumeMounts:
                                         items:
                                           properties:
+                                            bindMountOptions:
+                                              items:
+                                                type: "string"
+                                              type: "array"
                                             mountPath:
                                               type: "string"
                                             mountPropagation:
@@ -2863,6 +2955,8 @@ spec:
                                         properties:
                                           defaultMode:
                                             type: "integer"
+                                          defaultUser:
+                                            type: "integer"
                                           items:
                                             items:
                                               properties:
@@ -2872,6 +2966,8 @@ spec:
                                                   type: "integer"
                                                 path:
                                                   type: "string"
+                                                user:
+                                                  type: "integer"
                                               type: "object"
                                             type: "array"
                                           name:
@@ -2901,6 +2997,8 @@ spec:
                                         properties:
                                           defaultMode:
                                             type: "integer"
+                                          defaultUser:
+                                            type: "integer"
                                           items:
                                             items:
                                               properties:
@@ -2927,6 +3025,8 @@ spec:
                                                     resource:
                                                       type: "string"
                                                   type: "object"
+                                                user:
+                                                  type: "integer"
                                               type: "object"
                                             type: "array"
                                         type: "object"
@@ -2934,6 +3034,8 @@ spec:
                                         properties:
                                           medium:
                                             type: "string"
+                                          mode:
+                                            type: "integer"
                                           sizeLimit:
                                             anyOf:
                                               - type: "integer"
@@ -3242,6 +3344,8 @@ spec:
                                         properties:
                                           defaultMode:
                                             type: "integer"
+                                          defaultUser:
+                                            type: "integer"
                                           sources:
                                             items:
                                               properties:
@@ -3275,6 +3379,8 @@ spec:
                                                       type: "string"
                                                     signerName:
                                                       type: "string"
+                                                    user:
+                                                      type: "integer"
                                                   type: "object"
                                                 configMap:
                                                   properties:
@@ -3287,6 +3393,8 @@ spec:
                                                             type: "integer"
                                                           path:
                                                             type: "string"
+                                                          user:
+                                                            type: "integer"
                                                         type: "object"
                                                       type: "array"
                                                     name:
@@ -3322,6 +3430,8 @@ spec:
                                                               resource:
                                                                 type: "string"
                                                             type: "object"
+                                                          user:
+                                                            type: "integer"
                                                         type: "object"
                                                       type: "array"
                                                   type: "object"
@@ -3339,6 +3449,8 @@ spec:
                                                       type: "integer"
                                                     signerName:
                                                       type: "string"
+                                                    user:
+                                                      type: "integer"
                                                     userAnnotations:
                                                       additionalProperties:
                                                         type: "string"
@@ -3355,6 +3467,8 @@ spec:
                                                             type: "integer"
                                                           path:
                                                             type: "string"
+                                                          user:
+                                                            type: "integer"
                                                         type: "object"
                                                       type: "array"
                                                     name:
@@ -3370,6 +3484,8 @@ spec:
                                                       type: "integer"
                                                     path:
                                                       type: "string"
+                                                    user:
+                                                      type: "integer"
                                                   type: "object"
                                               type: "object"
                                             type: "array"
@@ -3443,6 +3559,8 @@ spec:
                                         properties:
                                           defaultMode:
                                             type: "integer"
+                                          defaultUser:
+                                            type: "integer"
                                           items:
                                             items:
                                               properties:
@@ -3452,6 +3570,8 @@ spec:
                                                   type: "integer"
                                                 path:
                                                   type: "string"
+                                                user:
+                                                  type: "integer"
                                               type: "object"
                                             type: "array"
                                           optional:
@@ -3698,6 +3818,22 @@ spec:
                                     type: "array"
                                   currentVolumeAttributesClassName:
                                     type: "string"
+                                  healthStatus:
+                                    properties:
+                                      healthConditions:
+                                        items:
+                                          properties:
+                                            message:
+                                              type: "string"
+                                            reason:
+                                              type: "string"
+                                            status:
+                                              type: "string"
+                                          type: "object"
+                                        type: "array"
+                                      lastTransitionTime:
+                                        type: "string"
+                                    type: "object"
                                   modifyVolumeStatus:
                                     properties:
                                       status:
@@ -3729,6 +3865,7 @@ spec:
                     - "V2_0_0"
                     - "V2_1_0"
                     - "V2_2_0"
+                    - "V2_3_0"
                   type: "string"
                 healthDetails:
                   description: "Human readable details of the current health status"
@@ -3742,6 +3879,14 @@ spec:
                     - "OUT_OF_SERVICE"
                     - "UNKNOWN"
                     - "UP"
+                  type: "string"
+                lastPodRemovalReplicas:
+                  description: "The HiveMQ Platform replica count the last Pod removal\
+                  \ time was recorded at"
+                  type: "integer"
+                lastPodRemovalTime:
+                  description: "The time the HiveMQ Platform was observed settled at\
+                  \ the recorded replica count"
                   type: "string"
                 message:
                   description: "A human readable state message"
@@ -3760,6 +3905,8 @@ spec:
                       - "RECOVER"
                       - "RESTART_EXTENSIONS"
                       - "ROLLING_RESTART"
+                      - "SCALE_DOWN"
+                      - "SCALE_UP"
                       - "SCALING"
                       - "SET_LOG_LEVEL"
                       - "UPDATE_INIT_APP"
@@ -3803,11 +3950,13 @@ spec:
                         - "RESTART_EXTENSIONS"
                         - "RESTART_PODS_IN_PROGRESS"
                         - "SCALE_DOWN_IN_PROGRESS"
+                        - "SCALE_UP_IN_PROGRESS"
                         - "SET_LOG_LEVEL"
                         - "STATEFULSET_MIGRATION_IN_PROGRESS"
                         - "STATEFULSET_MIGRATION_STARTING"
                         - "STATEFULSET_MIGRATION_VALIDATION"
                         - "SURGE_IN_PROGRESS"
+                        - "UNCAUGHT_RECONCILIATION_ERROR"
                         - "UPDATE_INIT_APP"
                         - "WAIT_FOR_EXTENSION_RESTART"
                         - "WAIT_FOR_INIT_APP_UPDATE"
@@ -3849,11 +3998,13 @@ spec:
                     - "RESTART_EXTENSIONS"
                     - "RESTART_PODS_IN_PROGRESS"
                     - "SCALE_DOWN_IN_PROGRESS"
+                    - "SCALE_UP_IN_PROGRESS"
                     - "SET_LOG_LEVEL"
                     - "STATEFULSET_MIGRATION_IN_PROGRESS"
                     - "STATEFULSET_MIGRATION_STARTING"
                     - "STATEFULSET_MIGRATION_VALIDATION"
                     - "SURGE_IN_PROGRESS"
+                    - "UNCAUGHT_RECONCILIATION_ERROR"
                     - "UPDATE_INIT_APP"
                     - "WAIT_FOR_EXTENSION_RESTART"
                     - "WAIT_FOR_INIT_APP_UPDATE"
@@ -3864,5 +4015,5 @@ spec:
       served: true
       storage: true
       subresources:
-        status: {}
+        status: { }
 
