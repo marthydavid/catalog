@@ -65,9 +65,7 @@
                   "ImageRepository",
                   "ImagePolicy",
                   "ImageUpdateAutomation",
-                  "OCIRepository",
-                  "ArtifactGenerator",
-                  "ExternalArtifact"
+                  "OCIRepository"
                 ]
               },
               "matchLabels": {
