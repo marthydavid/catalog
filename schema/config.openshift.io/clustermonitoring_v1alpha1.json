@@ -3374,7 +3374,7 @@
                     ]
                   },
                   "url": {
-                    "description": "url is the URL of the remote write endpoint.\nMust be a valid URL with http or https scheme and a non-empty hostname.\nQuery parameters, fragments, and user information (e.g. user:password@host) are not allowed.\nEmpty string is invalid. Must be between 1 and 2048 characters in length.",
+                    "description": "url is the URL of the remote write endpoint.\nMust be a valid URL with http or https scheme and a non-empty hostname.\nQuery parameters are allowed. Fragments and user information (e.g. user:password@host) are not allowed.\nEmpty string is invalid. Must be between 1 and 2048 characters in length.",
                     "type": "string",
                     "maxLength": 2048,
                     "minLength": 1,
@@ -3392,15 +3392,11 @@
                         "message": "must have a non-empty hostname"
                       },
                       {
-                        "rule": "!isURL(self) || url(self).getQuery().size() == 0",
-                        "message": "query parameters are not allowed"
-                      },
-                      {
                         "rule": "!self.matches('.*#.*')",
                         "message": "fragments are not allowed"
                       },
                       {
-                        "rule": "!self.matches('.*@.*')",
+                        "rule": "!self.matches('^[^:]+://[^/?#]*@')",
                         "message": "user information (e.g. user:password@host) is not allowed"
                       }
                     ]
