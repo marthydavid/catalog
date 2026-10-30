@@ -3623,20 +3623,14 @@
                           "minLength": 1
                         },
                         "sourceLabels": {
-                          "description": "sourceLabels specifies which label names to extract from each series for this relabeling rule.\nThe values of these labels are joined together using the configured separator,\nand the resulting string is then matched against the regular expression.\nIf a referenced label does not exist on a series, Prometheus substitutes an empty string.\nWhen omitted, the rule operates without extracting source labels (useful for actions like labelmap).\nMinimum of 1 and maximum of 10 source labels can be specified, each between 1 and 128 characters.\nEach entry must be unique.\nLabel names beginning with \"__\" (two underscores) are reserved for internal Prometheus use and are not allowed.\nLabel names SHOULD start with a letter (a-z, A-Z) or underscore (_), followed by zero or more letters, digits (0-9), or underscores for best compatibility.\nWhile Prometheus supports UTF-8 characters in label names (since v3.0.0), using the recommended character set\nensures better compatibility with the wider ecosystem (tooling, third-party instrumentation, etc.).",
+                          "description": "sourceLabels specifies which label names to extract from each series for this relabeling rule.\nThe values of these labels are joined together using the configured separator,\nand the resulting string is then matched against the regular expression.\nIf a referenced label does not exist on a series, Prometheus substitutes an empty string.\nWhen omitted, the rule operates without extracting source labels (useful for actions like labelmap).\nMinimum of 1 and maximum of 10 source labels can be specified, each between 1 and 128 characters.\nEach entry must be unique.\nLabels beginning with \"__\" (two underscores) are Prometheus internal/meta labels\n(e.g., __name__, __address__) and are valid in sourceLabels because relabeling reads\nfrom them before they are stripped. Using __name__ in sourceLabels is the standard way\nto filter metrics by name in writeRelabelConfigs.\nLabel names SHOULD start with a letter (a-z, A-Z) or underscore (_), followed by zero or more letters, digits (0-9), or underscores for best compatibility.\nWhile Prometheus supports UTF-8 characters in label names (since v3.0.0), using the recommended character set\nensures better compatibility with the wider ecosystem (tooling, third-party instrumentation, etc.).",
                           "type": "array",
                           "maxItems": 10,
                           "minItems": 1,
                           "items": {
                             "type": "string",
                             "maxLength": 128,
-                            "minLength": 1,
-                            "x-kubernetes-validations": [
-                              {
-                                "rule": "!self.startsWith('__')",
-                                "message": "label names beginning with '__' (two underscores) are reserved for internal Prometheus use and are not allowed"
-                              }
-                            ]
+                            "minLength": 1
                           },
                           "x-kubernetes-list-type": "set"
                         }
