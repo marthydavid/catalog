@@ -9,7 +9,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 91.91% | 4102 | 10880 | 83 |
+| 91.80% | 4120 | 10880 | 83 |
 
 ### Missing Schemas
 
@@ -43,6 +43,12 @@ This page lists missing CRD validation schemas that are present in alternative c
 | apps.gitlab.com | |
 | --- | --- |
 | runner | v1beta2 |
+
+| artifact.falcosecurity.dev | |
+| --- | --- |
+| config | v1alpha1 |
+| plugin | v1alpha1 |
+| rulesfile | v1alpha1 |
 
 | auditlog.cattle.io | |
 | --- | --- |
@@ -274,6 +280,11 @@ This page lists missing CRD validation schemas that are present in alternative c
 | installation.mattermost.com | |
 | --- | --- |
 | mattermost | v1beta1 |
+
+| instance.falcosecurity.dev | |
+| --- | --- |
+| component | v1alpha1 |
+| falco | v1alpha1 |
 
 | internal.kro.run | |
 | --- | --- |
@@ -539,6 +550,10 @@ This page lists missing CRD validation schemas that are present in alternative c
 | tinkerbell.org | |
 | --- | --- |
 | workflowruleset | v1alpha1 |
+
+| trust-manager.io | |
+| --- | --- |
+| clusterbundle | v1alpha2 |
 
 | valkey.io | |
 | --- | --- |
