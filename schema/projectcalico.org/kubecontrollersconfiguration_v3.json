@@ -129,7 +129,8 @@
                           },
                           "nodeSelector": {
                             "description": "NodeSelector allows the AutoHostEndpoint to be created only for specific nodes",
-                            "type": "string"
+                            "type": "string",
+                            "maxLength": 1024
                           }
                         },
                         "additionalProperties": false
@@ -368,7 +369,8 @@
                               },
                               "nodeSelector": {
                                 "description": "NodeSelector allows the AutoHostEndpoint to be created only for specific nodes",
-                                "type": "string"
+                                "type": "string",
+                                "maxLength": 1024
                               }
                             },
                             "additionalProperties": false
