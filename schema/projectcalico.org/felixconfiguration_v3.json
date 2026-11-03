@@ -724,6 +724,7 @@
           "type": "array",
           "maxItems": 7,
           "items": {
+            "maxLength": 11,
             "pattern": "^.*",
             "anyOf": [
               {
@@ -733,7 +734,14 @@
                 "type": "string"
               }
             ],
-            "x-kubernetes-int-or-string": true
+            "x-kubernetes-int-or-string": true,
+            "x-kubernetes-validations": [
+              {
+                "rule": "type(self) != string || !self.contains(':') || int(self.split(':')[0]) \u003c= int(self.split(':')[1])",
+                "message": "port ranges must be written low:high",
+                "reason": "FieldValueInvalid"
+              }
+            ]
           }
         },
         "liveMigrationRouteConvergenceTime": {

@@ -71,6 +71,7 @@
                     "type": "array",
                     "maxItems": 50,
                     "items": {
+                      "maxLength": 15,
                       "pattern": "^.*",
                       "anyOf": [
                         {
@@ -80,7 +81,14 @@
                           "type": "string"
                         }
                       ],
-                      "x-kubernetes-int-or-string": true
+                      "x-kubernetes-int-or-string": true,
+                      "x-kubernetes-validations": [
+                        {
+                          "rule": "type(self) != string || !self.contains(':') || int(self.split(':')[0]) \u003c= int(self.split(':')[1])",
+                          "message": "port ranges must be written low:high",
+                          "reason": "FieldValueInvalid"
+                        }
+                      ]
                     },
                     "x-kubernetes-list-type": "atomic"
                   },
@@ -90,10 +98,11 @@
                     "maxLength": 1024
                   },
                   "ports": {
-                    "description": "Ports is an optional field that restricts the rule to only apply to traffic that has a\nsource (destination) port that matches one of these ranges/values. This value is a\nlist of integers or strings that represent ranges of ports.\n\nSince only some protocols have ports, if any ports are specified it requires the\nProtocol match in the Rule to be set to \"TCP\", \"UDP\", or \"SCTP\".",
+                    "description": "Ports is an optional field that restricts the rule to only apply to traffic that has a\nsource (destination) port that matches one of these ranges/values. This value is a\nlist of integers or strings that represent ranges of ports.\n\nSince only some protocols have ports, if any ports are specified it requires the\nProtocol match in the Rule to be set to \"TCP\", \"UDP\", or \"SCTP\".\nNamed ports are at most 15 characters, like Kubernetes port names.",
                     "type": "array",
                     "maxItems": 50,
                     "items": {
+                      "maxLength": 15,
                       "pattern": "^.*",
                       "anyOf": [
                         {
@@ -103,7 +112,14 @@
                           "type": "string"
                         }
                       ],
-                      "x-kubernetes-int-or-string": true
+                      "x-kubernetes-int-or-string": true,
+                      "x-kubernetes-validations": [
+                        {
+                          "rule": "type(self) != string || !self.contains(':') || int(self.split(':')[0]) \u003c= int(self.split(':')[1])",
+                          "message": "port ranges must be written low:high",
+                          "reason": "FieldValueInvalid"
+                        }
+                      ]
                     },
                     "x-kubernetes-list-type": "atomic"
                   },
@@ -355,6 +371,7 @@
                     "type": "array",
                     "maxItems": 50,
                     "items": {
+                      "maxLength": 15,
                       "pattern": "^.*",
                       "anyOf": [
                         {
@@ -364,7 +381,14 @@
                           "type": "string"
                         }
                       ],
-                      "x-kubernetes-int-or-string": true
+                      "x-kubernetes-int-or-string": true,
+                      "x-kubernetes-validations": [
+                        {
+                          "rule": "type(self) != string || !self.contains(':') || int(self.split(':')[0]) \u003c= int(self.split(':')[1])",
+                          "message": "port ranges must be written low:high",
+                          "reason": "FieldValueInvalid"
+                        }
+                      ]
                     },
                     "x-kubernetes-list-type": "atomic"
                   },
@@ -374,10 +398,11 @@
                     "maxLength": 1024
                   },
                   "ports": {
-                    "description": "Ports is an optional field that restricts the rule to only apply to traffic that has a\nsource (destination) port that matches one of these ranges/values. This value is a\nlist of integers or strings that represent ranges of ports.\n\nSince only some protocols have ports, if any ports are specified it requires the\nProtocol match in the Rule to be set to \"TCP\", \"UDP\", or \"SCTP\".",
+                    "description": "Ports is an optional field that restricts the rule to only apply to traffic that has a\nsource (destination) port that matches one of these ranges/values. This value is a\nlist of integers or strings that represent ranges of ports.\n\nSince only some protocols have ports, if any ports are specified it requires the\nProtocol match in the Rule to be set to \"TCP\", \"UDP\", or \"SCTP\".\nNamed ports are at most 15 characters, like Kubernetes port names.",
                     "type": "array",
                     "maxItems": 50,
                     "items": {
+                      "maxLength": 15,
                       "pattern": "^.*",
                       "anyOf": [
                         {
@@ -387,7 +412,14 @@
                           "type": "string"
                         }
                       ],
-                      "x-kubernetes-int-or-string": true
+                      "x-kubernetes-int-or-string": true,
+                      "x-kubernetes-validations": [
+                        {
+                          "rule": "type(self) != string || !self.contains(':') || int(self.split(':')[0]) \u003c= int(self.split(':')[1])",
+                          "message": "port ranges must be written low:high",
+                          "reason": "FieldValueInvalid"
+                        }
+                      ]
                     },
                     "x-kubernetes-list-type": "atomic"
                   },
@@ -579,6 +611,7 @@
                     "type": "array",
                     "maxItems": 50,
                     "items": {
+                      "maxLength": 15,
                       "pattern": "^.*",
                       "anyOf": [
                         {
@@ -588,7 +621,14 @@
                           "type": "string"
                         }
                       ],
-                      "x-kubernetes-int-or-string": true
+                      "x-kubernetes-int-or-string": true,
+                      "x-kubernetes-validations": [
+                        {
+                          "rule": "type(self) != string || !self.contains(':') || int(self.split(':')[0]) \u003c= int(self.split(':')[1])",
+                          "message": "port ranges must be written low:high",
+                          "reason": "FieldValueInvalid"
+                        }
+                      ]
                     },
                     "x-kubernetes-list-type": "atomic"
                   },
@@ -598,10 +638,11 @@
                     "maxLength": 1024
                   },
                   "ports": {
-                    "description": "Ports is an optional field that restricts the rule to only apply to traffic that has a\nsource (destination) port that matches one of these ranges/values. This value is a\nlist of integers or strings that represent ranges of ports.\n\nSince only some protocols have ports, if any ports are specified it requires the\nProtocol match in the Rule to be set to \"TCP\", \"UDP\", or \"SCTP\".",
+                    "description": "Ports is an optional field that restricts the rule to only apply to traffic that has a\nsource (destination) port that matches one of these ranges/values. This value is a\nlist of integers or strings that represent ranges of ports.\n\nSince only some protocols have ports, if any ports are specified it requires the\nProtocol match in the Rule to be set to \"TCP\", \"UDP\", or \"SCTP\".\nNamed ports are at most 15 characters, like Kubernetes port names.",
                     "type": "array",
                     "maxItems": 50,
                     "items": {
+                      "maxLength": 15,
                       "pattern": "^.*",
                       "anyOf": [
                         {
@@ -611,7 +652,14 @@
                           "type": "string"
                         }
                       ],
-                      "x-kubernetes-int-or-string": true
+                      "x-kubernetes-int-or-string": true,
+                      "x-kubernetes-validations": [
+                        {
+                          "rule": "type(self) != string || !self.contains(':') || int(self.split(':')[0]) \u003c= int(self.split(':')[1])",
+                          "message": "port ranges must be written low:high",
+                          "reason": "FieldValueInvalid"
+                        }
+                      ]
                     },
                     "x-kubernetes-list-type": "atomic"
                   },
@@ -863,6 +911,7 @@
                     "type": "array",
                     "maxItems": 50,
                     "items": {
+                      "maxLength": 15,
                       "pattern": "^.*",
                       "anyOf": [
                         {
@@ -872,7 +921,14 @@
                           "type": "string"
                         }
                       ],
-                      "x-kubernetes-int-or-string": true
+                      "x-kubernetes-int-or-string": true,
+                      "x-kubernetes-validations": [
+                        {
+                          "rule": "type(self) != string || !self.contains(':') || int(self.split(':')[0]) \u003c= int(self.split(':')[1])",
+                          "message": "port ranges must be written low:high",
+                          "reason": "FieldValueInvalid"
+                        }
+                      ]
                     },
                     "x-kubernetes-list-type": "atomic"
                   },
@@ -882,10 +938,11 @@
                     "maxLength": 1024
                   },
                   "ports": {
-                    "description": "Ports is an optional field that restricts the rule to only apply to traffic that has a\nsource (destination) port that matches one of these ranges/values. This value is a\nlist of integers or strings that represent ranges of ports.\n\nSince only some protocols have ports, if any ports are specified it requires the\nProtocol match in the Rule to be set to \"TCP\", \"UDP\", or \"SCTP\".",
+                    "description": "Ports is an optional field that restricts the rule to only apply to traffic that has a\nsource (destination) port that matches one of these ranges/values. This value is a\nlist of integers or strings that represent ranges of ports.\n\nSince only some protocols have ports, if any ports are specified it requires the\nProtocol match in the Rule to be set to \"TCP\", \"UDP\", or \"SCTP\".\nNamed ports are at most 15 characters, like Kubernetes port names.",
                     "type": "array",
                     "maxItems": 50,
                     "items": {
+                      "maxLength": 15,
                       "pattern": "^.*",
                       "anyOf": [
                         {
@@ -895,7 +952,14 @@
                           "type": "string"
                         }
                       ],
-                      "x-kubernetes-int-or-string": true
+                      "x-kubernetes-int-or-string": true,
+                      "x-kubernetes-validations": [
+                        {
+                          "rule": "type(self) != string || !self.contains(':') || int(self.split(':')[0]) \u003c= int(self.split(':')[1])",
+                          "message": "port ranges must be written low:high",
+                          "reason": "FieldValueInvalid"
+                        }
+                      ]
                     },
                     "x-kubernetes-list-type": "atomic"
                   },

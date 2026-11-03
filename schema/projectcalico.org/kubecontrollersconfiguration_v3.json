@@ -223,10 +223,10 @@
           ]
         },
         "logSeverityScreen": {
-          "description": "LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: Info]\nValid values are: \"None\", \"Debug\", \"Info\", \"Warning\", \"Error\", \"Fatal\", \"Panic\".",
+          "description": "LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: Info]\nValid values are: \"Trace\", \"Debug\", \"Info\", \"Warning\", \"Error\", \"Fatal\", \"Panic\".",
           "type": "string",
           "enum": [
-            "None",
+            "Trace",
             "Debug",
             "Info",
             "Warning",
@@ -463,10 +463,10 @@
               ]
             },
             "logSeverityScreen": {
-              "description": "LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: Info]\nValid values are: \"None\", \"Debug\", \"Info\", \"Warning\", \"Error\", \"Fatal\", \"Panic\".",
+              "description": "LogSeverityScreen is the log severity above which logs are sent to the stdout. [Default: Info]\nValid values are: \"Trace\", \"Debug\", \"Info\", \"Warning\", \"Error\", \"Fatal\", \"Panic\".",
               "type": "string",
               "enum": [
-                "None",
+                "Trace",
                 "Debug",
                 "Info",
                 "Warning",
