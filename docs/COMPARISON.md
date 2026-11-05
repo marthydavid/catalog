@@ -9,7 +9,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 91.80% | 4120 | 10883 | 83 |
+| 91.71% | 4124 | 10883 | 83 |
 
 ### Missing Schemas
 
@@ -19,6 +19,10 @@ This page lists missing CRD validation schemas that are present in alternative c
 | agentgatewaymodel | v1alpha1 |
 | agentgatewayparameters | v1alpha1 |
 | agentgatewaypolicy | v1alpha1 |
+
+| agents.x-k8s.io | |
+| --- | --- |
+| sandbox | v1beta1 |
 
 | aigateway.envoyproxy.io | |
 | --- | --- |
@@ -202,6 +206,12 @@ This page lists missing CRD validation schemas that are present in alternative c
 | eventtype | v1beta1, v1beta2, v1beta3 |
 | requestreply | v1alpha1 |
 | trigger | v1 |
+
+| extensions.agents.x-k8s.io | |
+| --- | --- |
+| sandboxclaim | v1beta1 |
+| sandboxtemplate | v1beta1 |
+| sandboxwarmpool | v1beta1 |
 
 | fleet.cattle.io | |
 | --- | --- |

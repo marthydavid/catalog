@@ -2354,7 +2354,7 @@
                     ]
                   },
                   "staticConfigs": {
-                    "description": "staticConfigs is a list of statically configured Alertmanager endpoints in the form\nof `\u003chost\u003e:\u003cport\u003e`. Each entry must be a valid hostname, IPv4 address, or IPv6 address\n(in brackets) followed by a colon and a valid port number (1-65535).\nExamples: \"alertmanager.example.com:9093\", \"192.168.1.100:9093\", \"[::1]:9093\"\nAt least one endpoint must be specified (minimum 1, maximum 10 endpoints).\nEach entry must be unique and non-empty (empty string is invalid).",
+                    "description": "staticConfigs is a list of statically configured Alertmanager endpoints.\nEach entry must be a valid hostname, IPv4 address, or IPv6 address (in brackets),\noptionally followed by a colon and a port number (1-65535).\nWhen the port is omitted, Prometheus uses the default port for the configured scheme\n(80 for HTTP, 443 for HTTPS).\nExamples: \"alertmanager.example.com\", \"alertmanager.example.com:9093\", \"192.168.1.100:9093\", \"[::1]:9093\"\nAt least one endpoint must be specified (minimum 1, maximum 10 endpoints).\nEach entry must be unique and non-empty (empty string is invalid).",
                     "type": "array",
                     "maxItems": 10,
                     "minItems": 1,
@@ -2364,8 +2364,8 @@
                       "minLength": 1,
                       "x-kubernetes-validations": [
                         {
-                          "rule": "isURL('http://' + self) \u0026\u0026 size(url('http://' + self).getHostname()) \u003e 0 \u0026\u0026 size(url('http://' + self).getPort()) \u003e 0 \u0026\u0026 int(url('http://' + self).getPort()) \u003e= 1 \u0026\u0026 int(url('http://' + self).getPort()) \u003c= 65535",
-                          "message": "must be a valid 'host:port' where host is a DNS name, IPv4, or IPv6 address (in brackets), and port is 1-65535"
+                          "rule": "isURL('http://' + self) \u0026\u0026 size(url('http://' + self).getHostname()) \u003e 0 \u0026\u0026 (size(url('http://' + self).getPort()) == 0 || (int(url('http://' + self).getPort()) \u003e= 1 \u0026\u0026 int(url('http://' + self).getPort()) \u003c= 65535))",
+                          "message": "must be a valid host or host:port where host is a DNS name, IPv4, or IPv6 address (in brackets), and port (if specified) is 1-65535"
                         }
                       ]
                     },
