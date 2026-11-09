@@ -85,7 +85,9 @@
           "description": "A list of identifiers of security Profile objects that apply to this endpoint. Each\nprofile is applied in the order that they appear in this list.  Profile rules are applied\nafter the selector-based security policy.",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 253,
+            "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
           },
           "x-kubernetes-list-type": "set"
         }

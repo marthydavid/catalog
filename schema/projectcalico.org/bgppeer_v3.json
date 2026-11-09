@@ -120,7 +120,7 @@
           "maxLength": 64,
           "x-kubernetes-validations": [
             {
-              "rule": "self == '' || isIP(self) || (self.startsWith('[') \u0026\u0026 self.contains(']:') \u0026\u0026 isIP(self.substring(1, self.lastIndexOf(']:'))) \u0026\u0026 self.substring(self.lastIndexOf(']:') + 2).matches('^[0-9]{1,5}$') \u0026\u0026 int(self.substring(self.lastIndexOf(']:') + 2)) \u003e= 1 \u0026\u0026 int(self.substring(self.lastIndexOf(']:') + 2)) \u003c= 65535) || (self.matches('^[0-9.]+:[0-9]{1,5}$') \u0026\u0026 isIP(self.split(':')[0]) \u0026\u0026 int(self.split(':')[1]) \u003e= 1 \u0026\u0026 int(self.split(':')[1]) \u003c= 65535)",
+              "rule": "self == '' || isIP(self) || (self.startsWith('[') \u0026\u0026 self.matches('[]]:[0-9]{1,5}$') \u0026\u0026 isIP(self.substring(1, self.lastIndexOf(']:'))) \u0026\u0026 int(self.substring(self.lastIndexOf(']:') + 2)) \u003e= 1 \u0026\u0026 int(self.substring(self.lastIndexOf(']:') + 2)) \u003c= 65535) || (self.matches('^[0-9.]+:[0-9]{1,5}$') \u0026\u0026 isIP(self.substring(0, self.lastIndexOf(':'))) \u0026\u0026 int(self.substring(self.lastIndexOf(':') + 1)) \u003e= 1 \u0026\u0026 int(self.substring(self.lastIndexOf(':') + 1)) \u003c= 65535)",
               "message": "peerIP must be an IP address, optionally with a port as \u003cIPv4\u003e:\u003cport\u003e or [\u003cIPv6\u003e]:\u003cport\u003e",
               "reason": "FieldValueInvalid"
             }
