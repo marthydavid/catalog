@@ -52,7 +52,14 @@
                 "description": "Value must be of format `aa:nn` or `aa:nn:mm`.\nFor standard community use `aa:nn` format, where `aa` and `nn` are 16 bit number.\nFor large community use `aa:nn:mm` format, where `aa`, `nn` and `mm` are 32 bit number.\nWhere, `aa` is an AS Number, `nn` and `mm` are per-AS identifier.",
                 "type": "string",
                 "maxLength": 40,
-                "pattern": "^(\\d+):(\\d+)$|^(\\d+):(\\d+):(\\d+)$"
+                "pattern": "^(\\d+):(\\d+)$|^(\\d+):(\\d+):(\\d+)$",
+                "x-kubernetes-validations": [
+                  {
+                    "rule": "self.split(':').all(p, p.matches('^[0-9]{1,10}$') \u0026\u0026 int(p) \u003c= (size(self.split(':')) == 2 ? 65535 : 4294967295))",
+                    "message": "standard community values must be 16-bit numbers and large community values 32-bit numbers",
+                    "reason": "FieldValueInvalid"
+                  }
+                ]
               }
             },
             "additionalProperties": false,
