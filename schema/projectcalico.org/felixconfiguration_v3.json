@@ -742,7 +742,14 @@
                 "reason": "FieldValueInvalid"
               }
             ]
-          }
+          },
+          "x-kubernetes-validations": [
+            {
+              "rule": "self.all(p, type(p) == int || p.matches('^[0-9:]+$'))",
+              "message": "kubeNodePortRanges must not contain named ports",
+              "reason": "FieldValueInvalid"
+            }
+          ]
         },
         "liveMigrationRouteConvergenceTime": {
           "description": "LiveMigrationRouteConvergenceTime is the time to keep elevated route priority after a\nVM live migration completes.  This allows routes to converge across the cluster before\nreverting to normal priority. [Default: 30s]",
