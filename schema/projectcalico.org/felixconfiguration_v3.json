@@ -428,11 +428,20 @@
           "type": "string"
         },
         "externalNodesList": {
-          "description": "ExternalNodesCIDRList is a list of CIDR's of external, non-Calico nodes from which VXLAN/IPIP overlay traffic\nwill be allowed.  By default, external tunneled traffic is blocked to reduce attack surface.",
+          "description": "ExternalNodesCIDRList is a list of CIDR's of external, non-Calico nodes from which VXLAN/IPIP overlay traffic\nwill be allowed.  By default, external tunneled traffic is blocked to reduce attack surface.\nEntries must be IPv4 CIDRs or IPv4 addresses.",
           "type": "array",
+          "maxItems": 10000,
           "items": {
-            "type": "string"
-          }
+            "type": "string",
+            "maxLength": 49
+          },
+          "x-kubernetes-validations": [
+            {
+              "rule": "self.all(c, isCIDR(c) ? cidr(c).ip().family() == 4 : (isIP(c) \u0026\u0026 ip(c).family() == 4))",
+              "message": "externalNodesList entries must be IPv4 CIDRs or IPv4 addresses",
+              "reason": "FieldValueInvalid"
+            }
+          ]
         },
         "failsafeInboundHostPorts": {
           "description": "FailsafeInboundHostPorts is a list of ProtoPort struct objects including UDP/TCP/SCTP ports and CIDRs that Felix will\nallow incoming traffic to host endpoints on irrespective of the security policy. This is useful to avoid accidentally\ncutting off a host with incorrect configuration. For backwards compatibility, if the protocol is not specified,\nit defaults to \"tcp\". If a CIDR is not specified, it will allow traffic from all addresses. To disable all inbound host ports,\nuse the value \"[]\". The default value allows ssh access, DHCP, BGP, etcd and the Kubernetes API.\n[Default: tcp:22, udp:68, tcp:179, tcp:2379, tcp:2380, tcp:5473, tcp:6443, tcp:6666, tcp:6667 ]",
@@ -922,8 +931,10 @@
           "maxLength": 1024
         },
         "openstackRegion": {
-          "description": "OpenstackRegion is the name of the region that a particular Felix belongs to. In a multi-region\nCalico/OpenStack deployment, this must be configured somehow for each Felix (here in the datamodel,\nor in felix.cfg or the environment on each compute node), and must match the [calico]\nopenstack_region value configured in neutron.conf on each node. [Default: Empty]",
-          "type": "string"
+          "description": "OpenstackRegion is the name of the region that a particular Felix belongs to. In a multi-region\nCalico/OpenStack deployment, this must be configured somehow for each Felix (here in the datamodel,\nor in felix.cfg or the environment on each compute node), and must match the [calico]\nopenstack_region value configured in neutron.conf on each node. The region is used in a\nnamespace name, so it must be a DNS label of at most 46 characters. [Default: Empty]",
+          "type": "string",
+          "maxLength": 46,
+          "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?)?$"
         },
         "policySyncPathPrefix": {
           "description": "PolicySyncPathPrefix is used to by Felix to communicate policy changes to external services,\nlike Application layer policy. [Default: Empty]",
