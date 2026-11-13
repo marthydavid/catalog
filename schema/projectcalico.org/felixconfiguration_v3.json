@@ -137,11 +137,27 @@
         },
         "bpfDataIfacePattern": {
           "description": "BPFDataIfacePattern is a regular expression that controls which interfaces Felix should attach BPF programs to\nin order to catch traffic to/from the network.  This needs to match the interfaces that Calico workload traffic\nflows over as well as any interfaces that handle incoming traffic to nodeports and services from outside the\ncluster.  It should not match the workload interfaces (usually named cali...) or any other special device managed\nby Calico itself (e.g., tunnels).",
-          "type": "string"
+          "type": "string",
+          "maxLength": 1024,
+          "x-kubernetes-validations": [
+            {
+              "rule": "type('x'.matches(self)) == bool",
+              "message": "must be a valid regular expression",
+              "reason": "FieldValueInvalid"
+            }
+          ]
         },
         "bpfDisableGROForIfaces": {
           "description": "BPFDisableGROForIfaces is a regular expression that controls which interfaces Felix should disable the\nGeneric Receive Offload [GRO] option.  It should not match the workload interfaces (usually named cali...).",
-          "type": "string"
+          "type": "string",
+          "maxLength": 1024,
+          "x-kubernetes-validations": [
+            {
+              "rule": "type('x'.matches(self)) == bool",
+              "message": "must be a valid regular expression",
+              "reason": "FieldValueInvalid"
+            }
+          ]
         },
         "bpfDisableUnprivileged": {
           "description": "BPFDisableUnprivileged, if enabled, Felix sets the kernel.unprivileged_bpf_disabled sysctl to disable\nunprivileged use of BPF.  This ensures that unprivileged users cannot access Calico's BPF maps and\ncannot insert their own BPF programs to interfere with Calico's. [Default: true]",
@@ -232,7 +248,15 @@
         },
         "bpfL3IfacePattern": {
           "description": "BPFL3IfacePattern is a regular expression that allows to list tunnel devices like wireguard or vxlan (i.e., L3 devices)\nin addition to BPFDataIfacePattern. That is, tunnel interfaces not created by Calico, that Calico workload traffic flows\nover as well as any interfaces that handle incoming traffic to nodeports and services from outside the cluster.",
-          "type": "string"
+          "type": "string",
+          "maxLength": 1024,
+          "x-kubernetes-validations": [
+            {
+              "rule": "type('x'.matches(self)) == bool",
+              "message": "must be a valid regular expression",
+              "reason": "FieldValueInvalid"
+            }
+          ]
         },
         "bpfLogFilters": {
           "description": "BPFLogFilters is a map of key=values where the value is\na pcap filter expression and the key is an interface name with 'all'\ndenoting all interfaces, 'weps' all workload endpoints and 'heps' all host\nendpoints.\n\nWhen specified as an env var, it accepts a comma-separated list of\nkey=values.\n[Default: unset - means all debug logs are emitted]",
@@ -803,7 +827,15 @@
         },
         "logDebugFilenameRegex": {
           "description": "LogDebugFilenameRegex controls which source code files have their Debug log output included in the logs.\nOnly logs from files with names that match the given regular expression are included.  The filter only applies\nto Debug level logs.",
-          "type": "string"
+          "type": "string",
+          "maxLength": 1024,
+          "x-kubernetes-validations": [
+            {
+              "rule": "type('x'.matches(self)) == bool",
+              "message": "must be a valid regular expression",
+              "reason": "FieldValueInvalid"
+            }
+          ]
         },
         "logFilePath": {
           "description": "LogFilePath is the full path to the Felix log. Set to none to disable file logging. [Default: /var/log/calico/felix.log]",
@@ -843,7 +875,15 @@
         },
         "mtuIfacePattern": {
           "description": "MTUIfacePattern is a regular expression that controls which interfaces Felix should scan in order\nto calculate the host's MTU.\nThis should not match workload interfaces (usually named cali...).",
-          "type": "string"
+          "type": "string",
+          "maxLength": 1024,
+          "x-kubernetes-validations": [
+            {
+              "rule": "type('x'.matches(self)) == bool",
+              "message": "must be a valid regular expression",
+              "reason": "FieldValueInvalid"
+            }
+          ]
         },
         "natOutgoingAddress": {
           "description": "NATOutgoingAddress specifies an address to use when performing source NAT for traffic in a natOutgoing pool that\nis leaving the network. By default the address used is an address on the interface the traffic is leaving on\n(i.e. it uses the iptables MASQUERADE target).",
@@ -888,7 +928,15 @@
         },
         "nftablesFlowTableDataIfacePattern": {
           "description": "NFTablesFlowTableDataIfacePattern is a regular expression that controls which host\ninterfaces are added to the nftables flowtable, so that traffic forwarded between those\ninterfaces and local workloads is offloaded to the flowtable fast path. Leave empty to\noffload only workload-to-workload traffic. Only takes effect when NFTablesFlowTableOffload\nis not Disabled. [Default: \"\"]",
-          "type": "string"
+          "type": "string",
+          "maxLength": 1024,
+          "x-kubernetes-validations": [
+            {
+              "rule": "type('x'.matches(self)) == bool",
+              "message": "must be a valid regular expression",
+              "reason": "FieldValueInvalid"
+            }
+          ]
         },
         "nftablesFlowTableOffload": {
           "description": "NFTablesFlowTableOffload controls which traffic nftables flowtable offload is enabled for,\nfor improved forwarding performance. When set to \"All\", established connections accepted by\nCalico policy are offloaded to the kernel's flowtable fast path. Only applies when\nnftables mode is active. [Default: Disabled]",
