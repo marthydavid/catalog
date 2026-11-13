@@ -1748,7 +1748,7 @@
                   "additionalProperties": false
                 },
                 "nvmExpressSubsystem": {
-                  "description": "nvmExpressSubsystem configures the nvmesubsystem collector, which\ncollects statistics about NVM Express (NVMe) subsystem devices.\nnvmExpressSubsystem is optional.\nWhen omitted, this means no opinion and the platform is left to choose a reasonable default,\nwhich is subject to change over time. The current default is enabled.",
+                  "description": "nvmExpressSubsystem configures the nvmesubsystem collector, which\ncollects statistics about NVM Express (NVMe) subsystem devices.\nnvmExpressSubsystem is optional.\nWhen omitted, this means no opinion and the platform is left to choose a reasonable default,\nwhich is subject to change over time. The current default is enabled.\nWhen enabled, if /sys/class/nvme-subsystem/ is missing or inaccessible, node-exporter\nreports node_scrape_collector_success{collector=\"nvmesubsystem\"} as 0.\nThis is intentional and helps detect missing drivers or configuration problems.\nIf no nodes in the cluster require NVMe subsystem monitoring, set\nnvmExpressSubsystem.collectionPolicy to DoNotCollect to disable this collector cluster-wide.\nThis setting does not support per-node configuration.",
                   "type": "object",
                   "required": [
                     "collectionPolicy"
