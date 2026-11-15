@@ -9,7 +9,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 91.45% | 4138 | 10904 | 83 |
+| 91.42% | 4139 | 10904 | 83 |
 
 ### Missing Schemas
 
@@ -175,6 +175,10 @@ This page lists missing CRD validation schemas that are present in alternative c
 | tcotracespolicies | v1alpha1 |
 | view | v1alpha1 |
 | viewfolder | v1alpha1 |
+
+| core.libopenstorage.org | |
+| --- | --- |
+| storagecluster | v1 |
 
 | datadoghq.com | |
 | --- | --- |
