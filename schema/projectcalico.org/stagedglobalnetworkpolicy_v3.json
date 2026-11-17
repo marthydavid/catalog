@@ -192,7 +192,8 @@
                       "namespace": {
                         "description": "Namespace specifies the namespace of the given Service. If left empty, the rule\nwill match within this policy's namespace.",
                         "type": "string",
-                        "maxLength": 253
+                        "maxLength": 253,
+                        "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*)?$"
                       }
                     },
                     "additionalProperties": false
@@ -229,6 +230,11 @@
                     "rule": "!has(self.services) || (!has(self.nets) || size(self.nets) == 0) \u0026\u0026 (!has(self.notNets) || size(self.notNets) == 0)",
                     "message": "cannot specify Nets/NotNets and Services on the same rule",
                     "reason": "FieldValueForbidden"
+                  },
+                  {
+                    "rule": "!has(self.namespaceSelector) || !self.namespaceSelector.contains('global(') || self.namespaceSelector.matches('^ *global[(] *[)] *$')",
+                    "message": "a namespaceSelector that uses global() must be exactly global()",
+                    "reason": "FieldValueInvalid"
                   }
                 ]
               },
@@ -513,7 +519,8 @@
                       "namespace": {
                         "description": "Namespace specifies the namespace of the given Service. If left empty, the rule\nwill match within this policy's namespace.",
                         "type": "string",
-                        "maxLength": 253
+                        "maxLength": 253,
+                        "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*)?$"
                       }
                     },
                     "additionalProperties": false
@@ -550,6 +557,11 @@
                     "rule": "!has(self.services) || (!has(self.nets) || size(self.nets) == 0) \u0026\u0026 (!has(self.notNets) || size(self.notNets) == 0)",
                     "message": "cannot specify Nets/NotNets and Services on the same rule",
                     "reason": "FieldValueForbidden"
+                  },
+                  {
+                    "rule": "!has(self.namespaceSelector) || !self.namespaceSelector.contains('global(') || self.namespaceSelector.matches('^ *global[(] *[)] *$')",
+                    "message": "a namespaceSelector that uses global() must be exactly global()",
+                    "reason": "FieldValueInvalid"
                   }
                 ]
               }
@@ -618,7 +630,14 @@
               }
             ]
           },
-          "x-kubernetes-list-type": "atomic"
+          "x-kubernetes-list-type": "atomic",
+          "x-kubernetes-validations": [
+            {
+              "rule": "self.all(r, !has(r.destination) || !has(r.destination.services) || (has(r.destination.services.namespace) \u0026\u0026 size(r.destination.services.namespace) \u003e 0))",
+              "message": "services in a global policy must specify a namespace",
+              "reason": "FieldValueRequired"
+            }
+          ]
         },
         "ingress": {
           "description": "The ordered set of ingress rules.  Each rule contains a set of packet match criteria and\na corresponding action to apply. Limited to 1024 rules per policy.",
@@ -784,7 +803,8 @@
                       "namespace": {
                         "description": "Namespace specifies the namespace of the given Service. If left empty, the rule\nwill match within this policy's namespace.",
                         "type": "string",
-                        "maxLength": 253
+                        "maxLength": 253,
+                        "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*)?$"
                       }
                     },
                     "additionalProperties": false
@@ -821,6 +841,11 @@
                     "rule": "!has(self.services) || (!has(self.nets) || size(self.nets) == 0) \u0026\u0026 (!has(self.notNets) || size(self.notNets) == 0)",
                     "message": "cannot specify Nets/NotNets and Services on the same rule",
                     "reason": "FieldValueForbidden"
+                  },
+                  {
+                    "rule": "!has(self.namespaceSelector) || !self.namespaceSelector.contains('global(') || self.namespaceSelector.matches('^ *global[(] *[)] *$')",
+                    "message": "a namespaceSelector that uses global() must be exactly global()",
+                    "reason": "FieldValueInvalid"
                   }
                 ]
               },
@@ -1105,7 +1130,8 @@
                       "namespace": {
                         "description": "Namespace specifies the namespace of the given Service. If left empty, the rule\nwill match within this policy's namespace.",
                         "type": "string",
-                        "maxLength": 253
+                        "maxLength": 253,
+                        "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*)?$"
                       }
                     },
                     "additionalProperties": false
@@ -1142,6 +1168,11 @@
                     "rule": "!has(self.services) || (!has(self.nets) || size(self.nets) == 0) \u0026\u0026 (!has(self.notNets) || size(self.notNets) == 0)",
                     "message": "cannot specify Nets/NotNets and Services on the same rule",
                     "reason": "FieldValueForbidden"
+                  },
+                  {
+                    "rule": "!has(self.namespaceSelector) || !self.namespaceSelector.contains('global(') || self.namespaceSelector.matches('^ *global[(] *[)] *$')",
+                    "message": "a namespaceSelector that uses global() must be exactly global()",
+                    "reason": "FieldValueInvalid"
                   }
                 ]
               }
@@ -1210,7 +1241,14 @@
               }
             ]
           },
-          "x-kubernetes-list-type": "atomic"
+          "x-kubernetes-list-type": "atomic",
+          "x-kubernetes-validations": [
+            {
+              "rule": "self.all(r, !has(r.source) || !has(r.source.services) || (has(r.source.services.namespace) \u0026\u0026 size(r.source.services.namespace) \u003e 0))",
+              "message": "services in a global policy must specify a namespace",
+              "reason": "FieldValueRequired"
+            }
+          ]
         },
         "namespaceSelector": {
           "description": "NamespaceSelector is an optional field for an expression used to select a pod based on namespaces.",
@@ -1314,6 +1352,26 @@
           "rule": "!has(self.namespaceSelector) || !self.namespaceSelector.contains('global(')",
           "message": "global() can only be used in an EntityRule namespaceSelector",
           "reason": "FieldValueInvalid"
+        },
+        {
+          "rule": "!has(self.egress) || self.egress.all(r, !has(r.source) || !has(r.source.services))",
+          "message": "services are not allowed in an egress rule source",
+          "reason": "FieldValueForbidden"
+        },
+        {
+          "rule": "!has(self.ingress) || self.ingress.all(r, !has(r.destination) || !has(r.destination.services))",
+          "message": "services are not allowed in an ingress rule destination",
+          "reason": "FieldValueForbidden"
+        },
+        {
+          "rule": "!has(self.egress) || self.egress.all(r, !has(r.http))",
+          "message": "HTTP match is not allowed in egress rules",
+          "reason": "FieldValueForbidden"
+        },
+        {
+          "rule": "!has(self.stagedAction) || self.stagedAction != 'Delete' || (!has(self.order) \u0026\u0026 (!has(self.ingress) || size(self.ingress) == 0) \u0026\u0026 (!has(self.egress) || size(self.egress) == 0) \u0026\u0026 (!has(self.selector) || size(self.selector) == 0) \u0026\u0026 (!has(self.serviceAccountSelector) || size(self.serviceAccountSelector) == 0) \u0026\u0026 (!has(self.performanceHints) || size(self.performanceHints) == 0) \u0026\u0026 (!has(self.doNotTrack) || !self.doNotTrack) \u0026\u0026 (!has(self.preDNAT) || !self.preDNAT) \u0026\u0026 (!has(self.applyOnForward) || !self.applyOnForward) \u0026\u0026 (!has(self.namespaceSelector) || size(self.namespaceSelector) == 0))",
+          "message": "spec fields other than tier must be empty when stagedAction is Delete",
+          "reason": "FieldValueForbidden"
         }
       ]
     }

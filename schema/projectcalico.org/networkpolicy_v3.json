@@ -183,7 +183,8 @@
                       "namespace": {
                         "description": "Namespace specifies the namespace of the given Service. If left empty, the rule\nwill match within this policy's namespace.",
                         "type": "string",
-                        "maxLength": 253
+                        "maxLength": 253,
+                        "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*)?$"
                       }
                     },
                     "additionalProperties": false
@@ -220,6 +221,11 @@
                     "rule": "!has(self.services) || (!has(self.nets) || size(self.nets) == 0) \u0026\u0026 (!has(self.notNets) || size(self.notNets) == 0)",
                     "message": "cannot specify Nets/NotNets and Services on the same rule",
                     "reason": "FieldValueForbidden"
+                  },
+                  {
+                    "rule": "!has(self.namespaceSelector) || !self.namespaceSelector.contains('global(') || self.namespaceSelector.matches('^ *global[(] *[)] *$')",
+                    "message": "a namespaceSelector that uses global() must be exactly global()",
+                    "reason": "FieldValueInvalid"
                   }
                 ]
               },
@@ -504,7 +510,8 @@
                       "namespace": {
                         "description": "Namespace specifies the namespace of the given Service. If left empty, the rule\nwill match within this policy's namespace.",
                         "type": "string",
-                        "maxLength": 253
+                        "maxLength": 253,
+                        "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*)?$"
                       }
                     },
                     "additionalProperties": false
@@ -541,6 +548,11 @@
                     "rule": "!has(self.services) || (!has(self.nets) || size(self.nets) == 0) \u0026\u0026 (!has(self.notNets) || size(self.notNets) == 0)",
                     "message": "cannot specify Nets/NotNets and Services on the same rule",
                     "reason": "FieldValueForbidden"
+                  },
+                  {
+                    "rule": "!has(self.namespaceSelector) || !self.namespaceSelector.contains('global(') || self.namespaceSelector.matches('^ *global[(] *[)] *$')",
+                    "message": "a namespaceSelector that uses global() must be exactly global()",
+                    "reason": "FieldValueInvalid"
                   }
                 ]
               }
@@ -775,7 +787,8 @@
                       "namespace": {
                         "description": "Namespace specifies the namespace of the given Service. If left empty, the rule\nwill match within this policy's namespace.",
                         "type": "string",
-                        "maxLength": 253
+                        "maxLength": 253,
+                        "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*)?$"
                       }
                     },
                     "additionalProperties": false
@@ -812,6 +825,11 @@
                     "rule": "!has(self.services) || (!has(self.nets) || size(self.nets) == 0) \u0026\u0026 (!has(self.notNets) || size(self.notNets) == 0)",
                     "message": "cannot specify Nets/NotNets and Services on the same rule",
                     "reason": "FieldValueForbidden"
+                  },
+                  {
+                    "rule": "!has(self.namespaceSelector) || !self.namespaceSelector.contains('global(') || self.namespaceSelector.matches('^ *global[(] *[)] *$')",
+                    "message": "a namespaceSelector that uses global() must be exactly global()",
+                    "reason": "FieldValueInvalid"
                   }
                 ]
               },
@@ -1096,7 +1114,8 @@
                       "namespace": {
                         "description": "Namespace specifies the namespace of the given Service. If left empty, the rule\nwill match within this policy's namespace.",
                         "type": "string",
-                        "maxLength": 253
+                        "maxLength": 253,
+                        "pattern": "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*)?$"
                       }
                     },
                     "additionalProperties": false
@@ -1133,6 +1152,11 @@
                     "rule": "!has(self.services) || (!has(self.nets) || size(self.nets) == 0) \u0026\u0026 (!has(self.notNets) || size(self.notNets) == 0)",
                     "message": "cannot specify Nets/NotNets and Services on the same rule",
                     "reason": "FieldValueForbidden"
+                  },
+                  {
+                    "rule": "!has(self.namespaceSelector) || !self.namespaceSelector.contains('global(') || self.namespaceSelector.matches('^ *global[(] *[)] *$')",
+                    "message": "a namespaceSelector that uses global() must be exactly global()",
+                    "reason": "FieldValueInvalid"
                   }
                 ]
               }
@@ -1260,6 +1284,21 @@
           "rule": "!has(self.serviceAccountSelector) || !self.serviceAccountSelector.contains('global(')",
           "message": "global() can only be used in an EntityRule namespaceSelector",
           "reason": "FieldValueInvalid"
+        },
+        {
+          "rule": "!has(self.egress) || self.egress.all(r, !has(r.source) || !has(r.source.services))",
+          "message": "services are not allowed in an egress rule source",
+          "reason": "FieldValueForbidden"
+        },
+        {
+          "rule": "!has(self.ingress) || self.ingress.all(r, !has(r.destination) || !has(r.destination.services))",
+          "message": "services are not allowed in an ingress rule destination",
+          "reason": "FieldValueForbidden"
+        },
+        {
+          "rule": "!has(self.egress) || self.egress.all(r, !has(r.http))",
+          "message": "HTTP match is not allowed in egress rules",
+          "reason": "FieldValueForbidden"
         }
       ]
     }

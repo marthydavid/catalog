@@ -191,7 +191,8 @@
                 "minItems": 1,
                 "items": {
                   "type": "string"
-                }
+                },
+                "x-kubernetes-list-type": "atomic"
               },
               "includeSubDomainsPolicy": {
                 "description": "includeSubDomainsPolicy means the HSTS Policy should apply to any subdomains of the host's\ndomain name.  Thus, for the host bar.foo.com, if includeSubDomainsPolicy was set to RequireIncludeSubDomains:\n- the host app.bar.foo.com would inherit the HSTS Policy of bar.foo.com\n- the host bar.foo.com would inherit the HSTS Policy of bar.foo.com\n- the host foo.com would NOT inherit the HSTS Policy of bar.foo.com\n- the host def.foo.com would NOT inherit the HSTS Policy of bar.foo.com",
@@ -281,7 +282,8 @@
               }
             },
             "additionalProperties": false
-          }
+          },
+          "x-kubernetes-list-type": "atomic"
         }
       },
       "additionalProperties": false
@@ -373,7 +375,8 @@
                   "maxLength": 512,
                   "minLength": 1,
                   "pattern": "^system:serviceaccount:[a-z0-9]([-a-z0-9]*[a-z0-9])?:[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
-                }
+                },
+                "x-kubernetes-list-type": "atomic"
               },
               "currentHostnames": {
                 "description": "currentHostnames is the list of current names used by the route. Typically, this list should consist of a single\nhostname, but if multiple hostnames are supported by the route the operator may write multiple entries to this list.",
@@ -383,7 +386,8 @@
                   "description": "Hostname is a host name as defined by RFC-1123.",
                   "type": "string",
                   "pattern": "^([a-zA-Z0-9\\p{S}\\p{L}]((-?[a-zA-Z0-9\\p{S}\\p{L}]{0,62})?)|([a-zA-Z0-9\\p{S}\\p{L}](([a-zA-Z0-9-\\p{S}\\p{L}]{0,61}[a-zA-Z0-9\\p{S}\\p{L}])?)(\\.)){1,}([a-zA-Z\\p{L}]){2,63})$|^(([a-z0-9][-a-z0-9]{0,61}[a-z0-9]|[a-z0-9]{1,63})[\\.]){0,}([a-z0-9][-a-z0-9]{0,61}[a-z0-9]|[a-z0-9]{1,63})$"
-                }
+                },
+                "x-kubernetes-list-type": "atomic"
               },
               "defaultHostname": {
                 "description": "defaultHostname is the hostname of this route prior to customization.",
@@ -434,7 +438,8 @@
                     }
                   },
                   "additionalProperties": false
-                }
+                },
+                "x-kubernetes-list-type": "atomic"
               }
             },
             "additionalProperties": false
