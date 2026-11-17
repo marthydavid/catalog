@@ -147,6 +147,12 @@
       "rule": "self.metadata.name != 'kube-baseline' || (has(self.spec.order) \u0026\u0026 self.spec.order == 10000000.0)",
       "message": "kube-baseline tier order must be 10000000",
       "reason": "FieldValueInvalid"
+    },
+    {
+      "rule": "oldSelf.hasValue() || (size(self.metadata.name) \u003c= 63 \u0026\u0026 self.metadata.name.matches('^[a-z0-9]([-a-z0-9]*[a-z0-9])?$'))",
+      "message": "tier name must be a DNS label of at most 63 characters, with no dots",
+      "reason": "FieldValueInvalid",
+      "optionalOldSelf": true
     }
   ]
 }

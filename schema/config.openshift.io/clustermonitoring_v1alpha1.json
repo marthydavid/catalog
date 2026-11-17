@@ -2371,12 +2371,12 @@
                     },
                     "x-kubernetes-list-type": "set"
                   },
-                  "timeoutSeconds": {
-                    "description": "timeoutSeconds defines the timeout in seconds for requests to Alertmanager.\nWhen omitted, this means no opinion and the platform is left to choose a reasonable default, which is subject to change over time.\nCurrently the default is 10 seconds.\nMinimum value is 1 second.\nMaximum value is 600 seconds (10 minutes).",
+                  "timeoutMilliseconds": {
+                    "description": "timeoutMilliseconds defines the timeout in milliseconds for requests to Alertmanager.\nWhen omitted, this means no opinion and the platform is left to choose a reasonable default, which is subject to change over time.\nCurrently the default is 10000 milliseconds (10 seconds).\nMinimum value is 100 milliseconds.\nMaximum value is 600000 milliseconds (10 minutes).",
                     "type": "integer",
                     "format": "int32",
-                    "maximum": 600,
-                    "minimum": 1
+                    "maximum": 600000,
+                    "minimum": 100
                   },
                   "tlsConfig": {
                     "description": "tlsConfig defines the TLS settings to use for Alertmanager connections.\nWhen omitted, this means no opinion and the platform is left to choose a reasonable default, which is subject to change over time.",
