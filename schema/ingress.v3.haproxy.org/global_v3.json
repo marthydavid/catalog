@@ -35,35 +35,6 @@
           "description": "cluster secret",
           "type": "string"
         },
-        "cpu_affinity": {
-          "description": "cpu affinity",
-          "type": "object",
-          "required": [
-            "affinity"
-          ],
-          "properties": {
-            "affinity": {
-              "description": "affinity\nRequired: true\nEnum: [\"per-core\",\"per-group\",\"auto\",\"per-thread\",\"per-ccx\"]",
-              "type": "string",
-              "enum": [
-                "per-core",
-                "per-group",
-                "auto",
-                "per-thread",
-                "per-ccx"
-              ]
-            },
-            "argument": {
-              "description": "Optional argument used together with the per-group affinity.\nEnum: [\"auto\",\"loose\"]",
-              "type": "string",
-              "enum": [
-                "auto",
-                "loose"
-              ]
-            }
-          },
-          "additionalProperties": false
-        },
         "cpu_maps": {
           "description": "CPU maps",
           "type": "array",
@@ -200,7 +171,7 @@
           "additionalProperties": false
         },
         "description": {
-          "description": "Text that describes the instance",
+          "description": "description",
           "type": "string"
         },
         "device_atlas_options": {
@@ -259,7 +230,7 @@
               }
             },
             "resetenv": {
-              "description": "Remove all environment variables except the ones specified",
+              "description": "resetenv",
               "type": "string"
             },
             "setenv": {
@@ -286,7 +257,7 @@
               }
             },
             "unsetenv": {
-              "description": "Removes environment variables specified in arguments",
+              "description": "unsetenv",
               "type": "string"
             }
           },
@@ -329,7 +300,7 @@
           "additionalProperties": false
         },
         "force_cfg_parser_pause": {
-          "description": "Pause the configuration parser to simulate long reloads\nMinimum: 0",
+          "description": "force cfg parser pause\nMinimum: 0",
           "type": "integer",
           "format": "int64",
           "minimum": 0
@@ -340,7 +311,7 @@
           "format": "int64"
         },
         "grace": {
-          "description": "Defines a delay between SIGUSR1 and real soft-stop\nMinimum: 0",
+          "description": "grace\nMinimum: 0",
           "type": "integer",
           "format": "int64",
           "minimum": 0
@@ -477,7 +448,7 @@
           "additionalProperties": false
         },
         "http_err_codes": {
-          "description": "Replace, reduce or extend the list of status codes that define an error",
+          "description": "http err codes",
           "type": "array",
           "items": {
             "description": "HTTPCodes HTTP codes\n\nswagger:model HTTPCodes",
@@ -496,7 +467,7 @@
           }
         },
         "http_fail_codes": {
-          "description": "Replace, reduce or extend the list of status codes that define a failure",
+          "description": "http fail codes",
           "type": "array",
           "items": {
             "description": "HTTPCodes HTTP codes\n\nswagger:model HTTPCodes",
@@ -521,25 +492,6 @@
         "insecure_setuid_wanted": {
           "description": "insecure setuid wanted",
           "type": "boolean"
-        },
-        "jwt_options": {
-          "description": "jwt options",
-          "type": "object",
-          "properties": {
-            "allow_none_alg": {
-              "description": "Allow unsigned JWTs using the none algorithm in the jwt_verify converter.",
-              "type": "boolean"
-            },
-            "decrypt_alg_list": {
-              "description": "Colon-separated list of allowed JWT decryption algorithms; supports ALL and exclusions prefixed with !.",
-              "type": "string"
-            },
-            "decrypt_enc_list": {
-              "description": "Colon-separated list of allowed JWT encryption algorithms; supports ALL and exclusions prefixed with !.",
-              "type": "string"
-            }
-          },
-          "additionalProperties": false
         },
         "limited_quic": {
           "description": "limited quic",
@@ -751,17 +703,11 @@
           "description": "master worker",
           "type": "boolean"
         },
-        "max_threads_per_group": {
-          "description": "Defines the maximum number of threads in a thread group. The minimum value is\n1 and the maximum value is 64 on 64-bit systems (32 on 32-bit systems).\n\nMinimum: 1",
-          "type": "integer",
-          "format": "int64",
-          "minimum": 1
-        },
         "metadata": {
           "x-kubernetes-preserve-unknown-fields": true
         },
         "mworker_max_reloads": {
-          "description": "The number of times a worker can survive a reload\nMinimum: 0",
+          "description": "mworker max reloads\nMinimum: 0",
           "type": "integer",
           "format": "int64",
           "minimum": 0
@@ -772,7 +718,7 @@
           "format": "int64"
         },
         "no_quic": {
-          "description": "Disable the use of the QUIC protocol",
+          "description": "no quic",
           "type": "boolean"
         },
         "node": {
@@ -860,7 +806,7 @@
               "format": "int64"
             },
             "maxcomprate": {
-              "description": "Maximum per-process input compression rate",
+              "description": "maxcomprate",
               "type": "integer",
               "format": "int64"
             },
@@ -870,7 +816,7 @@
               "format": "int64"
             },
             "maxconnrate": {
-              "description": "Maximum per-process number of concurrent connections",
+              "description": "maxconnrate",
               "type": "integer",
               "format": "int64"
             },
@@ -880,41 +826,33 @@
               "format": "int64"
             },
             "maxsessrate": {
-              "description": "Maximum per-process number of sessions per second",
+              "description": "maxsessrate",
               "type": "integer",
               "format": "int64"
             },
             "maxzlibmem": {
-              "description": "Maximum amount of RAM in megabytes per process usable by the zlib",
+              "description": "maxzlibmem",
               "type": "integer",
               "format": "int64"
             },
-            "no_memory_trimming": {
-              "description": "Disables memory trimming (malloc_trim) on memory shortage or reload",
-              "type": "boolean"
-            },
             "noepoll": {
-              "description": "Disable the use of the \"epoll\" event polling system on Linux",
+              "description": "noepoll",
               "type": "boolean"
             },
             "noevports": {
-              "description": "Disable the use of the event ports event polling system on SunOS system derived from Solaris 10 and later",
+              "description": "noevports",
               "type": "boolean"
             },
             "nogetaddrinfo": {
-              "description": "Disable the use of getaddrinfo for name resolving",
+              "description": "nogetaddrinfo",
               "type": "boolean"
             },
             "nokqueue": {
-              "description": "Disable the use of the \"kqueue\" event polling system on BSD",
-              "type": "boolean"
-            },
-            "noktls": {
-              "description": "Disables the use of ktls. It is equivalent to the command line argument \"-dT\"",
+              "description": "nokqueue",
               "type": "boolean"
             },
             "nopoll": {
-              "description": "Disable the use of the \"poll\" event polling system",
+              "description": "nopoll",
               "type": "boolean"
             },
             "noreuseport": {
@@ -922,11 +860,11 @@
               "type": "boolean"
             },
             "nosplice": {
-              "description": "Disable the use of kernel tcp splicing between sockets on Linux",
+              "description": "nosplice",
               "type": "boolean"
             },
             "profiling_memory": {
-              "description": "Enable or disables per-function memory profiling\nEnum: [\"enabled\",\"disabled\"]",
+              "description": "profiling memory\nEnum: [\"enabled\",\"disabled\"]",
               "type": "string",
               "enum": [
                 "enabled",
@@ -934,7 +872,7 @@
               ]
             },
             "profiling_tasks": {
-              "description": "Enable or disables per-task CPU profiling\nEnum: [\"auto\",\"enabled\",\"disabled\"]",
+              "description": "profiling tasks\nEnum: [\"auto\",\"enabled\",\"disabled\"]",
               "type": "string",
               "enum": [
                 "auto",
@@ -953,7 +891,7 @@
               "pattern": "^[^\\s]+$"
             },
             "spread_checks": {
-              "description": "Add some randomness in the check interval",
+              "description": "spread checks",
               "type": "integer",
               "format": "int64"
             },
@@ -1030,10 +968,6 @@
                 "description": "ca verify file",
                 "type": "string"
               },
-              "cc": {
-                "description": "cc",
-                "type": "string"
-              },
               "ciphers": {
                 "description": "ciphers",
                 "type": "string"
@@ -1055,7 +989,7 @@
                 "type": "string"
               },
               "crt_list": {
-                "description": "All of the certificate list files delimited by ':' as mentioned as a crt-list on the bind line.",
+                "description": "crt list",
                 "type": "string"
               },
               "curves": {
@@ -1139,18 +1073,6 @@
               },
               "interface": {
                 "description": "interface",
-                "type": "string"
-              },
-              "ktls": {
-                "description": "ktls\nEnum: [\"on\",\"off\"]",
-                "type": "string",
-                "enum": [
-                  "on",
-                  "off"
-                ]
-              },
-              "label": {
-                "description": "label",
                 "type": "string"
               },
               "level": {
@@ -1306,7 +1228,7 @@
                 "pattern": "^[^\\s]+$"
               },
               "ssl_certificate": {
-                "description": "All of the certificates delimited by ':' as mentioned as a crt on the bind line.\nPattern: ^[^\\s]+$",
+                "description": "ssl certificate\nPattern: ^[^\\s]+$",
                 "type": "string",
                 "pattern": "^[^\\s]+$"
               },
@@ -1343,21 +1265,6 @@
               "strict_sni": {
                 "description": "strict sni",
                 "type": "boolean"
-              },
-              "tcp_md5sig": {
-                "description": "tcp md5sig\nPattern: ^[^\\s]+$",
-                "type": "string",
-                "pattern": "^[^\\s]+$"
-              },
-              "tcp_ss": {
-                "description": "Sets the TCP Save SYN option for all incoming connections instantiated from this listening socket\nEnum: [1,2,3]",
-                "type": "integer",
-                "format": "int64",
-                "enum": [
-                  1,
-                  2,
-                  3
-                ]
               },
               "tcp_user_timeout": {
                 "description": "tcp user timeout",
@@ -1504,17 +1411,6 @@
           "type": "string",
           "pattern": "^[^\\s]+$"
         },
-        "shm_stats_file": {
-          "description": "Shared Memory Statistics File (EXPERIMENTAL)\nPattern: ^[^\\s]+$",
-          "type": "string",
-          "pattern": "^[^\\s]+$"
-        },
-        "shm_stats_file_max_objects": {
-          "description": "Maximum number of objects the shared memory used for shared counters will be able to store per thread group. (EXPERIMENTAL)\nMinimum: 0",
-          "type": "integer",
-          "format": "int64",
-          "minimum": 0
-        },
         "ssl_options": {
           "description": "ssl options",
           "type": "object",
@@ -1613,21 +1509,17 @@
               "description": "issuers chain path",
               "type": "string"
             },
-            "load_extra_del_ext": {
-              "description": "Remove the certificate file extension before appending the extra file extension (foobar.crt loads foobar.key instead of foobar.crt.key)",
-              "type": "boolean"
-            },
             "load_extra_files": {
               "description": "load extra files",
               "type": "string"
             },
             "maxsslconn": {
-              "description": "Maximum per-process number of concurrent SSL connections",
+              "description": "maxsslconn",
               "type": "integer",
               "format": "int64"
             },
             "maxsslrate": {
-              "description": "Maximum per-process number of SSL sessions per second",
+              "description": "maxsslrate",
               "type": "integer",
               "format": "int64"
             },
@@ -1638,10 +1530,6 @@
                 "enabled",
                 "disabled"
               ]
-            },
-            "passphrase_cmd": {
-              "description": "passphrase cmd",
-              "type": "string"
             },
             "propquery": {
               "description": "propquery",
@@ -1676,14 +1564,6 @@
             }
           },
           "additionalProperties": false
-        },
-        "stats_calculate_max_counters": {
-          "description": "Activates or deactivates the calculation of stats max counters.\nDefaults to enabled in HAProxy.\n\nEnum: [\"enabled\",\"disabled\"]",
-          "type": "string",
-          "enum": [
-            "enabled",
-            "disabled"
-          ]
         },
         "stats_file": {
           "description": "stats file",
@@ -1752,13 +1632,8 @@
               "type": "integer",
               "format": "int64"
             },
-            "bufsize_large": {
-              "description": "Size in bytes of large buffers. By default, support for large buffers is not enabled.",
-              "type": "integer",
-              "format": "int64"
-            },
             "bufsize_small": {
-              "description": "Size of small buffers (for memory-restrained situations)\nMinimum: 1",
+              "description": "bufsize small\nMinimum: 1",
               "type": "integer",
               "format": "int64",
               "minimum": 1
@@ -1861,10 +1736,6 @@
               "type": "integer",
               "format": "int64"
             },
-            "openlibs": {
-              "description": "Selects which Lua standard libraries are loaded. Accepts \"all\", \"none\", or a comma-separated list of: table, io, os, string, math, utf8, package, debug.",
-              "type": "string"
-            },
             "service_timeout": {
               "description": "service timeout\nMinimum: 0",
               "type": "integer",
@@ -1891,26 +1762,17 @@
           "type": "object",
           "properties": {
             "applet_zero_copy_forwarding": {
-              "description": "Enables of disabled the zero-copy forwarding of data for the applets\nEnum: [\"enabled\",\"disabled\"]",
+              "description": "applet zero copy forwarding\nEnum: [\"enabled\",\"disabled\"]",
               "type": "string",
               "enum": [
                 "enabled",
                 "disabled"
               ]
             },
-            "cli_max_payload_size": {
-              "description": "Maximum size in bytes allowed for the payload passed to a command on the CLI",
-              "type": "integer",
-              "format": "int64"
-            },
             "comp_maxlevel": {
               "description": "comp maxlevel",
               "type": "integer",
               "format": "int64"
-            },
-            "defaults_purge": {
-              "description": "defaults purge",
-              "type": "boolean"
             },
             "disable_fast_forward": {
               "description": "disable fast forward",
@@ -1953,20 +1815,8 @@
               "maximum": 100,
               "minimum": 0
             },
-            "h1_be_glitches_threshold": {
-              "description": "h1 be glitches threshold\nMinimum: 0",
-              "type": "integer",
-              "format": "int64",
-              "minimum": 0
-            },
-            "h1_fe_glitches_threshold": {
-              "description": "h1 fe glitches threshold\nMinimum: 0",
-              "type": "integer",
-              "format": "int64",
-              "minimum": 0
-            },
             "h1_zero_copy_fwd_recv": {
-              "description": "enable or disable the zero-copy receives of data for the HTTP/1 multiplexer\nEnum: [\"enabled\",\"disabled\"]",
+              "description": "h1 zero copy fwd recv\nEnum: [\"enabled\",\"disabled\"]",
               "type": "string",
               "enum": [
                 "enabled",
@@ -1974,7 +1824,7 @@
               ]
             },
             "h1_zero_copy_fwd_send": {
-              "description": "enable or disable the zero-copy sends of data for the HTTP/1 multiplexer\nEnum: [\"enabled\",\"disabled\"]",
+              "description": "h1 zero copy fwd send\nEnum: [\"enabled\",\"disabled\"]",
               "type": "string",
               "enum": [
                 "enabled",
@@ -1982,62 +1832,47 @@
               ]
             },
             "h2_be_glitches_threshold": {
-              "description": "Automatically kill a backend connection past a number of glitches",
+              "description": "h2 be glitches threshold",
               "type": "integer",
               "format": "int64"
             },
             "h2_be_initial_window_size": {
-              "description": "Initial window size for outgoing connections",
+              "description": "h2 be initial window size",
               "type": "integer",
               "format": "int64"
             },
             "h2_be_max_concurrent_streams": {
-              "description": "Maximum number of concurrent streams per outgoing connection",
-              "type": "integer",
-              "format": "int64"
-            },
-            "h2_be_max_frames_at_once": {
-              "description": "Maximum number of HTTP/2 incoming frames processed at once on a backend connection",
+              "description": "h2 be max concurrent streams",
               "type": "integer",
               "format": "int64"
             },
             "h2_be_rxbuf": {
-              "description": "HTTP/2 receive buffer size for outgoing connections",
+              "description": "h2 be rxbuf",
               "type": "integer",
               "format": "int64"
             },
             "h2_fe_glitches_threshold": {
-              "description": "Automatically kill a frontend connection past a number of glitches",
+              "description": "h2 fe glitches threshold",
               "type": "integer",
               "format": "int64"
             },
             "h2_fe_initial_window_size": {
-              "description": "Initial window size for incoming connections",
+              "description": "h2 fe initial window size",
               "type": "integer",
               "format": "int64"
             },
             "h2_fe_max_concurrent_streams": {
-              "description": "Maximum number of concurrent streams per incoming connection",
-              "type": "integer",
-              "format": "int64"
-            },
-            "h2_fe_max_frames_at_once": {
-              "description": "Maximum number of HTTP/2 incoming frames processed at once on a frontend connection",
-              "type": "integer",
-              "format": "int64"
-            },
-            "h2_fe_max_rst_at_once": {
-              "description": "Maximum number of HTTP/2 incoming RST_STREAM frames processed at once on a frontend connection",
+              "description": "h2 fe max concurrent streams",
               "type": "integer",
               "format": "int64"
             },
             "h2_fe_max_total_streams": {
-              "description": "Maximum number of total streams processed per incoming HTTP/2 connection",
+              "description": "h2 fe max total streams",
               "type": "integer",
               "format": "int64"
             },
             "h2_fe_rxbuf": {
-              "description": "HTTP/2 receive buffer size for incoming connections",
+              "description": "h2 fe rxbuf",
               "type": "integer",
               "format": "int64"
             },
@@ -2052,15 +1887,6 @@
               "type": "integer",
               "format": "int64"
             },
-            "h2_log_errors": {
-              "description": "Level of HTTP/2 demultiplexer errors that will generate a log\nEnum: [\"none\",\"connection\",\"stream\"]",
-              "type": "string",
-              "enum": [
-                "none",
-                "connection",
-                "stream"
-              ]
-            },
             "h2_max_concurrent_streams": {
               "description": "h2 max concurrent streams",
               "type": "integer",
@@ -2072,7 +1898,7 @@
               "format": "int64"
             },
             "h2_zero_copy_fwd_send": {
-              "description": "enable or disable the zero-copy sends of data for the HTTP/2 multiplexer\nEnum: [\"enabled\",\"disabled\"]",
+              "description": "h2 zero copy fwd send\nEnum: [\"enabled\",\"disabled\"]",
               "type": "string",
               "enum": [
                 "enabled",
@@ -2097,12 +1923,11 @@
               "minimum": 1
             },
             "idle_pool_shared": {
-              "description": "idle pool shared\nEnum: [\"enabled\",\"disabled\",\"full\"]",
+              "description": "idle pool shared\nEnum: [\"enabled\",\"disabled\"]",
               "type": "string",
               "enum": [
                 "enabled",
-                "disabled",
-                "full"
+                "disabled"
               ]
             },
             "idletimer": {
@@ -2176,7 +2001,7 @@
               "format": "int64"
             },
             "peers_max_updates_at_once": {
-              "description": "Maximum number of stick-table updates at once",
+              "description": "peers max updates at once",
               "type": "integer",
               "format": "int64"
             },
@@ -2191,7 +2016,7 @@
               "format": "int64"
             },
             "pt_zero_copy_forwarding": {
-              "description": "enable or disable the zero-copy forwarding of data for the pass-through multiplexer\nEnum: [\"enabled\",\"disabled\"]",
+              "description": "pt zero copy forwarding\nEnum: [\"enabled\",\"disabled\"]",
               "type": "string",
               "enum": [
                 "enabled",
@@ -2199,21 +2024,21 @@
               ]
             },
             "renice_runtime": {
-              "description": "Scheduling priority applied after the configuration parsing\nMaximum: 19\nMinimum: -20",
+              "description": "renice runtime\nMaximum: 19\nMinimum: -20",
               "type": "integer",
               "format": "int64",
               "maximum": 19,
               "minimum": -20
             },
             "renice_startup": {
-              "description": "Scheduling priority applied before the rest of the configuration\nMaximum: 19\nMinimum: -20",
+              "description": "renice startup\nMaximum: 19\nMinimum: -20",
               "type": "integer",
               "format": "int64",
               "maximum": 19,
               "minimum": -20
             },
             "ring_queues": {
-              "description": "Number of write queues in front of ring buffers",
+              "description": "ring queues",
               "type": "integer",
               "format": "int64"
             },
@@ -2251,6 +2076,11 @@
           "description": "tune quic options",
           "type": "object",
           "properties": {
+            "frontend_conn_tx_buffers_limit": {
+              "description": "frontend conn tx buffers limit",
+              "type": "integer",
+              "format": "int64"
+            },
             "frontend_max_idle_timeout": {
               "description": "frontend max idle timeout\nMinimum: 0",
               "type": "integer",
@@ -2267,18 +2097,13 @@
               "type": "integer",
               "format": "int64"
             },
-            "frontend_stream_max_total": {
-              "description": "Maximum number of requests handled by a single QUIC frontend connection before graceful shutdown",
-              "type": "integer",
-              "format": "int64"
-            },
             "max_frame_loss": {
               "description": "max frame loss",
               "type": "integer",
               "format": "int64"
             },
             "reorder_ratio": {
-              "description": "Ratio applied to the packet reordering threshold\nMaximum: 100\nMinimum: 0",
+              "description": "reorder ratio\nMaximum: 100\nMinimum: 0",
               "type": "integer",
               "format": "int64",
               "maximum": 100,
@@ -2298,7 +2123,7 @@
               ]
             },
             "zero_copy_fwd_send": {
-              "description": "Enables or disables the zero-copy sends for the QUIC multiplexer\nEnum: [\"enabled\",\"disabled\"]",
+              "description": "zero copy fwd send\nEnum: [\"enabled\",\"disabled\"]",
               "type": "string",
               "enum": [
                 "enabled",
@@ -2321,14 +2146,6 @@
               "description": "capture buffer size",
               "type": "integer",
               "format": "int64"
-            },
-            "certificate_compression": {
-              "description": "certificate compression\nEnum: [\"auto\",\"disabled\"]",
-              "type": "string",
-              "enum": [
-                "auto",
-                "disabled"
-              ]
             },
             "ctx_cache_size": {
               "description": "ctx cache size",
@@ -2364,12 +2181,12 @@
               "format": "int64"
             },
             "ocsp_update_max_delay": {
-              "description": "SSL Maximum Interval Between Two Automatic Updates of the same OCSP Response",
+              "description": "ocsp update max delay",
               "type": "integer",
               "format": "int64"
             },
             "ocsp_update_min_delay": {
-              "description": "SSL Minimum Interval Between Two Automatic Updates of the same OCSP Response",
+              "description": "ocsp update min delay",
               "type": "integer",
               "format": "int64"
             }
@@ -2445,7 +2262,7 @@
           "pattern": "^[^\\s]+$"
         },
         "warn_blocked_traffic_after": {
-          "description": "Delay after which a stuck task triggers a warning\nMinimum: 1",
+          "description": "warn blocked traffic after\nMinimum: 1",
           "type": "integer",
           "format": "int64",
           "minimum": 1
@@ -2455,24 +2272,24 @@
           "type": "object",
           "properties": {
             "cache_size": {
-              "description": "Sets the WURFL Useragent cache size",
+              "description": "cache size",
               "type": "integer",
               "format": "int64"
             },
             "data_file": {
-              "description": "The path of the WURFL data file",
+              "description": "data file",
               "type": "string"
             },
             "information_list": {
-              "description": "A space-delimited list of WURFL capabilities",
+              "description": "information list",
               "type": "string"
             },
             "information_list_separator": {
-              "description": "A char that will be used to separate values in a response header containing WURFL results",
+              "description": "information list separator",
               "type": "string"
             },
             "patch_file": {
-              "description": "A list of WURFL patch file paths",
+              "description": "patch file",
               "type": "string"
             }
           },
