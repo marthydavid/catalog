@@ -9,7 +9,7 @@ This page lists missing CRD validation schemas that are present in alternative c
 
 | Coverage | Schemas in theirs | Schemas in /schema | Ignored Missing Schemas |
 | --- | --- | --- | --- |
-| 91.42% | 4139 | 10979 | 83 |
+| 91.37% | 4148 | 10980 | 83 |
 
 ### Missing Schemas
 
@@ -53,6 +53,12 @@ This page lists missing CRD validation schemas that are present in alternative c
 | config | v1alpha1 |
 | plugin | v1alpha1 |
 | rulesfile | v1alpha1 |
+
+| artifactregistry.cnrm.cloud.google.com | |
+| --- | --- |
+| artifactregistryattachment | v1alpha1 |
+| artifactregistryrule | v1alpha1 |
+| artifactregistryvpcscconfig | v1alpha1 |
 
 | auditlog.cattle.io | |
 | --- | --- |
