@@ -61,7 +61,6 @@
             "type": "object",
             "required": [
               "lastTransitionTime",
-              "message",
               "reason",
               "status",
               "type"
@@ -75,6 +74,7 @@
               "message": {
                 "description": "message is a human readable message indicating details about the transition.\nThis may be an empty string.",
                 "type": "string",
+                "default": "",
                 "maxLength": 32768
               },
               "observedGeneration": {
