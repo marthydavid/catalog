@@ -22,6 +22,101 @@
       "type": "object",
       "minProperties": 1,
       "properties": {
+        "canary": {
+          "description": "canary holds configuration for the ingress canary daemonset (the\ningress-canary DaemonSet in the openshift-ingress-canary namespace).\n\ncanary is optional. When omitted, the ingress canary daemonset keeps its\ndefault configuration. When specified, canary must set at least one of\nits fields; an empty object is rejected.",
+          "type": "object",
+          "minProperties": 1,
+          "properties": {
+            "nodePlacement": {
+              "description": "nodePlacement enables explicit control over the scheduling of the ingress\ncanary daemonset pods.\n\nnodePlacement is optional. To leave the canary daemonset with its default\nscheduling configuration, which tolerates the\nnode-role.kubernetes.io/infra taint, omit the parent canary field\nentirely: because canary requires at least one field, nodePlacement can\nonly be absent when canary itself is absent. When specified,\nnodePlacement must set at least one of its fields; an empty object is\nrejected.",
+              "type": "object",
+              "minProperties": 1,
+              "properties": {
+                "tolerations": {
+                  "description": "tolerations is a list of tolerations that are applied to the ingress\ncanary daemonset pods in addition to the tolerations the canary daemonset\nhas by default. The default toleration for the\nnode-role.kubernetes.io/infra taint is always preserved.\n\nEach toleration is plumbed directly to the Pod specification of the\ncanary daemonset pods: it is applied unmodified to the pods' tolerations\nand has the same semantics as the corresponding fields of the Kubernetes\ncore/v1 Toleration type.\n\nIf unset, the canary daemonset has only its default tolerations. When\nspecified, the list must contain at least 1 toleration; to remove all\nadditional tolerations, omit the entire spec.canary field rather than\nsetting an empty list or leaving empty parent objects. Retain at least one\nother valid spec field, such as spec.gatewayAPI, because spec must not be empty.\n\nEach toleration has the following constraints:\n\n* operator is required and must be \"Exists\" or \"Equal\"; omitted and empty\n  operators, as well as \"Lt\" and \"Gt\", are rejected.\n* effect is required and must be \"NoSchedule\", \"PreferNoSchedule\", or\n  \"NoExecute\"; omitted and empty effects are rejected.\n* value must be empty when operator is \"Exists\".\n* key must be non-empty. A toleration with an empty key is rejected; in\n  particular, a toleration with an empty key and operator \"Exists\", which\n  tolerates all taints, is rejected.\n* key must be a qualified label key: a 1-63 character name consisting of\n  alphanumeric characters, '-', '_', or '.', beginning and ending with an\n  alphanumeric character, optionally preceded by a lowercase DNS subdomain\n  prefix of at most 253 characters and a '/'. The total limit is 317 characters.\n* value for \"Equal\" must be empty or a label value of at most 63 characters,\n  using the same characters and beginning/end constraints as the key name.\n* tolerationSeconds may be specified only when effect is \"NoExecute\".\n\nAt least 1 and no more than 32 tolerations may be specified.\n\nList order is preserved, but duplicate tolerations are rejected: two\ntolerations must not have the same key, operator, value, and effect,\nregardless of their tolerationSeconds. Two tolerations are duplicates\nonly when they also agree on whether value is set; if both set value,\nthe values must be equal. Overlapping tolerations (for example, the same\nkey with a different effect) are allowed.\nFor NoExecute, omitted tolerationSeconds means tolerating indefinitely;\nfinite values are preserved, including zero and negative values.\n\nSee https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/",
+                  "type": "array",
+                  "maxItems": 32,
+                  "minItems": 1,
+                  "items": {
+                    "description": "CanaryToleration describes a toleration added to the ingress canary daemonset.\n\nA CanaryToleration is plumbed directly to the Pod specification of the\ncanary daemonset pods and corresponds to a Kubernetes core/v1 Toleration.\nIts fields have the same semantics as their core/v1 Toleration counterparts,\nwith the validation constraints documented on each field.",
+                    "type": "object",
+                    "required": [
+                      "effect",
+                      "key",
+                      "operator"
+                    ],
+                    "properties": {
+                      "effect": {
+                        "description": "effect is required and specifies the taint effect to match. Only NoSchedule,\nPreferNoSchedule, and NoExecute are allowed; omitted or empty effects are\nrejected. NoSchedule prevents scheduling, PreferNoSchedule expresses a\nscheduling preference, and NoExecute also evicts pods that do not tolerate it.",
+                        "type": "string",
+                        "enum": [
+                          "NoSchedule",
+                          "PreferNoSchedule",
+                          "NoExecute"
+                        ]
+                      },
+                      "key": {
+                        "description": "key is required and identifies the taint to tolerate. It must be a qualified\nlabel key of 1-317 characters: an alphanumeric-bounded name of 1-63\ncharacters using alphanumerics, '-', '_', or '.', optionally preceded by\na lowercase DNS subdomain prefix of at most 253 characters and a '/'.",
+                        "type": "string",
+                        "maxLength": 317,
+                        "minLength": 1,
+                        "x-kubernetes-validations": [
+                          {
+                            "rule": "!format.qualifiedName().validate(self).hasValue()",
+                            "message": "tolerations key must be a qualified label key with a name of 1-63 characters and an optional DNS prefix of at most 253 characters"
+                          }
+                        ]
+                      },
+                      "operator": {
+                        "description": "operator is required and specifies how the taint value is matched.\nEqual matches the specified value; Exists matches any value and requires\nvalue to be empty or omitted. Only Equal and Exists are allowed;\nomitted or empty operators are rejected.",
+                        "type": "string",
+                        "enum": [
+                          "Exists",
+                          "Equal"
+                        ]
+                      },
+                      "tolerationSeconds": {
+                        "description": "tolerationSeconds is optional and may be set only for effect NoExecute.\nWhen omitted, the taint is tolerated indefinitely. When specified, this is\nthe duration in seconds for which the taint is tolerated. Zero and negative\nvalues are preserved by the API and treated as zero by Kubernetes.",
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "value": {
+                        "description": "value is optional; when omitted, no value is matched. For Equal, it must be\na non-empty label value of at most 63 characters, consisting of\nalphanumerics, '-', '_', or '.', beginning and ending with an alphanumeric\ncharacter. The empty string is not allowed: omit value instead, as there is\nno semantic difference between the two. For Exists, it must be omitted.",
+                        "type": "string",
+                        "maxLength": 63,
+                        "minLength": 1
+                      }
+                    },
+                    "additionalProperties": false,
+                    "x-kubernetes-validations": [
+                      {
+                        "rule": "!has(self.operator) || self.operator != 'Exists' || !has(self.value)",
+                        "message": "tolerations value must not be set when operator is 'Exists'"
+                      },
+                      {
+                        "rule": "!has(self.operator) || self.operator != 'Equal' || !has(self.value) || !format.labelValue().validate(self.value).hasValue()",
+                        "message": "tolerations Equal value must be a valid label value of at most 63 characters"
+                      },
+                      {
+                        "rule": "!has(self.tolerationSeconds) || (has(self.effect) \u0026\u0026 self.effect == 'NoExecute')",
+                        "message": "tolerations effect must be 'NoExecute' when tolerationSeconds is set"
+                      }
+                    ]
+                  },
+                  "x-kubernetes-list-type": "atomic",
+                  "x-kubernetes-validations": [
+                    {
+                      "rule": "self.all(x, self.filter(y, y.key == x.key \u0026\u0026 y.operator == x.operator \u0026\u0026 y.effect == x.effect \u0026\u0026 has(y.value) == has(x.value) \u0026\u0026 (!has(x.value) || y.value == x.value)).size() \u003c= 1)",
+                      "message": "tolerations must not contain duplicates with the same key, operator, value, and effect"
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
         "gatewayAPI": {
           "description": "gatewayAPI holds configuration for Gateway API integration, including how the\ningress operator manages Gateway API CRDs, the OpenShift Gateway API\nimplementation, and its Gateway API controllers.",
           "type": "object",
